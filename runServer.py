@@ -21,7 +21,7 @@ def create_app():
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
     app.config.from_object('config')
-    #build_api(app)
+    build_api(app)
     #init_db(app)
 
     # define hello world page
