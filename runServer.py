@@ -22,7 +22,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('config')
     build_api(app)
-    #init_db(app)
+    init_db(app)
 
     # define hello world page
     @app.route('/')
