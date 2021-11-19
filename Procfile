@@ -1,0 +1,1 @@
+web: gunicorn runServer:create_app()
