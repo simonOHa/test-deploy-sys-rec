@@ -8,7 +8,7 @@ from api.apiVideoListeningTest import VideoListeningTestAPI
 from api.apiRecommendations import RecommendationAPI
 from api.apiColdStart import ColdStartAPI
 from api.apiUserInterestArea import UserInterestAreaAPI
-
+from flask_cors import cross_origin
 from flask_cors import CORS
 
 
