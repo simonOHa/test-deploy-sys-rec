@@ -10,6 +10,7 @@ class ColdStartAPI(Resource):
 
     _model = SysRecColdStartModel()
 
+    @cross_origin(allow_headers=['Content-Type'])
     def get(self):
         choices = self._model.get_cold_start_choices()
         return {'choices': choices.tolist()}, 200
