@@ -21,6 +21,7 @@ def create_app():
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
     app.config.from_object('config')
+    app.config['CORS_HEADERS'] = 'Content-Type'
     build_api(app)
     init_db(app)
 
