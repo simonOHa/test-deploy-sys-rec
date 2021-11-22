@@ -9,6 +9,8 @@ from api.apiRecommendations import RecommendationAPI
 from api.apiColdStart import ColdStartAPI
 from api.apiUserInterestArea import UserInterestAreaAPI
 
+from flask_cors import CORS
+
 
 api = Api(prefix=config.API_PREFIX)
 
