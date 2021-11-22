@@ -23,13 +23,7 @@ def create_app():
     app = Flask(__name__)
     build_api(app)
     init_db(app)
-    CORS(app)
 
-    cors = CORS(app, resource={
-        r"/api/*": {
-            "origins": "*"
-        }
-    })
     # define hello world page
     @app.route('/')
     def hello_world():
@@ -40,4 +34,13 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(host='0.0.0.0', debug=True, use_reloader=False)
+    CORS(app)
+
+    cors = CORS(app, resource={
+        r"/api/*": {
+            "origins": "*"
+        }
+    })
+
+    # app.run(host='0.0.0.0', debug=True, use_reloader=False)
+    app.run()
