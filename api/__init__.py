@@ -4,6 +4,7 @@ from api.apiRoutes import api
 
 
 def build_api(app):
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app)
+    
     api.init_app(app)
 
