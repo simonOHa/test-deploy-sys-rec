@@ -3,6 +3,6 @@ from api.apiUser import UserAPI
 from api.apiRoutes import api
 
 def build_api(app):
-    CORS(app, resources=r'/api/*')
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     api.init_app(app)
 

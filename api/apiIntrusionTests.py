@@ -22,6 +22,7 @@ class ResultsIntrusionTestWI(Resource):
     def get(self):
         return self._model.read_wi_data()
 
+
     def post(self):
         res = request.get_json()
         return self._model.save_to_db(self._model, res), 200
