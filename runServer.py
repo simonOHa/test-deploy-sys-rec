@@ -3,6 +3,7 @@ from config import *
 from api import build_api
 
 from flask import Flask
+from flask_cors import CORS
 
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
@@ -23,7 +24,7 @@ def create_app():
     app.config.from_object('config')
     build_api(app)
     init_db(app)
-
+    CORS(app)
     # define hello world page
     @app.route('/')
     def hello_world():
