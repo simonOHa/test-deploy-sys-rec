@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.DEBUG,
                     handlers=[logging.StreamHandler()])
 
 logger = logging.getLogger()
-
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 
 def create_app():
@@ -27,9 +27,9 @@ def create_app():
     init_db(app)
 
     # define hello world page
-    @app.route('/')
-    def hello_world():
-        return 'Hello, World!'
+    # @app.route('/')
+    #def hello_world():
+    #    return 'Hello, World!'
 
     return app
 
