@@ -9,6 +9,6 @@ class UserAPI(Resource):
     def __init__(self):
         pass
 
-    @cross_origin()
+    @cross_origin(allow_headers=['Content-Type'])
     def get(self):
         return {"id": self._model.generate_user_id()}, 200
