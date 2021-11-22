@@ -14,7 +14,7 @@ class ColdStartAPI(Resource):
         choices = self._model.get_cold_start_choices()
         return {'choices': choices.tolist()}, 200
 
-    @cross_origin()
+    @cross_origin(allow_headers=['Content-Type'])
     def post(self):
         res = request.get_json()
         return self._model.save_cold_start_choice(cold_start_choice=res['result'], user_id=res['user_id']), 200
