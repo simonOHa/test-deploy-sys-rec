@@ -23,6 +23,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('config')
     app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['CORS_ALLOW_HEADERS'] = '*'
+    app.config['CORS_ORIGINS'] = '*'
 
     build_api(app)
     init_db(app)
