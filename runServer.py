@@ -21,9 +21,10 @@ def create_app():
     RecommendationsGenerator()
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object('config')
     app.config['CORS_HEADERS'] = 'Content-Type'
-    cors = CORS(app, resorces={r'/api/cold-start-choices': {"origins": '*'}})
+   
 
     build_api(app)
     init_db(app)
