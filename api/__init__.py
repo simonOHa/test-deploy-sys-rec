@@ -5,6 +5,6 @@ from flask_cors import CORS
 def build_api(app):
 
     api.init_app(app)
-   
-    CORS(api)
+
+    CORS(app)
 
