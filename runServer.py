@@ -21,7 +21,7 @@ def create_app():
     RecommendationsGenerator()
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
-
+    CORS(app, resources=r'/api/*')
 
     build_api(app)
     init_db(app)
@@ -36,6 +36,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    CORS(app, resources=r'*/api/*')
+
     # app.run(host='0.0.0.0', debug=True, use_reloader=False)
     app.run()
