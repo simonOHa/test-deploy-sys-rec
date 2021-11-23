@@ -22,6 +22,7 @@ def create_app():
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
     CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     build_api(app)
     init_db(app)
