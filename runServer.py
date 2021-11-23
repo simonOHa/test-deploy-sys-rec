@@ -21,8 +21,6 @@ def create_app():
     RecommendationsGenerator()
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
-
-
     build_api(app)
     init_db(app)
 
