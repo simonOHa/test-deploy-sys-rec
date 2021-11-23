@@ -3,7 +3,7 @@ from config import *
 from api import build_api
 
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
@@ -14,8 +14,6 @@ logging.basicConfig(level=logging.DEBUG,
                     handlers=[logging.StreamHandler()])
 
 logger = logging.getLogger()
-logging.getLogger('flask_cors').level = logging.DEBUG
-
 
 def create_app():
     RecommendationsGenerator()
@@ -24,6 +22,7 @@ def create_app():
     build_api(app)
     init_db(app)
 
+    @cross_origin()
     # define hello world page
     @app.route('/')
     def hello_world():
