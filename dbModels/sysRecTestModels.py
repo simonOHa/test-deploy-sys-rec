@@ -6,11 +6,11 @@ class VideoListeningTestModel(db.Model):
 
     __tablename__ = 'videoListeningTestModel'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     video = db.Column(db.ARRAY(db.Integer))
     rating = db.Column(db.ARRAY(db.Integer))
     comments = db.Column(db.ARRAY(db.String))
-    user_id = db.Column(db.String(), db.ForeignKey('users.id'))
+
 
     _ti_file_path = os.path.join(os.getcwd(), 'intrusion_test_data', 'ti_test.csv')
 

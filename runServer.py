@@ -1,12 +1,10 @@
 import logging
 from config import *
 from api import build_api
-
-from flask import Flask
-from flask_cors import CORS, cross_origin
-
+from flask import Flask, jsonify
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
+from flask_jwt_extended import JWTManager
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s]: {} %(levelname)s %(message)s'.format(os.getpid()),
@@ -15,10 +13,16 @@ logging.basicConfig(level=logging.DEBUG,
 
 logger = logging.getLogger()
 
+
 def create_app():
     RecommendationsGenerator()
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
+
+    # Setup the Flask-JWT-Extended extension
+    app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+    jwt = JWTManager(app)
+
     app.config.from_object('config')
     build_api(app)
     init_db(app)
@@ -33,5 +37,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run()
-    #app.run(host='0.0.0.0', debug=True, use_reloader=False)
+    app.run(host='0.0.0.0', debug=True, use_reloader=False)
+
+

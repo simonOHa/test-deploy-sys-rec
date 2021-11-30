@@ -4,7 +4,8 @@ from flask_cors import CORS
 
 
 def build_api(app):
-    CORS(app)
+    CORS(app,  expose_headers='Authorization')
     api.init_app(app)
+
 
 

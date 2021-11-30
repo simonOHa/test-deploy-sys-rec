@@ -7,7 +7,7 @@ class SysRecUserAreaInterest(db.Model):
 
     __tablename__ = 'userAreaInterest'
 
-    user_id = db.Column(db.String(), db.ForeignKey('users.id'), primary_key=True)
+    email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     area_interest = db.Column(NestedMutableJson)
 
     _recommenderGenerator = RecommendationsGenerator()
@@ -15,9 +15,9 @@ class SysRecUserAreaInterest(db.Model):
     def __init__(self):
         pass
 
-    def get_user_area_interest(self, user_id, top_n=3):
+    def get_user_area_interest(self, email, top_n=3):
 
-        x = SysRecUserAreaInterest.query.filter_by(user_id=user_id).first()
+        x = SysRecUserAreaInterest.query.filter_by(email=email).first()
         xx = x.area_interest
         xxx = xx['cold_start']
         response = {}
@@ -37,19 +37,19 @@ class SysRecUserAreaInterest(db.Model):
 
         return response
 
-    def set_user_area_interest_to_cold_start_position(self, user_id, cold_start_position):
-        self.user_id = user_id
+    def set_user_area_interest_to_cold_start_position(self, email, cold_start_position):
+        self.email = email
         x = self._recommenderGenerator.calculate_cold_start_user_area_interest(cold_start_position)
         self.area_interest = x
         self.save_to_db()
 
-    def update_user_area_interest(self, user_id, recommended_videos, calcul_index):
+    def update_user_area_interest(self, email, recommended_videos, calcul_index):
         new_area_of_interest = self._recommenderGenerator.calculate_center_of_interest(
             videos_rating=recommended_videos,
             option=1
         )
 
-        user = SysRecUserAreaInterest.query.filter_by(user_id=user_id).first()
+        user = SysRecUserAreaInterest.query.filter_by(email=email).first()
         result_to_save_in_db = {calcul_index: []}
 
         # Afin de gerer le cas ou aucun video a ete aime

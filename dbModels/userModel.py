@@ -1,19 +1,20 @@
 from dbModels import db
-import uuid
 from dbModels.intrusionTestModels import ResultsIntrusionTestTI, ResultsIntrusionTestWSI, ResultsIntrusionTestWI
 from dbModels.sysRecTestModels import VideoListeningTestModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
-
-
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 
+from flask_login import UserMixin
+from dbModels import login
 
-class UserModel(db.Model):
+class UserModel(UserMixin, db.Model):
 
     __tablename__ = 'users'
 
-    id = db.Column(db.String(), primary_key=True)
+    email = db.Column(db.String(), primary_key=True, unique=True)
+    access_token = db.Column(db.String())
+    refresh_token = db.Column(db.String())
 
     # make a relationship with other tables
     ti_results = db.relationship(ResultsIntrusionTestTI, backref='users', lazy=True)
@@ -28,10 +29,32 @@ class UserModel(db.Model):
     def __init__(self):
         pass
 
-    def generate_user_id(self):
-        self.id = str(uuid.uuid4())
+    def __repr__(self):
+        return '<User {}>'.format(self.email)
+
+    def create_user(self, email, access_token, refresh_token):
+        self.access_token = access_token
+        self.refresh_token = refresh_token
+        self.email = email
         self.save_to_db()
-        return self.id
+
+    def update_access_token(self, access_token):
+        self.access_token = access_token
+        db.session.commit()
+
+    # # A delete
+    # def set_password(self, password):
+    #     self.password_hash = generate_password_hash(password)
+    #
+    # # A delete
+    # def check_password(self, password):
+    #     return check_password_hash(self.password_hash, password)
+    #
+    # # On va avoir un probleme
+    # def generate_user_id(self):
+    #     #self.id = str(uuid.uuid4())
+    #     self.save_to_db()
+    #     return self.id
 
     def save_to_db(self):
         db.session.add(self)
@@ -40,3 +63,5 @@ class UserModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+

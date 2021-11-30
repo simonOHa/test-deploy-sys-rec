@@ -9,7 +9,7 @@ class RecommendationModel(db.Model):
 
     __tablename__ = 'recommendation'
 
-    user_id = db.Column(db.String(), db.ForeignKey('users.id'), primary_key=True)
+    email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     recommendations = db.Column(NestedMutableJson)
     total_rec_send = db.Column(db.Integer)
 
@@ -18,15 +18,15 @@ class RecommendationModel(db.Model):
     def __init__(self):
         pass
 
-    def get_new_recommendations(self, user_id):
+    def get_new_recommendations(self, email):
 
-        user_recommendation_model = RecommendationModel.query.filter_by(user_id=user_id).first()
+        user_recommendation_model = RecommendationModel.query.filter_by(email=email).first()
 
         # Cold start recommendations
         if user_recommendation_model is None:
-            self.user_id = user_id
+            self.email = email
             self.total_rec_send = 1
-            user = SysRecColdStartModel.query.filter_by(user_id=user_id).first()
+            user = SysRecColdStartModel.query.filter_by(email=email).first()
             rec = self._recommenderGenerator.get_cold_start_videos(user_cold_start_position=user.cold_start_position)
             # ajouter update history des recs et du centre d'interet
             # history des rec aura les do_id + rating a null
@@ -35,13 +35,13 @@ class RecommendationModel(db.Model):
                 video_rec_empty_rating['cold_start_rec'].append({'doc_id': row['doc_id'], 'videoRating': None})
 
             # centre d'interet sera le topic id selectionne
-            SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(user_id=self.user_id, cold_start_position=user.cold_start_position)
+            SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(email=self.email, cold_start_position=user.cold_start_position)
 
             self.recommendations = video_rec_empty_rating
             self.save_to_db()
 
         else:
-            user_area_interest = SysRecUserAreaInterest.query.filter_by(user_id=user_id).first()
+            user_area_interest = SysRecUserAreaInterest.query.filter_by(email=email).first()
             rec = self._recommenderGenerator.get_new_recommendations(
                 user_area_of_interest=user_area_interest.area_interest[str(user_recommendation_model.total_rec_send)],
                 history_videos_rating=user_recommendation_model.recommendations,
@@ -64,8 +64,8 @@ class RecommendationModel(db.Model):
 
         return rec
 
-    def save_watched_videos(self, user_id, videos_rated):
-        user = RecommendationModel.query.filter_by(user_id=user_id).first()
+    def save_watched_videos(self, email, videos_rated):
+        user = RecommendationModel.query.filter_by(email=email).first()
 
         # Note : pour la mise a jour du centre d'interet, je travaille avec l<ensemble des notes donnees
         # par l'utilisateur et non simplement avec les dernieres notes donnees. !!
@@ -74,7 +74,7 @@ class RecommendationModel(db.Model):
         if user.total_rec_send == 1:
             user.recommendations['cold_start_rec'] = videos_rated
             # Update le centre d'interet
-            SysRecUserAreaInterest().update_user_area_interest(user_id=user_id,
+            SysRecUserAreaInterest().update_user_area_interest(email=email,
                                                                #values=user.recommendations['cold_start_rec'],
                                                                recommended_videos=user.recommendations,
                                                                calcul_index=1)
@@ -82,7 +82,7 @@ class RecommendationModel(db.Model):
         else:
             user.recommendations[user.total_rec_send] = videos_rated
             # Update le centre d'interet
-            SysRecUserAreaInterest().update_user_area_interest(user_id=user_id,
+            SysRecUserAreaInterest().update_user_area_interest(email=email,
                                                                # values=user.recommendations[user.total_rec_send],
                                                                recommended_videos=user.recommendations,
                                                                calcul_index=user.total_rec_send)
