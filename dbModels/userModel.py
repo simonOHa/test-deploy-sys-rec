@@ -1,5 +1,5 @@
 from dbModels import db
-from dbModels.intrusionTestModels import ResultsIntrusionTestTI, ResultsIntrusionTestWSI, ResultsIntrusionTestWI
+from dbModels.intrusionTestModels import IntrusionTestTIModel, IntrusionTestWSIModel, IntrusionTestWIModel
 from dbModels.sysRecTestModels import VideoListeningTestModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
@@ -17,9 +17,9 @@ class UserModel(UserMixin, db.Model):
     refresh_token = db.Column(db.String())
 
     # make a relationship with other tables
-    ti_results = db.relationship(ResultsIntrusionTestTI, backref='users', lazy=True)
-    wi_results = db.relationship(ResultsIntrusionTestWSI, backref='users', lazy=True)
-    wsi_results = db.relationship(ResultsIntrusionTestWI, backref='users', lazy=True)
+    ti_results = db.relationship(IntrusionTestTIModel, backref='users', lazy=True)
+    wi_results = db.relationship(IntrusionTestWSIModel, backref='users', lazy=True)
+    wsi_results = db.relationship(IntrusionTestWIModel, backref='users', lazy=True)
 
     sysrec_user_video_listening_results = db.relationship(VideoListeningTestModel, backref='users', lazy=True) # A refaire
     sysrec_user_recommendation = db.relationship(RecommendationModel, backref='users', lazy=True)

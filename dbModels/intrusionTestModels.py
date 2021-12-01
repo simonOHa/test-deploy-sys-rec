@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 
-class ResultsIntrusionTestTI(db.Model):
+class IntrusionTestTIModel(db.Model):
 
     __tablename__ = 'resultsIntrusionTestTI'
 
@@ -17,12 +17,28 @@ class ResultsIntrusionTestTI(db.Model):
     def __init__(self):
         pass
 
-    def save_to_db(self, model, result, email):
-        model.result_candidate_id = [int(k) for k in result['candidate_id']]
-        model.result_candidate_value = result['candidate_value']
-        model.question = [int(k) for k in result['question']]
-        model.email = email
-        db.session.add(model)
+    def save_to_db(self, result, email):
+        self.result_candidate_id = [int(k) for k in result['candidate_id']]
+        self.result_candidate_value = result['candidate_value']
+        self.question = [int(k) for k in result['question']]
+        self.email = email
+
+        # Validation si l'utilisateur modifie sa selection
+        user_session = IntrusionTestTIModel.query.filter_by(email=email).first()
+        if user_session:
+            self.update(user_session)
+        else:
+            self._save_to_db()
+
+    def update(self, session):
+        session.result_candidate_id = self.result_candidate_id
+        session.result_candidate_value = self.result_candidate_value
+        session.question = self.question
+
+        db.session.commit()
+
+    def _save_to_db(self):
+        db.session.add(self)
         db.session.commit()
 
     def delete_from_db(self):
@@ -47,27 +63,40 @@ class ResultsIntrusionTestTI(db.Model):
         return json_list
 
 
-class ResultsIntrusionTestWI(db.Model):
+class IntrusionTestWIModel(db.Model):
 
     __tablename__ = 'resultsIntrusionTestWI'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     question = db.Column(db.ARRAY(db.Integer))
     result = db.Column(db.ARRAY(db.String))
-    user_id = db.Column(db.String(), db.ForeignKey('users.email'))
+
 
     _wi_file_path = os.path.join(os.getcwd(), 'intrusion_test_data', 'wi_test.csv')
 
     def __init__(self):
         pass
 
-    def save_to_db(self, model, response, email):
-        model.question = [int(k) for k in response['results'].keys()]
-        model.result = [v for v in response['results'].values()]
-        model.user_id = email
-        db.session.add(model)
+    def save_to_db(self, response, email):
+        self.question = [int(k) for k in response['results'].keys()]
+        self.result = [v for v in response['results'].values()]
+        self.email = email
+
+        # Validation si l'utilisateur modifie sa selection
+        user_session = IntrusionTestWIModel.query.filter_by(email=email).first()
+        if user_session:
+            self.update(user_session)
+        else:
+            self._save_to_db()
+
+    def update(self, session):
+        session.question = self.question
+        session.result = self.result
         db.session.commit()
 
+    def _save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
     def delete_from_db(self):
         db.session.delete(self)
@@ -84,28 +113,38 @@ class ResultsIntrusionTestWI(db.Model):
         return json_list
 
 
-class ResultsIntrusionTestWSI(db.Model):
+class IntrusionTestWSIModel(db.Model):
 
     __tablename__ = 'resultsIntrusionTestWSI'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     question = db.Column(db.ARRAY(db.Integer))
     result = db.Column(db.ARRAY(db.String))
-    user_id = db.Column(db.String(), db.ForeignKey('users.email'))
 
     _wsi_file_path = os.path.join(os.getcwd(), 'intrusion_test_data', 'wsi_test.csv')
+
     def __init__(self):
         pass
 
-    def save_to_db(self, model, response, email):
-        model.question = [int(k) for k in response['results'].keys()]
-        model.result = [v for v in response['results'].values()]
-        model.user_id = email
-        db.session.add(model)
+    def save_to_db(self, response, email):
+        self.question = [int(k) for k in response['results'].keys()]
+        self.result = [v for v in response['results'].values()]
+        self.email = email
+
+        # Validation si l'utilisateur modifie sa selection
+        user_session = IntrusionTestWSIModel.query.filter_by(email=email).first()
+        if user_session:
+            self.update(user_session)
+        else:
+            self._save_to_db()
+
+    def update(self, session):
+        session.question = self.question
+        session.result = self.result
         db.session.commit()
 
-    def delete_from_db(self):
-        db.session.delete(self)
+    def _save_to_db(self):
+        db.session.add(self)
         db.session.commit()
 
     def read_wsi_data(self):

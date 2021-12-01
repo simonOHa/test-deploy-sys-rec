@@ -2,7 +2,8 @@ import config as config
 from api.apiSemanticMap import SemanticMapAPI
 from flask_restful import Api
 from api.apiUser import UserAPI, UserLoginAPI, UserLogoutAPI
-from api.apiIntrusionTests import ResultsIntrusionTestWSI, ResultsIntrusionTestWI, ResultsIntrusionTestTI
+from api.apiIntrusionTests import IntrusionTestWSIAPI, IntrusionTestWIAPI, IntrusionTestTIAPI, \
+    ResultsIntrusionTestWIAPI, ResultsIntrusionTestWSIAPI, ResultsIntrusionTestTIAPI
 from api.apiVideoListeningTest import VideoListeningTestAPI
 from api.apiRecommendations import RecommendationAPI
 from api.apiColdStart import ColdStartAPI
@@ -19,12 +20,18 @@ api.add_resource(UserLogoutAPI, '/user/logout')
 #api.add_resource(UserInfoAPI, '/user/info')
 #api.add_resource(UserRefreshAPI, '/user/refresh')
 
+api.add_resource(IntrusionTestTIAPI, '/ti-intrusion-test')
+api.add_resource(ResultsIntrusionTestTIAPI, '/ti-intrusion-test-results')
+
+api.add_resource(IntrusionTestWIAPI, '/wi-intrusion-test')
+api.add_resource(ResultsIntrusionTestWIAPI, '/wi-intrusion-test-results')
+
+api.add_resource(IntrusionTestWSIAPI, '/wsi-intrusion-test')
+api.add_resource(ResultsIntrusionTestWSIAPI, '/wsi-intrusion-test-results')
 
 
 
-api.add_resource(ResultsIntrusionTestTI, '/ti-intrusion-test-results')
-api.add_resource(ResultsIntrusionTestWI, '/wi-intrusion-test-results')
-api.add_resource(ResultsIntrusionTestWSI, '/wsi-intrusion-test-results')
+
 api.add_resource(SemanticMapAPI, '/semantic-map')
 
 # Sys-Rec
