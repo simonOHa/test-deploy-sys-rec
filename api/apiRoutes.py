@@ -8,6 +8,7 @@ from api.apiVideoListeningTest import VideoListeningTestAPI
 from api.apiRecommendations import RecommendationAPI
 from api.apiColdStart import ColdStartAPI
 from api.apiUserInterestArea import UserInterestAreaAPI
+from api.apiConsentForm import ConsentFormAPI
 
 api = Api(prefix=config.API_PREFIX)
 
@@ -29,7 +30,7 @@ api.add_resource(ResultsIntrusionTestWIAPI, '/wi-intrusion-test-results')
 api.add_resource(IntrusionTestWSIAPI, '/wsi-intrusion-test')
 api.add_resource(ResultsIntrusionTestWSIAPI, '/wsi-intrusion-test-results')
 
-
+api.add_resource(ConsentFormAPI, '/consent-form')
 
 
 api.add_resource(SemanticMapAPI, '/semantic-map')
