@@ -1,6 +1,7 @@
-from flask_restful import Resource, request
+from flask_restful import Resource
+from flask import request
 from dbModels.sysRecRecommendationModel import RecommendationModel
-from api.http_header import buid_response_header_get,buid_response_header_post
+from api.http_header import build_response_header_extract_user_email
 from api.token import check_token
 
 
@@ -27,13 +28,13 @@ class RecommendationAPI(Resource):
                 "total_time": row['total_time'],
                 "total_words": row['total_words']
             }
-        response = buid_response_header_get(access_token=request.headers['Authorization'].strip('Bearer '),
-                                            data=return_val)
+        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
+                                                                   data=return_val)
         return response
 
     @check_token()
     def post(self):
-        response, email = buid_response_header_post(access_token=request.headers['Authorization'].strip('Bearer '))
+        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
         res = request.get_json()
         self._model.save_watched_videos(email=email, videos_rated=res['videos'])
         return response

@@ -1,8 +1,9 @@
 import os
-from flask_restful import Resource, request
+from flask_restful import Resource
+from flask import request
 import json
 from api.token import check_token
-from api.http_header import buid_response_header_get
+from api.http_header import build_response_header_extract_user_email
 
 
 class SemanticMapAPI(Resource):
@@ -10,6 +11,6 @@ class SemanticMapAPI(Resource):
 
     @check_token()
     def get(self):
-        response = buid_response_header_get(access_token=request.headers['Authorization'].strip('Bearer '),
-                                            data=json.load(open(self._semantic_map_path)))
+        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
+                                                            data=json.load(open(self._semantic_map_path)))
         return response

@@ -7,7 +7,7 @@ from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from dbModels.consentFormModel import ConsentFormModel
 
 from flask_login import UserMixin
-from dbModels import login
+
 
 class UserModel(UserMixin, db.Model):
 
@@ -16,6 +16,8 @@ class UserModel(UserMixin, db.Model):
     email = db.Column(db.String(), primary_key=True, unique=True)
     access_token = db.Column(db.String())
     refresh_token = db.Column(db.String())
+    is_admin = db.Column(db.Boolean)
+    fic_acceptance = db.Column(db.Boolean)
 
     # make a relationship with other tables
     ti_results = db.relationship(IntrusionTestTIModel, backref='users', lazy=True)
@@ -41,25 +43,27 @@ class UserModel(UserMixin, db.Model):
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.email = email
-        self.save_to_db()
+        self.is_admin = False
+        self.fic_acceptance = False
 
-    def update_access_token(self, access_token):
-        self.access_token = access_token
+        if email == 'simonolivierharel@gmail.com':
+            self.is_admin = True
+
+        self.save_to_db()
+        return self.is_admin, self.fic_acceptance
+
+    def update_access_token(self, access_token, email):
+        user = UserModel.query.filter_by(email=email).first()
+        user.access_token = access_token
         db.session.commit()
 
-    # # A delete
-    # def set_password(self, password):
-    #     self.password_hash = generate_password_hash(password)
-    #
-    # # A delete
-    # def check_password(self, password):
-    #     return check_password_hash(self.password_hash, password)
-    #
-    # # On va avoir un probleme
-    # def generate_user_id(self):
-    #     #self.id = str(uuid.uuid4())
-    #     self.save_to_db()
-    #     return self.id
+    def save_fic_acceptance(self, acceptance, email):
+        user = UserModel.query.filter_by(email=email).first()
+        if acceptance == 'true':
+            user.fic_acceptance = True
+        else:
+            user.fic_acceptance = False
+        db.session.commit()
 
     def save_to_db(self):
         db.session.add(self)

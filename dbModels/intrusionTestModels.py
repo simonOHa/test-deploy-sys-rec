@@ -18,23 +18,21 @@ class IntrusionTestTIModel(db.Model):
         pass
 
     def save_to_db(self, result, email):
-        self.result_candidate_id = [int(k) for k in result['candidate_id']]
-        self.result_candidate_value = result['candidate_value']
-        self.question = [int(k) for k in result['question']]
-        self.email = email
-
         # Validation si l'utilisateur modifie sa selection
         user_session = IntrusionTestTIModel.query.filter_by(email=email).first()
         if user_session:
-            self.update(user_session)
+            self._update(user_session, result)
         else:
+            self.result_candidate_id = [int(k) for k in result['candidate_id']]
+            self.result_candidate_value = result['candidate_value']
+            self.question = [int(k) for k in result['question']]
+            self.email = email
             self._save_to_db()
 
-    def update(self, session):
-        session.result_candidate_id = self.result_candidate_id
-        session.result_candidate_value = self.result_candidate_value
-        session.question = self.question
-
+    def _update(self, session, result):
+        session.result_candidate_id = [int(k) for k in result['candidate_id']]
+        session.result_candidate_value = result['candidate_value']
+        session.question = [int(k) for k in result['question']]
         db.session.commit()
 
     def _save_to_db(self):
@@ -71,27 +69,25 @@ class IntrusionTestWIModel(db.Model):
     question = db.Column(db.ARRAY(db.Integer))
     result = db.Column(db.ARRAY(db.String))
 
-
     _wi_file_path = os.path.join(os.getcwd(), 'intrusion_test_data', 'wi_test.csv')
 
     def __init__(self):
         pass
 
-    def save_to_db(self, response, email):
-        self.question = [int(k) for k in response['results'].keys()]
-        self.result = [v for v in response['results'].values()]
-        self.email = email
-
+    def save_to_db(self, result, email):
         # Validation si l'utilisateur modifie sa selection
         user_session = IntrusionTestWIModel.query.filter_by(email=email).first()
         if user_session:
-            self.update(user_session)
+            self._update(user_session, result)
         else:
+            self.question = [int(k) for k in result['results'].keys()]
+            self.result = [v for v in result['results'].values()]
+            self.email = email
             self._save_to_db()
 
-    def update(self, session):
-        session.question = self.question
-        session.result = self.result
+    def _update(self, session, result):
+        session.question = [int(k) for k in result['results'].keys()]
+        session.result = [v for v in result['results'].values()]
         db.session.commit()
 
     def _save_to_db(self):
@@ -126,21 +122,19 @@ class IntrusionTestWSIModel(db.Model):
     def __init__(self):
         pass
 
-    def save_to_db(self, response, email):
-        self.question = [int(k) for k in response['results'].keys()]
-        self.result = [v for v in response['results'].values()]
-        self.email = email
-
-        # Validation si l'utilisateur modifie sa selection
+    def save_to_db(self, result, email):
         user_session = IntrusionTestWSIModel.query.filter_by(email=email).first()
         if user_session:
-            self.update(user_session)
+            self._update(user_session, result)
         else:
+            self.question = [int(k) for k in result['results'].keys()]
+            self.result = [v for v in result['results'].values()]
+            self.email = email
             self._save_to_db()
 
-    def update(self, session):
-        session.question = self.question
-        session.result = self.result
+    def _update(self, session, result):
+        session.question = [int(k) for k in result['results'].keys()]
+        session.result = [v for v in result['results'].values()]
         db.session.commit()
 
     def _save_to_db(self):
@@ -150,9 +144,7 @@ class IntrusionTestWSIModel(db.Model):
     def read_wsi_data(self):
         df = pd.read_csv(self._wsi_file_path)
         d = dict(tuple(df.groupby('question')))
-
         json_list = {}
-
         for index in range(1, len(d) + 1):
             question_id = d[index]['question'].to_list()[0]
             json_list[question_id] = {'question': question_id, 'candidates': d[index]['candidates'].to_list()}

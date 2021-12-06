@@ -19,22 +19,20 @@ class SysRecColdStartModel(db.Model):
         return {'choices': self.cold_start_choices.tolist()}
 
     def save_cold_start_choice(self, cold_start_choice, email):
-        self.cold_start_position = cold_start_choice
-        self.email = email
-
-        # Validation si l'utilisateur modifie sa selection
         user_session = SysRecColdStartModel.query.filter_by(email=email).first()
         if user_session:
-            self.update(user_session)
+            self._update(user_session, cold_start_choice)
         else:
+            self.cold_start_position = cold_start_choice
+            self.email = email
             self.save_to_db()
 
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
-    def update(self, session):
-        session.cold_start_position = self.cold_start_position
+    def _update(self, session, cold_start_choice):
+        session.cold_start_position = cold_start_choice
         db.session.commit()
 
     def delete_from_db(self):
