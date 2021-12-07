@@ -1,5 +1,6 @@
 from dbModels import db
 
+
 class ConsentFormModel(db.Model):
 
     __tablename__ = 'consentForm'

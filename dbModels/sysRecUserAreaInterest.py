@@ -3,6 +3,7 @@ from sqlalchemy_json import NestedMutableJson
 from utils.recommendations_generator import RecommendationsGenerator
 import pandas as pd
 
+
 class SysRecUserAreaInterest(db.Model):
 
     __tablename__ = 'userAreaInterest'

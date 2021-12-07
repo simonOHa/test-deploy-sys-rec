@@ -1,6 +1,6 @@
 from dbModels import db
 from dbModels.intrusionTestModels import IntrusionTestTIModel, IntrusionTestWSIModel, IntrusionTestWIModel
-from dbModels.sysRecTestModels import VideoListeningTestModel
+from dbModels.sysRecVideoListeningTestModels import VideoListeningTestModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
