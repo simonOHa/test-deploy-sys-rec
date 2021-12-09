@@ -25,6 +25,7 @@ def create_app():
 
     app.config.from_object('config')
     build_api(app)
+
     init_db(app)
 
     # define hello world page

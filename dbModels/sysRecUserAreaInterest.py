@@ -17,13 +17,10 @@ class SysRecUserAreaInterest(db.Model):
         pass
 
     def get_user_area_interest(self, email, top_n=3):
-
-        x = SysRecUserAreaInterest.query.filter_by(email=email).first()
-        xx = x.area_interest
-        xxx = xx['cold_start']
-        response = {}
-        for rec in xx.keys():
-            topic_dist_list = xx[rec]
+        user = SysRecUserAreaInterest.query.filter_by(email=email).first()
+        response = []
+        for rec in user.area_interest.keys():
+            topic_dist_list = user.area_interest[rec]
             k = []
             v = []
             for obj in topic_dist_list:
@@ -34,22 +31,23 @@ class SysRecUserAreaInterest(db.Model):
             xxx_series = pd.Series(data=v, index=k)
             res = xxx_series.sort_values(ascending=False)[0:top_n]
             top = res.to_dict()
-            response[rec] = top
+            response.append({'id': rec, 'coordinates': top})
 
         return response
 
     def set_user_area_interest_to_cold_start_position(self, email, cold_start_position):
-        self.email = email
-        x = self._recommenderGenerator.calculate_cold_start_user_area_interest(cold_start_position)
-        self.area_interest = x
-        self.save_to_db()
+
+        _cold_start_area_interest = self._recommenderGenerator.calculate_cold_start_user_area_interest(cold_start_position)
+        user = SysRecUserAreaInterest.query.filter_by(email=email).first()
+        if user is None:
+            self.email = email
+            self.area_interest = _cold_start_area_interest
+            self.save_to_db()
+        else:
+            print('ERRRRRRRROOOOOOOOOORRRRRRRRRR')
 
     def update_user_area_interest(self, email, recommended_videos, calcul_index):
-        new_area_of_interest = self._recommenderGenerator.calculate_center_of_interest(
-            videos_rating=recommended_videos,
-            option=1
-        )
-
+        new_area_of_interest = self._recommenderGenerator.calculate_center_of_interest(videos_rating=recommended_videos, option=1)
         user = SysRecUserAreaInterest.query.filter_by(email=email).first()
         result_to_save_in_db = {calcul_index: []}
 

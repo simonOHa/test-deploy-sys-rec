@@ -80,7 +80,7 @@ class RecommendationModel(db.Model):
                                                                calcul_index=1)
 
         else:
-            user.recommendations[user.total_rec_send] = videos_rated
+            user.recommendations[user.total_rec_send - 1] = videos_rated
             # Update le centre d'interet
             SysRecUserAreaInterest().update_user_area_interest(email=email,
                                                                # values=user.recommendations[user.total_rec_send],

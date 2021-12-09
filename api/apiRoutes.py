@@ -7,8 +7,8 @@ from api.apiUser import UserAPI, UserLoginAPI, UserLogoutAPI
 from api.apiIntrusionTests import IntrusionTestWSIAPI, IntrusionTestWIAPI, IntrusionTestTIAPI, \
     ResultsIntrusionTestWIAPI, ResultsIntrusionTestWSIAPI, ResultsIntrusionTestTIAPI
 from api.apiVideoListeningTest import VideoListeningTestAPI, ResultsVideoListeningTestAPI
-from api.apiRecommendations import RecommendationAPI
-from api.apiColdStart import ColdStartAPI
+from api.apiRecommendations import RecommendationAPI, ResultsRecommendationAPI
+from api.apiColdStart import ColdStartAPI, ResultColdStartAPI
 from api.apiUserInterestArea import UserInterestAreaAPI
 from api.apiConsentForm import ConsentFormAPI
 
@@ -43,7 +43,11 @@ api.add_resource(OpenQuestionSemanticMapAPI, '/open-questions-semantic-map')
 
 # - test #3
 api.add_resource(ColdStartAPI, '/cold-start-choices')
+api.add_resource(ResultColdStartAPI, '/cold-start-choices-result')
+
 api.add_resource(RecommendationAPI, '/recommendations')
+api.add_resource(ResultsRecommendationAPI, '/recommendations-results')
+
 api.add_resource(UserInterestAreaAPI, '/user-interest-area')
 
 

@@ -15,8 +15,7 @@ class ColdStartAPI(Resource):
 
     @check_token()
     def get(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                            data=self._model.get_cold_start_choices())
+        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '), data=self._model.get_cold_start_choices())
         return response
 
     @check_token()
@@ -24,6 +23,22 @@ class ColdStartAPI(Resource):
         response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
         res = request.get_json()
         self._model.save_cold_start_choice(cold_start_choice=res['result'], email=email)
+        return response
+
+
+class ResultColdStartAPI(Resource):
+
+    _model = SysRecColdStartModel()
+
+    @check_token()
+    def get(self):
+        email = request.args.get('user_id')
+        user = SysRecColdStartModel.query.filter_by(email=email).first()
+        if user is not None:
+            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '), data=user.cold_start_position)
+        else:
+            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
+
         return response
 
 
