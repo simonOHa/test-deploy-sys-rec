@@ -14,13 +14,13 @@ class ConsentFormAPI(Resource):
 
     _model = UserModel()
 
-    @check_token()
-    def get(self):
-        email = request.args.get('user_id')
-        user = UserModel.query.filter_by(email=email).first()
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                            data=user.fic_acceptance)
-        return response
+    # @check_token()
+    # def get(self):
+    #     email = request.args.get('user_id')
+    #     user = UserModel.query.filter_by(email=email).first()
+    #     response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
+    #                                                         data=user.fic_acceptance)
+    #     return response
 
     @check_token()
     def post(self):

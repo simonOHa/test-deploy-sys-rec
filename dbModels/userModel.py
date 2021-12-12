@@ -59,10 +59,12 @@ class UserModel(UserMixin, db.Model):
 
     def save_fic_acceptance(self, acceptance, email):
         user = UserModel.query.filter_by(email=email).first()
-        if acceptance == 'true':
-            user.fic_acceptance = True
-        else:
-            user.fic_acceptance = False
+        user.fic_acceptance = acceptance
+
+        # if acceptance == 'true':
+        #     user.fic_acceptance = True
+        # else:
+        #     user.fic_acceptance = False
         db.session.commit()
 
     def save_to_db(self):
