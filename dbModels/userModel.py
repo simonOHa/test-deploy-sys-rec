@@ -1,10 +1,11 @@
 from dbModels import db
 from dbModels.intrusionTestModels import IntrusionTestTIModel, IntrusionTestWSIModel, IntrusionTestWIModel
+from dbModels.sysRecOpenQuestionSemanticMapModel import SysRecOpenQuestionSemanticMapModel
 from dbModels.sysRecVideoListeningTestModels import VideoListeningTestModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
-from dbModels.consentFormModel import ConsentFormModel
+# from dbModels.consentFormModel import ConsentFormModel
 
 from flask_login import UserMixin
 
@@ -29,7 +30,10 @@ class UserModel(UserMixin, db.Model):
     sysrec_user_cold_start = db.relationship(SysRecColdStartModel, backref='users', lazy=True)
     sysrec_user_interest_area = db.relationship(SysRecUserAreaInterest, backref='users', lazy=True)
 
-    user_consent_form = db.relationship(ConsentFormModel, backref='users', lazy=True)
+    sysrec_user_open_question_semantic_map = db.relationship(SysRecOpenQuestionSemanticMapModel, backref='users', lazy=True)
+
+
+    #user_consent_form = db.relationship(ConsentFormModel, backref='users', lazy=True)
 
     def __init__(self):
         pass

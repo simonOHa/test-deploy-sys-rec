@@ -6,6 +6,7 @@ class SysRecOpenQuestionSemanticMapModel(db.Model):
     __tablename__ = 'openQuestionSemanticMap'
 
     email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
+    #email = db.Column(db.String(), primary_key=True)
     question_1 = db.Column(db.String())
     question_2 = db.Column(db.String())
     question_3 = db.Column(db.String())
