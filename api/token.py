@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, make_response, jsonify
+from flask import request, jsonify
 import json
 from dbModels.userModel import UserModel
 from oauth2client import GOOGLE_REVOKE_URI, GOOGLE_TOKEN_URI, client
@@ -52,7 +52,6 @@ def check_token():
 
         return decorator
     return wrapper
-
 
 
 def build_header():

@@ -26,6 +26,7 @@ class ConsentFormAPI(Resource):
     def post(self):
         response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
         res = request.get_json()
+        print(res)
         self._model.save_fic_acceptance(acceptance=res['acceptance'], email=email)
         return response
 

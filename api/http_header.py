@@ -7,7 +7,7 @@ def build_response_header_extract_user_email(access_token, data=None):
     if data is None:
         response = make_response('', 200)
     else:
-        response = make_response(jsonify(data),200)
+        response = make_response(jsonify(data), 200)
 
     response.headers["Content-Type"] = "application/json"
     response.headers["Authorization"] = 'Bearer ' + user.access_token
