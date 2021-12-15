@@ -8,8 +8,8 @@ class LDAReader:
 
     _instance = None
 
-    _doc_topics_distribution_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'peppa-test-topic-terms-proba.csv')
-    _videos_infos_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'with_pretreatment_span_7.csv')
+    _doc_topics_distribution_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'doc-topic-distribution.csv')
+    _videos_infos_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'video-info-span_7.csv')
 
     _doc_topics_distribution = None
     _videos_infos = None
