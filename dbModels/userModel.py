@@ -24,9 +24,7 @@ class UserModel(UserMixin, db.Model):
     wi_results = db.relationship(IntrusionTestWSIModel, backref='users', lazy=True)
     wsi_results = db.relationship(IntrusionTestWIModel, backref='users', lazy=True)
 
-    # Je pense qu'il en manque ...
-
-    sysrec_user_video_listening_results = db.relationship(VideoListeningTestModel, backref='users', lazy=True) # A refaire
+    sysrec_user_video_listening_results = db.relationship(VideoListeningTestModel, backref='users', lazy=True)
     sysrec_user_recommendation = db.relationship(RecommendationModel, backref='users', lazy=True)
     sysrec_user_cold_start = db.relationship(SysRecColdStartModel, backref='users', lazy=True)
     sysrec_user_interest_area = db.relationship(SysRecUserAreaInterest, backref='users', lazy=True)
