@@ -1,4 +1,3 @@
-from api.apiUser import UserAPI
 from api.apiRoutes import api
 from flask_cors import CORS
 

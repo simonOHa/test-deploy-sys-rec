@@ -2,7 +2,9 @@ from flask_restful import Resource
 from flask import request
 from dbModels.intrusionTestModels import IntrusionTestWSIModel, IntrusionTestTIModel, IntrusionTestWIModel
 from api.token import check_token
-from api.http_header import build_response_header_extract_user_email
+from api.http_header import build_response_header
+from dbModels.userModel import UserModel
+from api.errors import InternalServerError
 
 
 class IntrusionTestTIAPI(Resource):
@@ -11,16 +13,25 @@ class IntrusionTestTIAPI(Resource):
 
     @check_token()
     def get(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                            data=self._model.read_ti_data())
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _results = self._model.read_ti_data()
+            response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
+            return response
+        except Exception as e:
+            raise InternalServerError
 
     @check_token()
     def post(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        res = request.get_json()
-        self._model.save_to_db(res, email)
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _request = request.get_json()
+            self._model.save_to_db(_request, _user.email)
+            response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            return response
+        except Exception as e:
+            raise InternalServerError
 
 
 class ResultsIntrusionTestTIAPI(Resource):
@@ -29,14 +40,34 @@ class ResultsIntrusionTestTIAPI(Resource):
 
     @check_token()
     def get(self):
-        email = request.args.get('user_id')
-        user_intrusion_test = IntrusionTestTIModel.query.filter_by(email=email).first()
-        if user_intrusion_test is None:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        else:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                                       data=user_intrusion_test.result_candidate_value)
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _user_intrusion_test = IntrusionTestTIModel.query.filter_by(email=_user.email).first()
+
+            if _user_intrusion_test is None:
+                response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            else:
+                _questions = _user_intrusion_test.question
+                _results_candidate_id = _user_intrusion_test.result_candidate_id
+                _results_candidate_value = _user_intrusion_test.result_candidate_value
+                _results_video_watched_extra_info = _user_intrusion_test.video_watched_extra_info
+
+                answer = []
+                for i in range(len(_questions)):
+                    answer.append({
+                        'question': _questions[i],
+                        'candidate_id': _results_candidate_id[i],
+                        'candidate_value': _results_candidate_value[i],
+                        'video_watched_extra_info': _results_video_watched_extra_info[i]
+                    })
+
+                response = build_response_header(access_token=_access_token, status_code=200,data=answer, error_message=None)
+
+
+            return response
+        except Exception as e:
+            raise InternalServerError
 
 
 class IntrusionTestWIAPI(Resource):
@@ -45,16 +76,27 @@ class IntrusionTestWIAPI(Resource):
 
     @check_token()
     def get(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                            data=self._model.read_wi_data())
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _results = self._model.read_wi_data()
+            response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 
     @check_token()
     def post(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        res = request.get_json()
-        self._model.save_to_db(res, email)
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _request = request.get_json()
+            self._model.save_to_db(_request, _user.email)
+            response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 
 
 class ResultsIntrusionTestWIAPI(Resource):
@@ -63,15 +105,19 @@ class ResultsIntrusionTestWIAPI(Resource):
 
     @check_token()
     def get(self):
-        email = request.args.get('user_id')
-        user_intrusion_test = IntrusionTestWIModel.query.filter_by(email=email).first()
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _user_intrusion_test = IntrusionTestWIModel.query.filter_by(email=_user.email).first()
 
-        if user_intrusion_test is None:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        else:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                                        data=user_intrusion_test.result)
-        return response
+            if _user_intrusion_test is None:
+                response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            else:
+                response = build_response_header(access_token=_access_token, status_code=200, data=_user_intrusion_test.result, error_message=None)
+
+            return response
+        except Exception as e:
+            raise InternalServerError
 
 
 class IntrusionTestWSIAPI(Resource):
@@ -80,16 +126,26 @@ class IntrusionTestWSIAPI(Resource):
 
     @check_token()
     def get(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                            data=self._model.read_wsi_data())
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _results = self._model.read_wsi_data()
+            response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 
     @check_token()
     def post(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        res = request.get_json()
-        self._model.save_to_db(res, email)
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _request = request.get_json()
+            self._model.save_to_db(_request, _user.email)
+            response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            return response
+        except Exception as e:
+            raise InternalServerError
 
 
 class ResultsIntrusionTestWSIAPI(Resource):
@@ -98,13 +154,18 @@ class ResultsIntrusionTestWSIAPI(Resource):
 
     @check_token()
     def get(self):
-        email = request.args.get('user_id')
-        user_intrusion_test = IntrusionTestWSIModel.query.filter_by(email=email).first()
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _user_intrusion_test = IntrusionTestWSIModel.query.filter_by(email=_user.email).first()
 
-        if user_intrusion_test is None:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        else:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),
-                                                                        data=user_intrusion_test.result)
-        return response
+            if _user_intrusion_test is None:
+                response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+            else:
+                response = build_response_header(access_token=_access_token, status_code=200, data=_user_intrusion_test.result, error_message=None)
+
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 

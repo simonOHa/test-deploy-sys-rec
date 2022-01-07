@@ -1,5 +1,6 @@
 from dbModels import db
 from utils.recommendations_generator import RecommendationsGenerator
+from sqlalchemy.exc import IntegrityError
 
 
 class SysRecColdStartModel(db.Model):
@@ -13,10 +14,17 @@ class SysRecColdStartModel(db.Model):
     _recommenderGenerator = RecommendationsGenerator()
 
     def __init__(self):
-        self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
+        pass
+        # self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
 
     def get_cold_start_choices(self):
-        return {'choices': self.cold_start_choices.tolist()}
+        self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
+
+        if len(self.cold_start_choices) > 0:
+            return self.cold_start_choices.tolist()
+        else:
+            return None
+
 
     def save_cold_start_choice(self, cold_start_choice, email):
         user_session = SysRecColdStartModel.query.filter_by(email=email).first()
@@ -28,13 +36,15 @@ class SysRecColdStartModel(db.Model):
             self.save_to_db()
 
     def save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def _update(self, session, cold_start_choice):
-        session.cold_start_position = cold_start_choice
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            session.cold_start_position = cold_start_choice
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()

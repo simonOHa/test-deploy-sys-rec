@@ -1,10 +1,11 @@
 from flask_restful import Resource
 from flask import request
 from dbModels.sysRecRecommendationModel import RecommendationModel
-from api.http_header import build_response_header_extract_user_email
+from api.http_header import build_response_header
 from api.token import check_token
 from utils.lda_reader import LDAReader
-
+from dbModels.userModel import UserModel
+from api.errors import InternalServerError
 # Permet d'obtenir les recommandations, autant en cold-start quant fonction des interet de l'utilisateur
 
 
@@ -14,30 +15,46 @@ class RecommendationAPI(Resource):
 
     @check_token()
     def get(self):
-        email = request.args.get('user_id')
-        res = self._model.get_new_recommendations(email=email)
-        return_val = {}
-        for index, row in res.iterrows():
-            return_val[str(row['doc_id'])] = {
-                "doc_id": row['doc_id'],
-                "transcription": row['transcription'],
-                "title": row['title'],
-                "start_time": row['start_time'],
-                "end_time": row['end_time'],
-                "url": row['url'],
-                "total_time": row['total_time'],
-                "total_words": row['total_words']
-            }
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '),data=return_val)
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _new_recommendations = self._model.get_new_recommendations(email=_user.email)
 
-        return response
+
+            # _return_val = {}
+            #
+            # for index, row in _new_recommendations.iterrows():
+            #     _return_val[str(row['doc_id'])] = {
+            #         "doc_id": row['doc_id'],
+            #         "transcription": row['transcription'],
+            #         "title": row['title'],
+            #         "start_time": row['start_time'],
+            #         "end_time": row['end_time'],
+            #         "url": row['url'],
+            #         "total_time": row['total_time'],
+            #         "total_words": row['total_words']
+            #     }
+
+            response = build_response_header(access_token=_access_token, status_code=200, data=_new_recommendations, error_message=None)
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 
     @check_token()
     def post(self):
-        response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-        res = request.get_json()
-        self._model.save_watched_videos(email=email, videos_rated=res['videos'])
-        return response
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _request = request.get_json()
+
+            self._model.save_watched_videos(email=_user.email, videos_rated=_request['videos'])
+            response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
+
+            return response
+
+        except Exception as e:
+            raise InternalServerError
 
 
 class ResultsRecommendationAPI(Resource):
@@ -48,32 +65,35 @@ class ResultsRecommendationAPI(Resource):
 
     @check_token()
     def get(self):
-        email = request.args.get('user_id')
-        user = RecommendationModel.query.filter_by(email=email).first()
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ','')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _user_recommendations_model = RecommendationModel.query.filter_by(email=_user.email).first()
 
-        if user is not None:
-            result = {'form': [], 'videos': []}
-            for k, v in user.recommendations.items():
-                for vv in v:
-                    result['form'].append(vv)
-                    video_id = vv['doc_id']
-                    vidoe_info = self._videos_infos.iloc[video_id]
-                    result['videos'].append({
-                        "doc_id": int(vidoe_info['doc_id']),
-                        "transcription": vidoe_info['transcription'],
-                        "title": vidoe_info['title'],
-                        "start_time": vidoe_info['start_time'],
-                        "end_time": vidoe_info['end_time'],
-                        "url": vidoe_info['url'],
-                        "total_time": vidoe_info['total_time'],
-                        "total_words": int(vidoe_info['total_words'])
-                        })
+            if _user_recommendations_model is not None:
+                result = {'form': [], 'videos': []}
+                for k, v in _user_recommendations_model.recommendations.items():
+                    for vv in v:
+                        result['form'].append(vv)
+                        video_id = vv['doc_id']
+                        video_info = self._videos_infos.iloc[video_id]
+                        result['videos'].append({
+                            "doc_id": int(video_info['doc_id']),
+                            "transcription": video_info['transcription'],
+                            "title": video_info['title'],
+                            "start_time_sec": video_info['start_time_sec'],
+                            "end_time_sec": video_info['end_time_sec'],
+                            "url": video_info['url'],
+                            "youtube_video_id": video_info['youtube_video_id']
+                            })
 
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '), data=result)
-            return response
-        else:
-            response, email = build_response_header_extract_user_email(access_token=request.headers['Authorization'].strip('Bearer '))
-            return response
+                response = build_response_header(access_token=_access_token, status_code=200, data=result, error_message=None)
+                return response
+            else:
+                response = build_response_header(access_token=_access_token, status_code=200, data=None,  error_message=None)
+                return response
+        except Exception as e:
+            raise InternalServerError
 
 
 

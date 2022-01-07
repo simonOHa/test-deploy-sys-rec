@@ -1,9 +1,11 @@
 import config as config
 from api.apiAdmin import AdminConsentAPI
-from api.apiOpenQuestionSemanticMap import OpenQuestionSemanticMapAPI
+from api.apiSemanticMapQuestions import SemanticMapQuestionsAPI, SemanticMapQuestionsResultsAPI
 from api.apiSemanticMap import SemanticMapAPI
 from flask_restful import Api
-from api.apiUser import UserAPI, UserLoginAPI, UserLogoutAPI
+
+from api.apiSysRecAndMapQuestions import SysRecAndMapQuestionsAPI
+from api.apiUser import UserLoginAPI
 from api.apiIntrusionTests import IntrusionTestWSIAPI, IntrusionTestWIAPI, IntrusionTestTIAPI, \
     ResultsIntrusionTestWIAPI, ResultsIntrusionTestWSIAPI, ResultsIntrusionTestTIAPI
 from api.apiVideoListeningTest import VideoListeningTestAPI, ResultsVideoListeningTestAPI
@@ -19,7 +21,6 @@ api = Api(prefix=config.API_PREFIX)
 
 # User
 api.add_resource(UserLoginAPI, '/user/login')
-api.add_resource(UserLogoutAPI, '/user/logout')
 
 # Test instrusion
 api.add_resource(IntrusionTestTIAPI, '/ti-intrusion-test')
@@ -39,7 +40,8 @@ api.add_resource(ResultsVideoListeningTestAPI, '/video-listening-test-results')
 
 # - MAP, test #2
 api.add_resource(SemanticMapAPI, '/semantic-map')
-api.add_resource(OpenQuestionSemanticMapAPI, '/open-questions-semantic-map')
+api.add_resource(SemanticMapQuestionsAPI, '/open-questions-semantic-map')
+api.add_resource(SemanticMapQuestionsResultsAPI, '/open-questions-semantic-map-results')
 
 # - test #3
 api.add_resource(ColdStartAPI, '/cold-start-choices')
@@ -50,7 +52,8 @@ api.add_resource(ResultsRecommendationAPI, '/recommendations-results')
 
 api.add_resource(UserInterestAreaAPI, '/user-interest-area')
 
+api.add_resource(SysRecAndMapQuestionsAPI, '/rec-and-map-questions')
 
 
 # Admin
-api.add_resource(AdminConsentAPI,'/admin-consent-form')
+api.add_resource(AdminConsentAPI, '/admin-consent-form')

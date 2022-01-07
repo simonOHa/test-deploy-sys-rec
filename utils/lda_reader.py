@@ -9,16 +9,18 @@ class LDAReader:
     _instance = None
 
     _doc_topics_distribution_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'doc-topic-distribution.csv')
-    _videos_infos_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'video-info-span_7.csv')
+    _videos_infos_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'video-info.csv')
+    _top10_topic_terms_path = os.path.join(os.getcwd(), 'peppa-pig-data', 'lda-model', 'top10-topic-terms-distribution.csv')
 
     _doc_topics_distribution = None
     _videos_infos = None
+    _top10_topic_terms = None
 
     def __init__(self):
         self._doc_topics_distribution = pd.read_csv(self._doc_topics_distribution_path)
         self._doc_topics_distribution = self._doc_topics_distribution.rename(columns={'Unnamed: 0': "doc_id"})
         self._videos_infos = pd.read_csv(self._videos_infos_path)
-        self._videos_infos = self._videos_infos.rename(columns={'Unnamed: 0': "doc_id"})
+        self._top10_topic_terms = pd.read_csv(self._top10_topic_terms_path)
 
     def __new__(cls, *args, **kwargs):
         if not isinstance(cls._instance, cls):
@@ -26,21 +28,14 @@ class LDAReader:
 
         return cls._instance
 
-
-
-    # def get_best_videos_for_topic(self, topic_id):
-    #     topic_id = 't_'+ str(topic_id)
-    #     docs = self._doc_topic.loc[(self._doc_topic[0] == topic_id)][0] # Colonne 0 fait reference aux proba les plus elevees
-    #     docs_id = docs.index.values
-    #     df = pd.DataFrame()
-    #     for i in docs_id:
-    #         df = df.append(self._videos_infos.iloc[int(i)], ignore_index=True)
-    #
-    #     df = df.rename(columns={'Unnamed: 0': "doc_id"})
-    #     return df
-
     def get_doc_topic_distribution(self):
         return self._doc_topics_distribution
 
     def get_video_infos(self):
         return self._videos_infos
+
+    def get_top10_topic_terms(self, topic_id):
+        return self._top10_topic_terms[topic_id].to_list()
+
+    def get_topic_terms_distribution(self):
+        return self._top10_topic_terms

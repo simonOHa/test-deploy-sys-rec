@@ -1,5 +1,6 @@
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, make_response
+from werkzeug.http import HTTP_STATUS_CODES
 import json
 from dbModels.userModel import UserModel
 from oauth2client import GOOGLE_REVOKE_URI, GOOGLE_TOKEN_URI, client
@@ -13,7 +14,7 @@ def check_token():
     def wrapper(fn):
         @wraps(fn)
         def decorator(*args, **kwargs):
-            access_token = request.headers['Authorization'].strip('Bearer ')
+            access_token = request.headers['Authorization'].replace('Bearer ','')
             CLIENT_ID = client_secret['web']["client_id"]
             CLIENT_SECRET = client_secret['web']["client_secret"]
 
@@ -48,7 +49,11 @@ def check_token():
 
                 return fn(*args, **kwargs)
             else:
-                return jsonify(msg="BAD TOKEN"), 403
+                response = make_response({'error': HTTP_STATUS_CODES.get(403, 'Unknown error')})
+                response.headers["Content-Type"] = "application/json"
+                response.headers["Authorization"] = 'Bearer ' + access_token
+                response.status_code = 403
+                return response
 
         return decorator
     return wrapper
@@ -58,7 +63,7 @@ def build_header():
     def wrapper(fn):
         @wraps(fn)
         def decorator():
-            access_token = request.headers['Authorization'].strip('Bearer ')
+            access_token = request.headers['Authorization'].replace('Bearer ','')
             CLIENT_ID = client_secret['web']["client_id"]
             CLIENT_SECRET = client_secret['web']["client_secret"]
 

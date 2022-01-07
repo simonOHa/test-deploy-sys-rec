@@ -1,24 +1,18 @@
 from flask import jsonify, make_response
-from dbModels.userModel import UserModel
+from werkzeug.http import HTTP_STATUS_CODES
 
 
-def build_response_header_extract_user_email(access_token, data=None):
-    user = UserModel.query.filter_by(access_token=access_token).first()
-    if data is None:
-        response = make_response('', 200)
+def build_response_header(access_token, status_code, data=None, error_message=None):
+    if error_message is not None:
+        response = make_response({'error': HTTP_STATUS_CODES.get(status_code, 'Unknown error')})
+    elif data is None:
+        response = make_response('')
     else:
-        response = make_response(jsonify(data), 200)
+        response = make_response(jsonify(data))
 
     response.headers["Content-Type"] = "application/json"
-    response.headers["Authorization"] = 'Bearer ' + user.access_token
+    response.headers["Authorization"] = 'Bearer ' + access_token
+    response.status_code = status_code
 
-    return (response, user.email)
+    return response
 
-
-# def build_response_header_without_data(access_token):
-#     user = UserModel.query.filter_by(access_token=access_token).first()
-#     response = make_response('',200)
-#     response.headers["Content-Type"] = "application/json"
-#     response.headers["Authorization"] = 'Bearer ' + user.access_token
-#
-#     return (response, user.email)

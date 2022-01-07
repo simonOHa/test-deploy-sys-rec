@@ -1,6 +1,8 @@
 from dbModels import db
 import pandas as pd
 import os
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy_json import NestedMutableJson
 
 
 class IntrusionTestTIModel(db.Model):
@@ -11,6 +13,7 @@ class IntrusionTestTIModel(db.Model):
     question = db.Column(db.ARRAY(db.Integer))
     result_candidate_id = db.Column(db.ARRAY(db.Integer))
     result_candidate_value = db.Column(db.ARRAY(db.String))
+    video_watched_extra_info = db.Column(db.ARRAY(NestedMutableJson))
 
     _ti_file_path = os.path.join(os.getcwd(), 'intrusion_test_data', 'ti_test.csv')
 
@@ -26,22 +29,26 @@ class IntrusionTestTIModel(db.Model):
             self.result_candidate_id = [int(k) for k in result['candidate_id']]
             self.result_candidate_value = result['candidate_value']
             self.question = [int(k) for k in result['question']]
+            self.video_watched_extra_info = result['extra_info']
             self.email = email
             self._save_to_db()
 
     def _update(self, session, result):
-        session.result_candidate_id = [int(k) for k in result['candidate_id']]
-        session.result_candidate_value = result['candidate_value']
-        session.question = [int(k) for k in result['question']]
-        db.session.commit()
+        try:
+            session.result_candidate_id = [int(k) for k in result['candidate_id']]
+            session.result_candidate_value = result['candidate_value']
+            session.question = [int(k) for k in result['question']]
+            session.video_watched_extra_info = result['extra_info']
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def _save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def read_ti_data(self):
         df = pd.read_csv(self._ti_file_path)
@@ -86,17 +93,19 @@ class IntrusionTestWIModel(db.Model):
             self._save_to_db()
 
     def _update(self, session, result):
-        session.question = [int(k) for k in result['results'].keys()]
-        session.result = [v for v in result['results'].values()]
-        db.session.commit()
+        try:
+            session.question = [int(k) for k in result['results'].keys()]
+            session.result = [v for v in result['results'].values()]
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def _save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def read_wi_data(self):
         df = pd.read_csv(self._wi_file_path)
@@ -133,13 +142,19 @@ class IntrusionTestWSIModel(db.Model):
             self._save_to_db()
 
     def _update(self, session, result):
-        session.question = [int(k) for k in result['results'].keys()]
-        session.result = [v for v in result['results'].values()]
-        db.session.commit()
+        try:
+            session.question = [int(k) for k in result['results'].keys()]
+            session.result = [v for v in result['results'].values()]
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def _save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def read_wsi_data(self):
         df = pd.read_csv(self._wsi_file_path)

@@ -1,6 +1,6 @@
 import pandas as pd
 from utils.lda_reader import LDAReader
-
+from config.CONSTANTS import *
 
 # Singleton
 
@@ -98,7 +98,7 @@ class RecommendationsGenerator:
             elif len(liked_videos) == 0 and len(disliked_videos) > 0:
                 return None
 
-    def get_new_recommendations(self, user_area_of_interest, option=1, top=5, history_videos_rating=None):
+    def get_new_recommendations(self, user_area_of_interest, option=2, top=TOP_N_VIDEOS, history_videos_rating=None):
         _doc_topics_distribution_interest = pd.DataFrame()
 
         # Extraction des probabilites du centre d'interet
@@ -154,7 +154,25 @@ class RecommendationsGenerator:
                 all_videos_not_seen = _doc_topics_distribution_interest[~_doc_topics_distribution_interest['doc_id'].isin(like_seen_videos)]
                 top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
 
-        return self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
+        #return self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
+        return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())
+
+    def _format_recommendations(self, doc_ids):
+
+        return_val = {'recommendations': []}
+        for id in doc_ids:
+            info = self._videos_infos[self._videos_infos['doc_id'] == id]
+            return_val['recommendations'].append({
+                "doc_id": info['doc_id'].item(),
+                "transcription": info['transcription'].item(),
+                "title": info['title'].item(),
+                "start_time_sec": info['start_time_sec'].item(),
+                "end_time_sec": info['end_time_sec'].item(),
+                "url": info['url'].item(),
+                "youtube_video_id": info['youtube_video_id'].item()
+            })
+
+        return return_val
 
     def _manhattan_distance(self, a, b):
         return sum(abs(e1 - e2) for e1, e2 in zip(a, b))
@@ -168,10 +186,10 @@ class RecommendationsGenerator:
     def get_cold_start_choices(self):
         return self._cold_start_choices
 
-    def get_cold_start_videos(self, user_cold_start_position, top=5):
+    def get_cold_start_videos(self, user_cold_start_position, top=TOP_N_VIDEOS):
         top_n = self._doc_topics_distribution.sort_values(by=[user_cold_start_position], ascending=False)[0:top]
-        res = self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
-        return res
+        # res = self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
+        return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())
 
     def get_doc_topic_distribution(self):
         return self._doc_topics_distribution

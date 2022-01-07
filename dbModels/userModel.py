@@ -1,12 +1,12 @@
 from dbModels import db
 from dbModels.intrusionTestModels import IntrusionTestTIModel, IntrusionTestWSIModel, IntrusionTestWIModel
-from dbModels.sysRecOpenQuestionSemanticMapModel import SysRecOpenQuestionSemanticMapModel
+from dbModels.sysRecAndMapQuestions import SysRecAndMapQuestionsModel
+from dbModels.sysRecSemanticMapQuestionsModel import SysRecSemanticMapQuestionsModel
 from dbModels.sysRecVideoListeningTestModels import VideoListeningTestModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
-# from dbModels.consentFormModel import ConsentFormModel
-
+from sqlalchemy.exc import IntegrityError
 from flask_login import UserMixin
 
 
@@ -29,11 +29,9 @@ class UserModel(UserMixin, db.Model):
     sysrec_user_recommendation = db.relationship(RecommendationModel, backref='users', lazy=True)
     sysrec_user_cold_start = db.relationship(SysRecColdStartModel, backref='users', lazy=True)
     sysrec_user_interest_area = db.relationship(SysRecUserAreaInterest, backref='users', lazy=True)
+    sysrec_user_open_question_semantic_map = db.relationship(SysRecSemanticMapQuestionsModel, backref='users', lazy=True)
+    sysrec_user_and_map_questions = db.relationship(SysRecAndMapQuestionsModel, backref='users', lazy=True)
 
-    sysrec_user_open_question_semantic_map = db.relationship(SysRecOpenQuestionSemanticMapModel, backref='users', lazy=True)
-
-
-    #user_consent_form = db.relationship(ConsentFormModel, backref='users', lazy=True)
 
     def __init__(self):
         pass
@@ -55,26 +53,26 @@ class UserModel(UserMixin, db.Model):
         return self.is_admin, self.fic_acceptance
 
     def update_access_token(self, access_token, email):
-        user = UserModel.query.filter_by(email=email).first()
-        user.access_token = access_token
-        db.session.commit()
+        try:
+            user = UserModel.query.filter_by(email=email).first()
+            user.access_token = access_token
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def save_fic_acceptance(self, acceptance, email):
-        user = UserModel.query.filter_by(email=email).first()
-        user.fic_acceptance = acceptance
-
-        # if acceptance == 'true':
-        #     user.fic_acceptance = True
-        # else:
-        #     user.fic_acceptance = False
-        db.session.commit()
+        try:
+            user_session = UserModel.query.filter_by(email=email).first()
+            user_session.fic_acceptance = acceptance
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
 

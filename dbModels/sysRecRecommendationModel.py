@@ -3,6 +3,7 @@ from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from utils.recommendations_generator import RecommendationsGenerator
 from sqlalchemy_json import NestedMutableJson
+from sqlalchemy.exc import IntegrityError
 
 
 class RecommendationModel(db.Model):
@@ -31,8 +32,9 @@ class RecommendationModel(db.Model):
             # ajouter update history des recs et du centre d'interet
             # history des rec aura les do_id + rating a null
             video_rec_empty_rating = {'cold_start_rec': []}
-            for index, row in rec.iterrows():
-                video_rec_empty_rating['cold_start_rec'].append({'doc_id': row['doc_id'], 'videoRating': None})
+            for index in range(0, len(rec['recommendations'])):
+                video_rec_empty_rating['cold_start_rec'].append({'doc_id': rec['recommendations'][index]['doc_id'], 'videoRating': None})
+
 
             # centre d'interet sera le topic id selectionne
             SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(email=self.email, cold_start_position=user.cold_start_position)
@@ -45,14 +47,14 @@ class RecommendationModel(db.Model):
             rec = self._recommenderGenerator.get_new_recommendations(
                 user_area_of_interest=user_area_interest.area_interest[str(user_recommendation_model.total_rec_send)],
                 history_videos_rating=user_recommendation_model.recommendations,
-                option=1)
+                option=2)
+
             # ajouter update history des recs et du centre d'interet:
             # history des rec aura les do_id + rating a null
             video_rec_empty_rating = {user_recommendation_model.total_rec_send: []}
-
-            for index, row in rec.iterrows():
+            for index in range(0, len(rec['recommendations'])):
                 video_rec_empty_rating[user_recommendation_model.total_rec_send].append({
-                    'doc_id': row['doc_id'],
+                    'doc_id': rec['recommendations'][index]['doc_id'],
                     'videoRating': None
                 })
 
@@ -90,16 +92,16 @@ class RecommendationModel(db.Model):
         db.session.commit()
 
     def update(self, session):
-        for ele in self.recommendations:
-            session.recommendations.append(ele)
-        db.session.commit()
+        try:
+            for ele in self.recommendations:
+                session.recommendations.append(ele)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
 
     def save_to_db(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def delete_from_db(self):
-        db.session.delete(self)
-        db.session.commit()
-
-
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
