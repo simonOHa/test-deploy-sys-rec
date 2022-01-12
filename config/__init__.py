@@ -4,7 +4,7 @@ import config.settings
 
 # create settings object corresponding to specified env
 APP_ENV = os.environ.get('APP_ENV', 'Production')
-#APP_ENV = os.environ.get('APP_ENV', 'Dev')
+# APP_ENV = os.environ.get('APP_ENV', 'Dev')
 _current = getattr(sys.modules['config.settings'], '{0}Config'.format(APP_ENV))()
 
 # copy attributes to the module for convenience

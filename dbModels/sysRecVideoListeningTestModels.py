@@ -17,7 +17,7 @@ class VideoListeningTestModel(db.Model):
 	def __init__(self):
 		pass
 
-	def get_videos_test1(self, top=TOP_N_VIDEOS, topic_id=VIDEO_LISTENING_TOPIC_ID):
+	def get_videos_test1(self, top=VIDEO_LISTENING_TOP_N_VIDEOS, topic_id=VIDEO_LISTENING_TOPIC_ID):
 		_doc_topics_distribution = self._lda_reader.get_doc_topic_distribution()
 		_videos_infos = self._lda_reader.get_video_infos()
 		_top10_topic_terms = self._lda_reader.get_top10_topic_terms(topic_id=topic_id)

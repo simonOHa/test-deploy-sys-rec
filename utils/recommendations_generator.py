@@ -98,7 +98,9 @@ class RecommendationsGenerator:
             elif len(liked_videos) == 0 and len(disliked_videos) > 0:
                 return None
 
-    def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION, top=TOP_N_VIDEOS, history_videos_rating=None):
+    def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION, top=TOP_N_VIDEOS,
+                                history_videos_rating=None, do_normalization=True):
+
         _doc_topics_distribution_interest = pd.DataFrame()
 
         # Extraction des probabilites du centre d'interet
@@ -114,6 +116,10 @@ class RecommendationsGenerator:
             manhattan_distance = self._manhattan_distance(proba, row.to_list())
             df_tmp = pd.DataFrame([{'doc_id': doc_id, 'distance': manhattan_distance}])
             _doc_topics_distribution_interest = _doc_topics_distribution_interest.append(df_tmp, ignore_index=True)
+
+        # Application de la normalisation
+        if do_normalization:
+            _doc_topics_distribution_interest = self._normalize_doc_topics_distribution_interest(_doc_topics_distribution_interest)
 
         # On considere seulement le centre d'interet
         if option == 1:
@@ -178,6 +184,13 @@ class RecommendationsGenerator:
     def _manhattan_distance(self, a, b):
         return sum(abs(e1 - e2) for e1, e2 in zip(a, b))
 
+    def _normalize_doc_topics_distribution_interest(self, data):
+        min = data['distance'].min()
+        max = data['distance'].max()
+        data['distance'] = (data['distance'] - min) / (max - min)
+        return data
+
+
     # Simply return list of topics id
     def _build_cold_start_choices(self):
         columns = self._doc_topics_distribution.columns
@@ -187,7 +200,7 @@ class RecommendationsGenerator:
     def get_cold_start_choices(self):
         return self._cold_start_choices
 
-    def get_cold_start_videos(self, user_cold_start_position, top=TOP_N_VIDEOS):
+    def get_cold_start_videos(self, user_cold_start_position, top=TOP_N_VIDEOS_COLD_START):
         top_n = self._doc_topics_distribution.sort_values(by=[user_cold_start_position], ascending=False)[0:top]
         # res = self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
         return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())

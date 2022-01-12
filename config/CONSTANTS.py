@@ -10,9 +10,11 @@ QUESTION_4_TOPIC_2 = '21'
 
 # Video listening test
 VIDEO_LISTENING_TOPIC_ID = 't_2'
+VIDEO_LISTENING_TOP_N_VIDEOS = 5
 
-# GLOBAL
-TOP_N_VIDEOS = 5
+# Sys-Rec GLOBAL
+TOP_N_VIDEOS_COLD_START = 5
+TOP_N_VIDEOS = 1 #5
 N_TOPIC_BUILDING_USER_INTEREST_AREA = 3
 
 # Calcul des recommendations et centre d'interet
