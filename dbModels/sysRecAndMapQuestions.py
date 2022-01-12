@@ -2,6 +2,9 @@ from dbModels import db
 from sqlalchemy.exc import IntegrityError
 import pandas as pd
 from collections import Counter
+
+from dbModels.sysRecColdStartModel import SysRecColdStartModel
+from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from utils.lda_reader import LDAReader
 from config.CONSTANTS import *
@@ -37,15 +40,17 @@ class SysRecAndMapQuestionsModel(db.Model):
 
     def _build_questions(self, email):
         # Question 1
-        top_words_per_topics = self._extract_top_words_from_user_area_interest(email=email)
+        top_words_per_topics = self._extract_top_words_from_user_area_interest_v2(email=email) #self._extract_top_words_from_user_area_interest(email=email)
+        user_cold_start = SysRecColdStartModel.query.filter_by(email=email).first()
+        #cold_start_id = top_words_per_topics['cold_start'][0]
+        cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position)
 
-        cold_start_id = top_words_per_topics['cold_start'][0]
-        cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=cold_start_id)
+        all_top_words = top_words_per_topics
+        final_top_words = self._calculate_words_intersection_from_user_area_interest_v2(all_top_words=all_top_words)#self._calculate_words_intersection_from_user_area_interest(runs_topic_ids=top_words_per_topics)
 
         question_1 = {'question': "Est-ce que ?",
                       'cold_start_top_words': cold_start_top_n_words,
-                      'final_top_words': self._calculate_words_intersection_from_user_area_interest(
-                          runs_topic_ids=top_words_per_topics),
+                      'final_top_words': final_top_words,
                       'answer': ''
                       }
 
@@ -64,23 +69,50 @@ class SysRecAndMapQuestionsModel(db.Model):
         if user is not None:
             response = {}
             for rec in user.area_interest.keys():
-                topic_dist_list = user.area_interest[rec]
+                # topic_dist_list = user.area_interest[rec]
                 k = []
                 v = []
-                for obj in topic_dist_list:
+                for obj in user.area_interest[rec]:
                     for kk, vv in obj.items():
                         k.append(kk)
                         v.append(vv)
 
                 xxx_series = pd.Series(data=v, index=k)
                 res = xxx_series.sort_values(ascending=False)[0:top_n]
-                top = res.keys().to_list() #res.to_dict()
+                top = res.keys().to_list()
                 response[rec] = top
-                #response.append({rec: top})
+
         else:
             print('ERRRROOOORR from SysRecAndMapQuestionsModel')
 
         return response
+
+    def _extract_top_words_from_user_area_interest_v2(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
+        user = RecommendationModel.query.filter_by(email=email).first()
+        doc_topic_distribution = self._lda_reader.get_doc_topic_distribution()
+        topic_words = None
+        if user is not None:
+            topic_words = []
+            for rec in user.recommendations.keys():
+                for video in user.recommendations[rec]:
+                    if video['videoRating'] == 'aime':
+                        v = doc_topic_distribution[doc_topic_distribution['doc_id'] == video['doc_id']]
+                        v.drop('doc_id', axis=1)
+                        v = v.drop('doc_id', axis=1)
+                        topic_id = v.idxmax(1)
+                        print(topic_id)
+                        top_words = self._lda_reader.get_top10_topic_terms(topic_id=topic_id.item())
+                        topic_words.append(top_words)
+        else:
+            print('ERRRROOOORR from SysRecAndMapQuestionsModel')
+
+        return topic_words
+
+    def _calculate_words_intersection_from_user_area_interest_v2(self, all_top_words, n_most_commun = 10):
+        flat_list = [item for sublist in all_top_words for item in sublist]
+        final_terms = [val[0] for val in Counter(flat_list).most_common(n_most_commun)]
+        print(Counter(flat_list))
+        return final_terms
 
     def _calculate_words_intersection_from_user_area_interest(self, runs_topic_ids):
         list_terms = []
@@ -94,7 +126,6 @@ class SysRecAndMapQuestionsModel(db.Model):
         flat_list = [item for sublist in list_terms for item in sublist]
         final_terms = [val[0] for val in Counter(flat_list).most_common(10)]
         return final_terms
-
 
     def save_to_db(self, results, email):
         user_session = SysRecAndMapQuestionsModel.query.filter_by(email=email).first()

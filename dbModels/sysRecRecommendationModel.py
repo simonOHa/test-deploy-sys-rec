@@ -4,6 +4,7 @@ from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from utils.recommendations_generator import RecommendationsGenerator
 from sqlalchemy_json import NestedMutableJson
 from sqlalchemy.exc import IntegrityError
+from config.CONSTANTS import *
 
 
 class RecommendationModel(db.Model):
@@ -35,7 +36,6 @@ class RecommendationModel(db.Model):
             for index in range(0, len(rec['recommendations'])):
                 video_rec_empty_rating['cold_start_rec'].append({'doc_id': rec['recommendations'][index]['doc_id'], 'videoRating': None})
 
-
             # centre d'interet sera le topic id selectionne
             SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(email=self.email, cold_start_position=user.cold_start_position)
 
@@ -47,9 +47,9 @@ class RecommendationModel(db.Model):
             rec = self._recommenderGenerator.get_new_recommendations(
                 user_area_of_interest=user_area_interest.area_interest[str(user_recommendation_model.total_rec_send)],
                 history_videos_rating=user_recommendation_model.recommendations,
-                option=2)
+                option=NEW_REC_OPTION)
 
-            # ajouter update history des recs et du centre d'interet:
+            # Ajouter update history des recs et du centre d'interet:
             # history des rec aura les do_id + rating a null
             video_rec_empty_rating = {user_recommendation_model.total_rec_send: []}
             for index in range(0, len(rec['recommendations'])):
@@ -62,7 +62,7 @@ class RecommendationModel(db.Model):
             user_recommendation_model.total_rec_send += 1
             db.session.commit()
 
-            # centre d'interet se fera lors update lors du save
+            # centre d'interet se fera lors du save
 
         return rec
 
@@ -75,21 +75,39 @@ class RecommendationModel(db.Model):
         # Save result cold-start
         if user.total_rec_send == 1:
             user.recommendations['cold_start_rec'] = videos_rated
+            db.session.commit()
             # Update le centre d'interet
             SysRecUserAreaInterest().update_user_area_interest(email=email,
-                                                               #values=user.recommendations['cold_start_rec'],
                                                                recommended_videos=user.recommendations,
                                                                calcul_index=1)
 
         else:
-            user.recommendations[user.total_rec_send - 1] = videos_rated
-            # Update le centre d'interet
-            SysRecUserAreaInterest().update_user_area_interest(email=email,
-                                                               # values=user.recommendations[user.total_rec_send],
-                                                               recommended_videos=user.recommendations,
-                                                               calcul_index=user.total_rec_send)
+            # Afin de gerer le cas ou l'utilisateur envoie des modifications a ses anciennes recommandations.
+            # Le front-end envoie une liste d'objets sans tenir compte de la structure en BD.
+            # On sait que le nombre de videos pas envoie est de 5 (TOP_N_VIDEOS).
+            if len(videos_rated) > TOP_N_VIDEOS:
+                # Break a list into chunks of size TOP_N_VIDEOS
+                groups = [videos_rated[i:i + TOP_N_VIDEOS] for i in range(0, len(videos_rated), TOP_N_VIDEOS)]
+                if len(groups) != user.total_rec_send:
+                    print('Error in save_watched_videos')
+                for index, group in enumerate(groups):
+                    if index == 0:
+                        user.recommendations['cold_start_rec'] = group
+                    else:
+                        user.recommendations[index] = group
 
-        db.session.commit()
+                db.session.commit()
+                SysRecUserAreaInterest().update_user_area_interest(email=email,
+                                                                   recommended_videos=user.recommendations,
+                                                                   calcul_index=user.total_rec_send)
+
+            else:
+                user.recommendations[user.total_rec_send - 1] = videos_rated
+                db.session.commit()
+                # Update le centre d'interet
+                SysRecUserAreaInterest().update_user_area_interest(email=email,
+                                                                   recommended_videos=user.recommendations,
+                                                                   calcul_index=user.total_rec_send)
 
     def update(self, session):
         try:

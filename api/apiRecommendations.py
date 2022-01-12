@@ -6,7 +6,8 @@ from api.token import check_token
 from utils.lda_reader import LDAReader
 from dbModels.userModel import UserModel
 from api.errors import InternalServerError
-# Permet d'obtenir les recommandations, autant en cold-start quant fonction des interet de l'utilisateur
+
+# Permet d'obtenir les recommandations, autant en cold-start que pour les interets de l'utilisateur
 
 
 class RecommendationAPI(Resource):
@@ -19,22 +20,6 @@ class RecommendationAPI(Resource):
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
             _user = UserModel.query.filter_by(access_token=_access_token).first()
             _new_recommendations = self._model.get_new_recommendations(email=_user.email)
-
-
-            # _return_val = {}
-            #
-            # for index, row in _new_recommendations.iterrows():
-            #     _return_val[str(row['doc_id'])] = {
-            #         "doc_id": row['doc_id'],
-            #         "transcription": row['transcription'],
-            #         "title": row['title'],
-            #         "start_time": row['start_time'],
-            #         "end_time": row['end_time'],
-            #         "url": row['url'],
-            #         "total_time": row['total_time'],
-            #         "total_words": row['total_words']
-            #     }
-
             response = build_response_header(access_token=_access_token, status_code=200, data=_new_recommendations, error_message=None)
             return response
 

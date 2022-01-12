@@ -37,7 +37,7 @@ class RecommendationsGenerator:
             })
         return res
 
-    def calculate_center_of_interest(self, videos_rating, option=1):
+    def calculate_center_of_interest(self, videos_rating, option=CALCULATE_CI_OPTION):
         liked_videos = []
         disliked_videos = []
         for k, v in videos_rating.items():
@@ -47,24 +47,25 @@ class RecommendationsGenerator:
                 else:
                     disliked_videos.append(video['doc_id'])
 
-        # On considere seulement le videos : like
+        # On considere seulement les videos : like
         if option == 1:
             if len(liked_videos) > 0:
                 # Calcul
                 liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
                 liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
-                liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum() / len(liked_videos)
+                liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
                 _user_area_of_interest = liked_videos_topic_distribution_sum / len(liked_videos)
 
                 # Reshape result
                 _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
+                print(_user_area_of_interest.sum(1))
                 return _user_area_of_interest
 
             # Si aucun videos n'a ete aime, on ne change pas le centre d'interet
             else:
                 return None
 
-        # On considere les videos : like et dislike
+        # On considere les videos : like et dislike, NE PAS CONSIDERER POUR LE MOMENT!!! => NA PAS DE SENS
         elif option == 2:
             # Calcul
             if len(liked_videos) > 0 and len(disliked_videos) > 0:
@@ -87,7 +88,6 @@ class RecommendationsGenerator:
                 liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
                 liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
                 liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
-
                 _user_area_of_interest = liked_videos_topic_distribution_sum / len(liked_videos)
 
                 # Reshape result
@@ -98,7 +98,7 @@ class RecommendationsGenerator:
             elif len(liked_videos) == 0 and len(disliked_videos) > 0:
                 return None
 
-    def get_new_recommendations(self, user_area_of_interest, option=2, top=TOP_N_VIDEOS, history_videos_rating=None):
+    def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION, top=TOP_N_VIDEOS, history_videos_rating=None):
         _doc_topics_distribution_interest = pd.DataFrame()
 
         # Extraction des probabilites du centre d'interet
@@ -155,6 +155,7 @@ class RecommendationsGenerator:
                 top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
 
         #return self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
+        print(top_n)
         return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())
 
     def _format_recommendations(self, doc_ids):

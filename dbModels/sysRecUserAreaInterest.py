@@ -50,11 +50,12 @@ class SysRecUserAreaInterest(db.Model):
             print('ERRRRRRRROOOOOOOOOORRRRRRRRRR')
 
     def update_user_area_interest(self, email, recommended_videos, calcul_index):
-        new_area_of_interest = self._recommenderGenerator.calculate_center_of_interest(videos_rating=recommended_videos, option=1)
+        new_area_of_interest = self._recommenderGenerator.calculate_center_of_interest(videos_rating=recommended_videos,
+                                                                                       option=CALCULATE_CI_OPTION)
         user = SysRecUserAreaInterest.query.filter_by(email=email).first()
         result_to_save_in_db = {calcul_index: []}
 
-        # Afin de gerer le cas ou aucun video a ete aime
+        # Afin de gerer le cas ou aucun video n'a ete aime
         if new_area_of_interest is None:
             # Reprendre l'ancien centre dinteret
             result_to_save_in_db[calcul_index] = user.area_interest[list(user.area_interest.keys())[-1]]
