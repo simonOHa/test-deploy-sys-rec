@@ -1,7 +1,7 @@
 import logging
 from config import *
 from api import build_api
-from flask import Flask, jsonify
+from flask import Flask
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
 from flask_jwt_extended import JWTManager
