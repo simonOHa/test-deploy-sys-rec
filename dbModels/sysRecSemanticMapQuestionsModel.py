@@ -57,7 +57,7 @@ class SysRecSemanticMapQuestionsModel(db.Model):
         topic_id_2 = QUESTION_4_TOPIC_2
         terms_intersection = set(topic_terms['t_'+topic_id_1].to_list()).intersection(topic_terms['t_'+topic_id_2].to_list())
 
-        question_4 = {'question': "Quel est terme commun aux ensembles " + topic_id_1 + " et " + topic_id_2,
+        question_4 = {'question': "Quel(s) est/sont le(s) terme(s) commun(s) aux ensembles " + topic_id_1 + " et " + topic_id_2,
                       'answer': list(terms_intersection)
                       }
 

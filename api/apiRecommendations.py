@@ -56,7 +56,7 @@ class ResultsRecommendationAPI(Resource):
             _user_recommendations_model = RecommendationModel.query.filter_by(email=_user.email).first()
 
             if _user_recommendations_model is not None:
-                result = {'form': [], 'videos': []}
+                result = {'form': [], 'videos': [], 'end_of_recommendations':_user_recommendations_model.is_end_of_recommendations}
                 for k, v in _user_recommendations_model.recommendations.items():
                     for vv in v:
                         result['form'].append(vv)

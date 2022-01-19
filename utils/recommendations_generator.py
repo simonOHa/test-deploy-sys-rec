@@ -40,6 +40,7 @@ class RecommendationsGenerator:
         return res
 
     def calculate_center_of_interest(self, videos_rating, current_user_area_interest, option=CALCULATE_CI_OPTION):
+        # Creer liste des videos like et dislike
         liked_videos = []
         disliked_videos = []
         for k, v in videos_rating.items():
@@ -49,101 +50,53 @@ class RecommendationsGenerator:
                 else:
                     disliked_videos.append(video['doc_id'])
 
+        liked_videos = list(set(liked_videos))
+        disliked_videos = list(set(disliked_videos))
+        # Calcule preliminaire pour la distribution moyenne des videos regardes
+        if len(liked_videos) > 0:
+            liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
+            liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
+            liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
+            liked_videos_topic_distribution_mean = liked_videos_topic_distribution_sum / len(liked_videos)
+
+        if len(disliked_videos) > 0:
+            disliked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(disliked_videos)]
+            disliked_videos_topic_distribution = disliked_videos_topic_distribution[disliked_videos_topic_distribution.columns.drop(['doc_id'])]
+            disliked_videos_topic_distribution_sum = disliked_videos_topic_distribution.sum()
+            disliked_videos_topic_distribution_mean = disliked_videos_topic_distribution_sum / len(disliked_videos)
+
         # On considere seulement les videos : like
+        _user_area_of_interest=None
         if option == 1:
             if len(liked_videos) > 0:
-                # Calcul
-                liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
-                liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
-                liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
-                _user_area_of_interest = liked_videos_topic_distribution_sum / len(liked_videos)
-
-                # Reshape result
-                _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
-                print(_user_area_of_interest.sum(1))
-                return _user_area_of_interest
-
+                _user_area_of_interest = liked_videos_topic_distribution_mean.to_frame().transpose()
             # Si aucun videos n'a ete aime, on ne change pas le centre d'interet
             else:
-                return None
+                pass
 
-        # On considere les videos : like et dislike, NE PAS CONSIDERER POUR LE MOMENT!!! => NA PAS DE SENS
+        # On considere les videos : like et dislike
         elif option == 2:
-
             # E0) Calcul des valeurs moyennes des 2 categories de video (like, dislike)
-            if len(liked_videos) > 0:
-                liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
-                liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
-                liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
-                liked_videos_topic_distribution_mean = liked_videos_topic_distribution_sum / len(liked_videos)
-
-            if len(disliked_videos) > 0:
-                disliked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(disliked_videos)]
-                disliked_videos_topic_distribution = disliked_videos_topic_distribution[disliked_videos_topic_distribution.columns.drop(['doc_id'])]
-                disliked_videos_topic_distribution_sum = disliked_videos_topic_distribution.sum()
-                disliked_videos_topic_distribution_mean = disliked_videos_topic_distribution_sum / len(disliked_videos)
-
-            # Condition 1
             if len(liked_videos) > 0 and len(disliked_videos) > 0:
-
                 # E1) Calcul de la difference par topic entre les distributions like et dislike
                 diff = liked_videos_topic_distribution_mean - disliked_videos_topic_distribution_mean
-
                 # E2) Additionne la difference aux videos like
                 liked_videos_plus_diff = liked_videos_topic_distribution_mean + diff
-
                 # E3) Recherche des valeurs negatives, les replacer par 0 et
                 # distribuer uniformement la somme de ces valeurs (les negatives) sur toutes les
                 # autres composantes du vecteur.
                 if liked_videos_plus_diff.min() < 0:
-
-                    negative_value = liked_videos_plus_diff[liked_videos_plus_diff < 0]
-                    negative_value_topic_id = negative_value.keys().to_list()
-                    total_topic = len(liked_videos_plus_diff) # norme du vecteur
-                    value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
-
-                    _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
-                    for topic_id in negative_value_topic_id:
-                        _user_area_of_interest[topic_id] = 0
-
-                    loop_counter = 0
-                    while _user_area_of_interest.min() < 0:
-
-                        negative_value = _user_area_of_interest[_user_area_of_interest < 0]
-                        negative_value_topic_id.append(negative_value.keys().to_list())
-                        value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
-
-                        _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
-                        for topic_id in negative_value_topic_id:
-                            _user_area_of_interest[topic_id] = 0
-
-                        loop_counter += 1
-                        print('loop_counter : ' + str(loop_counter))
-
-                    # Reshape result
-                    _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
-
+                    _user_area_of_interest = self._evenly_distribute_negative_value(liked_videos_plus_diff=liked_videos_plus_diff)
                 else:
-                    # Reshape result
                     _user_area_of_interest = liked_videos_plus_diff.to_frame().transpose()
 
-                return _user_area_of_interest
-
             elif len(liked_videos) > 0 and len(disliked_videos) == 0:
-                #liked_videos_topic_distribution = self._doc_topics_distribution[self._doc_topics_distribution['doc_id'].isin(liked_videos)]
-                #liked_videos_topic_distribution = liked_videos_topic_distribution[liked_videos_topic_distribution.columns.drop(['doc_id'])]
-                #liked_videos_topic_distribution_sum = liked_videos_topic_distribution.sum()
-                #_user_area_of_interest = liked_videos_topic_distribution_sum / len(liked_videos)
-
-                # Reshape result
                 _user_area_of_interest = liked_videos_topic_distribution_mean.to_frame().transpose()
-                return _user_area_of_interest
 
             # Aucune video n'a ete aime
             # Si l'utilisateur n'aime aucun video en cold start, selon ce calcul, son nouveau centre d'interet restera le meme
             else:
-                #user = SysRecUserAreaInterest.query.filter_by(email=email).first()
-                user_last_are_interest = current_user_area_interest #user.area_interest[list(user.area_interest.keys())[-1]]
+                user_last_are_interest = current_user_area_interest
                 topic_ids = []
                 proba = []
                 for val in user_last_are_interest:
@@ -164,43 +117,46 @@ class RecommendationsGenerator:
                 # distribuer uniformement la somme de ces valeurs (les negatives) sur toutes les
                 # autres composantes du vecteur.
                 if liked_videos_plus_diff.min() < 0:
-
-                    negative_value = liked_videos_plus_diff[liked_videos_plus_diff < 0]
-                    negative_value_topic_id = negative_value.keys().to_list()
-                    total_topic = len(liked_videos_plus_diff)  # norme du vecteur
-                    value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
-
-                    _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
-                    for topic_id in negative_value_topic_id:
-                        _user_area_of_interest[topic_id] = 0
-
-                    loop_counter = 0
-                    while _user_area_of_interest.min() < 0:
-
-                        negative_value = _user_area_of_interest[_user_area_of_interest < 0]
-                        negative_value_topic_id.append(negative_value.keys().to_list())
-                        value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
-
-                        _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
-                        for topic_id in negative_value_topic_id:
-                            _user_area_of_interest[topic_id] = 0
-
-                        loop_counter += 1
-                        print('loop_counter : ' + str(loop_counter))
-
-                    # Reshape result
+                    _user_area_of_interest = self._evenly_distribute_negative_value(liked_videos_plus_diff=liked_videos_plus_diff)
                     _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
-
                 else:
-                    # Reshape result
                     _user_area_of_interest = liked_videos_plus_diff.to_frame().transpose()
 
-                return _user_area_of_interest
+        print(_user_area_of_interest.sum(1))
+        return _user_area_of_interest
 
-    def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION, top=TOP_N_VIDEOS,
-                                history_videos_rating=None, do_normalization=True):
+    def _evenly_distribute_negative_value(self, liked_videos_plus_diff):
+        negative_value = liked_videos_plus_diff[liked_videos_plus_diff < 0]
+        negative_value_topic_id = negative_value.keys().to_list()
+        total_topic = len(liked_videos_plus_diff)  # norme du vecteur
+        value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
+
+        _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
+        for topic_id in negative_value_topic_id:
+            _user_area_of_interest[topic_id] = 0
+
+        loop_counter = 0
+        while _user_area_of_interest.min() < 0:
+
+            negative_value = _user_area_of_interest[_user_area_of_interest < 0]
+            negative_value_topic_id.append(negative_value.keys().to_list())
+            value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
+
+            _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
+            for topic_id in negative_value_topic_id:
+                _user_area_of_interest[topic_id] = 0
+
+            loop_counter += 1
+            print('loop_counter : ' + str(loop_counter))
+
+        # Reshape result
+        return _user_area_of_interest.to_frame().transpose()
+
+    def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION,
+                                top=TOP_N_VIDEOS, history_videos_rating=None, do_normalization=True):
 
         _doc_topics_distribution_interest = pd.DataFrame()
+        _is_recommendation_ended = False
 
         # Extraction des probabilites du centre d'interet
         proba = []
@@ -226,7 +182,7 @@ class RecommendationsGenerator:
 
         # Serie d'options pour ne pas recommander des videos deja recommandees
         elif history_videos_rating:
-            # On elimine tous le videos deja vu
+            # On elimine tous les videos deja vu
             if option == 2:
                 # Extraire les videos-id deja vue
                 seen_videos = []
@@ -237,18 +193,18 @@ class RecommendationsGenerator:
                 all_videos_not_seen = _doc_topics_distribution_interest[~_doc_topics_distribution_interest['doc_id'].isin(seen_videos)]
                 top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
 
-            # On elimine tous le videos dislike
+            # On elimine tous les videos dislike
             if option == 3:
                 dislike_seen_videos = []
                 for k, v in history_videos_rating.items():
                     for video in v:
-                        if video['videoRating'] != 'aime':
+                        if video['videoRating'] != 'aime pas':
                             dislike_seen_videos.append(video['doc_id'])
 
                 all_videos_not_seen = _doc_topics_distribution_interest[~_doc_topics_distribution_interest['doc_id'].isin(dislike_seen_videos)]
                 top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
 
-            # On elimine tous le videos like
+            # On elimine tous les videos like
             if option == 4:
                 like_seen_videos = []
                 for k, v in history_videos_rating.items():
@@ -259,13 +215,30 @@ class RecommendationsGenerator:
                 all_videos_not_seen = _doc_topics_distribution_interest[~_doc_topics_distribution_interest['doc_id'].isin(like_seen_videos)]
                 top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
 
-        #return self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
+            if option == 5:
+                seen_videos = []
+                for k, v in history_videos_rating.items():
+                    for video in v:
+                        seen_videos.append(video['doc_id'])
+
+                # Applique la selection du le seuil
+                top_videos_by_threshold = _doc_topics_distribution_interest[_doc_topics_distribution_interest['distance'] <= RECOMMENDATION_THRESHOLD_MIN]
+                all_videos_not_seen = top_videos_by_threshold[~top_videos_by_threshold['doc_id'].isin(seen_videos)]
+                top_n = all_videos_not_seen.sort_values(by=['distance'], ascending=True)[0:top]
+
+                if len(top_n) == 0:
+                    top_n = top_videos_by_threshold.sort_values(by=['distance'], ascending=True)[0:top]
+                    _is_recommendation_ended = True
+                    print('END OF NEW REC')
+
         print(top_n)
-        return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())
+        # Ajout la bd => rec_and_distance
+        response = self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy(), recommendation_ended=_is_recommendation_ended)
+        return response, top_n['distance'].to_numpy()
 
-    def _format_recommendations(self, doc_ids):
+    def _format_recommendations(self, doc_ids, recommendation_ended=False):
 
-        return_val = {'recommendations': []}
+        return_val = {'recommendations': [], 'recommendation_ended': recommendation_ended}
         for id in doc_ids:
             info = self._videos_infos[self._videos_infos['doc_id'] == id]
             return_val['recommendations'].append({

@@ -84,8 +84,16 @@ class AdminConsentAPI(Resource):
                     sys_rec_test3_videos_res.append({'email': user.email,
                                                      'cold_start': cold_start_rec,
                                                      'recommendations': other_rec,
-                                                      'total_rec_send': user.total_rec_send
+                                                     'total_rec_send': user.total_rec_send
                                                   })
+
+                sys_rec_test3_distances = []
+                for user in sys_rec_test3_videos_all:
+                    sys_rec_test3_distances.append({'email': user.email,
+                                                    'distances': user.distance})
+
+
+
 
                 sys_rec_test3_area_interest_all = SysRecUserAreaInterest.query.all()
                 sys_rec_test3_area_interest_res = []
@@ -131,10 +139,8 @@ class AdminConsentAPI(Resource):
                                                           'question_2': user.question_2,
                                                             })
 
-
-
                 grouped = {
-                    'consent_form':consent_form_all_res,
+                    'consent_form': consent_form_all_res,
                     'intrusion_TI_test': intrusion_TI_test_all_res,
                     'intrusion_WI_test': intrusion_WI_test_all_res,
                     'intrusion_WSI_test': intrusion_WSI_test_all_res,
@@ -142,7 +148,8 @@ class AdminConsentAPI(Resource):
                     'sys_rec_test2': sys_rec_test2_all_res,
                     'sys_rec_test3_videos': sys_rec_test3_videos_res,
                     'sys_rec_test3_area_interest': sys_rec_test3_area_interest_res,
-                    'sys_rec_test3_map_questions': sys_rec_test3_map_questions_res
+                    'sys_rec_test3_map_questions': sys_rec_test3_map_questions_res,
+                    'sys_rec_test3_distances': sys_rec_test3_distances
                 }
                 response = build_response_header(access_token=_access_token, status_code=200, data=grouped, error_message=None)
             else:

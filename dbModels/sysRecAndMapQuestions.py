@@ -25,7 +25,6 @@ class SysRecAndMapQuestionsModel(db.Model):
         pass
 
     def get_questions(self, email):
-
         # Check for user response exist
         _user = SysRecAndMapQuestionsModel.query.filter_by(email=email).first()
         if _user is not None:
@@ -40,22 +39,28 @@ class SysRecAndMapQuestionsModel(db.Model):
 
     def _build_questions(self, email):
         # Question 1
-        top_words_per_topics = self._extract_top_words_from_user_area_interest_v2(email=email) #self._extract_top_words_from_user_area_interest(email=email)
+
+        # Extraire les top words de chaque video, like et dislike de toutes les recommandations
+        topic_ids = self._extract_topic_ids_from_user_area_interest_v2(email=email)
+        final_top_words = self._calculate_words_intersection_from_user_area_interest_v2(all_top_words=topic_ids)
+        final_top_words = [{'term': word, 'checked': False} for word in final_top_words]
+
         user_cold_start = SysRecColdStartModel.query.filter_by(email=email).first()
-        #cold_start_id = top_words_per_topics['cold_start'][0]
         cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position)
 
-        all_top_words = top_words_per_topics
-        final_top_words = self._calculate_words_intersection_from_user_area_interest_v2(all_top_words=all_top_words)#self._calculate_words_intersection_from_user_area_interest(runs_topic_ids=top_words_per_topics)
-
-        question_1 = {'question': "Est-ce que ?",
+        question_1 = {'question': "Parmis les termes représentant votre centre d'intérêt, cochez le terme de prédilection. \n",
                       'cold_start_top_words': cold_start_top_n_words,
                       'final_top_words': final_top_words,
+                      'word_not_found': '',
+                      'topic_ids': topic_ids,
                       'answer': ''
                       }
 
         # Question 2
-        question_2 = {'question': "Est-ce que les point jaunes ...?",
+        question_2 = {'question': "1. L'interface m'a aidé à comprendre comment les recommandations étaient générées ? \n "
+                                  "2. J'ai trouvé utile l'évolution des CI ?  \n"
+                                  "3. Dans l'ensemble, les recommandations étaient précises ?   \n"
+                                  "4. À la fin de la session, j'étais satisfait des recommandations ? ",
                       'answer': ''}
 
         self._questions = {
@@ -87,31 +92,79 @@ class SysRecAndMapQuestionsModel(db.Model):
 
         return response
 
-    def _extract_top_words_from_user_area_interest_v2(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
+    def _extract_topic_ids_from_user_area_interest_v2(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
         user = RecommendationModel.query.filter_by(email=email).first()
         doc_topic_distribution = self._lda_reader.get_doc_topic_distribution()
-        topic_words = None
+        results = None
         if user is not None:
-            topic_words = []
+            results = {'like': {'topic_ids': []}, 'dislike': {'topic_ids': []}}
+            topic_ids_like = []
+            topic_ids_dislike = []
             for rec in user.recommendations.keys():
                 for video in user.recommendations[rec]:
+                    v = doc_topic_distribution[doc_topic_distribution['doc_id'] == video['doc_id']]
+                    v.drop('doc_id', axis=1)
+                    v = v.drop('doc_id', axis=1)
+                    topic_id = v.idxmax(1)
                     if video['videoRating'] == 'aime':
-                        v = doc_topic_distribution[doc_topic_distribution['doc_id'] == video['doc_id']]
-                        v.drop('doc_id', axis=1)
-                        v = v.drop('doc_id', axis=1)
-                        topic_id = v.idxmax(1)
-                        print(topic_id)
-                        top_words = self._lda_reader.get_top10_topic_terms(topic_id=topic_id.item())
-                        topic_words.append(top_words)
+                        topic_ids_like.append(topic_id.item())
+                    else:
+                        topic_ids_dislike.append(topic_id.item())
+
+            topic_ids_like = list(set(topic_ids_like))
+            results['like']['topic_ids'] = topic_ids_like
+            topic_ids_dislike = list(set(topic_ids_dislike))
+            results['dislike']['topic_ids'] = topic_ids_like
+
+            #for id in topic_ids_like:
+            #    results['like']['words'].append(self._lda_reader.get_top10_topic_terms(topic_id=id))
+
+            #for id in topic_ids_dislike:
+            #    results['dislike']['words'].append(self._lda_reader.get_top10_topic_terms(topic_id=id))
+
         else:
             print('ERRRROOOORR from SysRecAndMapQuestionsModel')
 
-        return topic_words
+        return results
+
+    def _convert_to_front_end_object(self, datas):
+        final_obj = []
+        for data in datas:
+            final_obj.append({'term': data, 'checked': False})
+
 
     def _calculate_words_intersection_from_user_area_interest_v2(self, all_top_words, n_most_commun = 10):
-        flat_list = [item for sublist in all_top_words for item in sublist]
-        final_terms = [val[0] for val in Counter(flat_list).most_common(n_most_commun)]
-        print(Counter(flat_list))
+        # Cas a regarder :
+        #   Si les topic_ids de like = dislike => On garde les mots de like
+        #   Si les topic_ids de like != dislike => Soustraire les mots de dislike de l<ensemble de mots
+        if all_top_words['like']['topic_ids'] == all_top_words['dislike']['topic_ids']:
+            like_words = [self._lda_reader.get_top10_topic_terms(topic_id=id) for id in all_top_words['like']['topic_ids']]
+            flat_list = [item for sublist in like_words for item in sublist]
+            final_terms = [val[0] for val in Counter(flat_list).most_common(n_most_commun)]
+        else:
+            # Check si topic_id en commun entre les 2 listes
+            _intersect = list(set(all_top_words['like']['topic_ids']) & set(all_top_words['dislike']['topic_ids']))
+            if _intersect:
+                # Delete topic_id en commun dans dislike
+                for id in _intersect:
+                    all_top_words['dislike']['topic_ids'].remove(id)
+
+            # Recuperer les termes pour des differents topics
+            dislike_words = [self._lda_reader.get_top10_topic_terms(topic_id=id) for id in all_top_words['dislike']['topic_ids']]
+            like_words = [self._lda_reader.get_top10_topic_terms(topic_id=id) for id in all_top_words['like']['topic_ids']]
+
+            dislike_words_flat_list = [item for sublist in dislike_words for item in sublist]
+            like_words_flat_list = [item for sublist in like_words for item in sublist]
+
+            # Intersection
+            _words_intersect = list(set(like_words_flat_list) & set(dislike_words_flat_list))
+
+            # Elimier les termes de l'intersection a like des likes
+            for id in _words_intersect:
+                like_words_flat_list.remove(id)
+
+            final_terms = [val[0] for val in Counter(like_words_flat_list).most_common(n_most_commun)]
+
         return final_terms
 
     def _calculate_words_intersection_from_user_area_interest(self, runs_topic_ids):
