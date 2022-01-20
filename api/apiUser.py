@@ -4,7 +4,6 @@ from dbModels.userModel import UserModel
 from flask import make_response
 from oauth2client import client
 import httplib2
-from api.errors import error_request
 from api.errors import InternalServerError
 CLIENT_SECRETS_FILE = "client_secret.json"
 
@@ -26,24 +25,29 @@ class UserLoginAPI(Resource):
             user = self._model.query.filter_by(email=credentials.id_token['email']).first()
 
             if user is None:
-                is_admin, fic_acceptance = self._model.create_user(email=credentials.id_token['email'],
-                                                                   access_token=credentials.access_token,
-                                                                   refresh_token=credentials.refresh_token)
+                is_admin, fic_acceptance, know_peppa_pig = self._model.create_user(email=credentials.id_token['email'],
+                                                                                   access_token=credentials.access_token,
+                                                                                   refresh_token=credentials.refresh_token)
                 access_token = credentials.access_token
                 email = credentials.id_token['email']
                 fic_acceptance = fic_acceptance
+                know_peppa_pig = know_peppa_pig
+
             else:
                 access_token = user.access_token
                 email = user.email
                 is_admin = user.is_admin
                 fic_acceptance = user.fic_acceptance
+                know_peppa_pig = user.know_peppa_pig
 
             response = make_response({
                 'access_token': 'Bearer ' + access_token,
                 'email': email,
                 'is_admin': is_admin,
-                'fic_acceptance': fic_acceptance
+                'fic_acceptance': fic_acceptance,
+                'know_peppa_pig': know_peppa_pig
             }, 200)
+
             response.headers["Content-Type"] = "application/json"
             response.headers["Authorization"] = 'Bearer ' + access_token
 

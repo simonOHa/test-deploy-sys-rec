@@ -1,5 +1,6 @@
 import config as config
 from api.apiAdmin import AdminConsentAPI
+from api.apiKnowPeppaPigForm import KnowPeppaPigFormAPI
 from api.apiSemanticMapQuestions import SemanticMapQuestionsAPI, SemanticMapQuestionsResultsAPI
 from api.apiSemanticMap import SemanticMapAPI
 from flask_restful import Api
@@ -19,8 +20,11 @@ api = Api(prefix=config.API_PREFIX)
 
 # API Endpoints
 
-# User
+# User, FIC and Know Peppa pig
 api.add_resource(UserLoginAPI, '/user/login')
+api.add_resource(ConsentFormAPI, '/consent-form')
+api.add_resource(KnowPeppaPigFormAPI, '/know-peppa-pig')
+
 
 # Test instrusion
 api.add_resource(IntrusionTestTIAPI, '/ti-intrusion-test')
@@ -30,8 +34,7 @@ api.add_resource(ResultsIntrusionTestWIAPI, '/wi-intrusion-test-results')
 api.add_resource(IntrusionTestWSIAPI, '/wsi-intrusion-test')
 api.add_resource(ResultsIntrusionTestWSIAPI, '/wsi-intrusion-test-results')
 
-# FIC
-api.add_resource(ConsentFormAPI, '/consent-form')
+
 
 # Sys-Rec
 # - test #1

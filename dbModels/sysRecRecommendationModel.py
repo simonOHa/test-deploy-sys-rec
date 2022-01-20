@@ -32,7 +32,7 @@ class RecommendationModel(db.Model):
             self.email = email
             self.total_rec_send = 1
             user = SysRecColdStartModel.query.filter_by(email=email).first()
-            rec = self._recommenderGenerator.get_cold_start_videos(user_cold_start_position=user.cold_start_position,
+            rec = self._recommenderGenerator.get_cold_start_videos(user_cold_start_position=user.cold_start_position['topic'],
                                                                    top=TOP_N_VIDEOS_COLD_START)
             # ajouter update history des recs et du centre d'interet
             # history des rec aura les do_id + rating a null
@@ -41,7 +41,7 @@ class RecommendationModel(db.Model):
                 video_rec_empty_rating['cold_start_rec'].append({'doc_id': rec['recommendations'][index]['doc_id'], 'videoRating': None})
 
             # centre d'interet sera le topic id selectionne
-            SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(email=self.email, cold_start_position=user.cold_start_position)
+            SysRecUserAreaInterest().set_user_area_interest_to_cold_start_position(email=self.email, cold_start_position=user.cold_start_position['topic'])
 
             self.distance = {}
             self.total_videos_sent = TOP_N_VIDEOS_COLD_START

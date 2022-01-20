@@ -17,6 +17,9 @@ class SysRecAndMapQuestionsModel(db.Model):
     email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
     question_1 = db.Column(NestedMutableJson)
     question_2 = db.Column(NestedMutableJson)
+    question_3 = db.Column(NestedMutableJson)
+    question_4 = db.Column(NestedMutableJson)
+    question_5 = db.Column(NestedMutableJson)
 
     _lda_reader = LDAReader()
     _questions = None
@@ -30,7 +33,10 @@ class SysRecAndMapQuestionsModel(db.Model):
         if _user is not None:
             self._questions = {
                 'question_1': _user.question_1,
-                'question_2': _user.question_2
+                'question_2': _user.question_2,
+                'question_3': _user.question_3,
+                'question_4': _user.question_4,
+                'question_5': _user.question_5
             }
         else:
             self._build_questions(email=email)
@@ -46,26 +52,46 @@ class SysRecAndMapQuestionsModel(db.Model):
         final_top_words = [{'term': word, 'checked': False} for word in final_top_words]
 
         user_cold_start = SysRecColdStartModel.query.filter_by(email=email).first()
-        cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position)
+        cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position['topic'])
 
         question_1 = {'question': "Parmis les termes représentant votre centre d'intérêt, cochez le terme de prédilection. \n",
                       'cold_start_top_words': cold_start_top_n_words,
                       'final_top_words': final_top_words,
-                      'word_not_found': '',
+                      'word_not_found': [],
                       'topic_ids': topic_ids,
-                      'answer': ''
+                      'comments': ''
                       }
 
         # Question 2
-        question_2 = {'question': "1. L'interface m'a aidé à comprendre comment les recommandations étaient générées ? \n "
-                                  "2. J'ai trouvé utile l'évolution des CI ?  \n"
-                                  "3. Dans l'ensemble, les recommandations étaient précises ?   \n"
-                                  "4. À la fin de la session, j'étais satisfait des recommandations ? ",
-                      'answer': ''}
+        question_2 = {'question': "L'interface m'a aidé à comprendre comment les recommandations étaient générées ?",
+                      'comments': "",
+                      'slider': ""
+                      }
+
+        # Question 3
+        question_3 = {'question': "J'ai trouvé utile l'évolution des CI ?",
+                      'comments': "",
+                      'slider': ""
+                      }
+
+        # Question 4
+        question_4 = {'question': "Dans l'ensemble, les recommandations étaient précises ?",
+                      'comments': "",
+                      'slider': ""
+                      }
+
+        # Question 5
+        question_5 = {'question': "À la fin de la session, j'étais satisfait des recommandations ?",
+                      'comments': "",
+                      'slider': ""
+                      }
 
         self._questions = {
             'question_1': question_1,
-            'question_2': question_2
+            'question_2': question_2,
+            'question_3': question_3,
+            'question_4': question_4,
+            'question_5': question_5
         }
 
     def _extract_top_words_from_user_area_interest(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
@@ -132,7 +158,6 @@ class SysRecAndMapQuestionsModel(db.Model):
         for data in datas:
             final_obj.append({'term': data, 'checked': False})
 
-
     def _calculate_words_intersection_from_user_area_interest_v2(self, all_top_words, n_most_commun = 10):
         # Cas a regarder :
         #   Si les topic_ids de like = dislike => On garde les mots de like
@@ -188,12 +213,18 @@ class SysRecAndMapQuestionsModel(db.Model):
             self.email = email
             self.question_1 = results['question_1']
             self.question_2 = results['question_2']
+            self.question_3 = results['question_3']
+            self.question_4 = results['question_4']
+            self.question_5 = results['question_5']
             self._save_to_db()
 
     def _update(self, session, results):
         try:
             session.question_1 = results['question_1']
             session.question_2 = results['question_2']
+            session.question_3 = results['question_3']
+            session.question_4 = results['question_4']
+            session.question_5 = results['question_5']
             db.session.commit()
         except IntegrityError:
             db.session.rollback()

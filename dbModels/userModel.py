@@ -18,7 +18,8 @@ class UserModel(UserMixin, db.Model):
     access_token = db.Column(db.String())
     refresh_token = db.Column(db.String())
     is_admin = db.Column(db.Boolean)
-    fic_acceptance = db.Column(db.Boolean)
+    fic_acceptance = db.Column(db.Boolean, default=False)
+    know_peppa_pig = db.Column(db.Boolean, default=False)
 
     # make a relationship with other tables
     ti_results = db.relationship(IntrusionTestTIModel, backref='users', lazy=True)
@@ -45,12 +46,13 @@ class UserModel(UserMixin, db.Model):
         self.email = email
         self.is_admin = False
         self.fic_acceptance = False
+        self.know_peppa_pig = False
 
         if email == 'simonolivierharel@gmail.com':
             self.is_admin = True
 
         self.save_to_db()
-        return self.is_admin, self.fic_acceptance
+        return self.is_admin, self.fic_acceptance, self.know_peppa_pig
 
     def update_access_token(self, access_token, email):
         try:
@@ -64,6 +66,14 @@ class UserModel(UserMixin, db.Model):
         try:
             user_session = UserModel.query.filter_by(email=email).first()
             user_session.fic_acceptance = acceptance
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+
+    def save_know_peppa_pig(self, know_peppa_pig, email):
+        try:
+            user_session = UserModel.query.filter_by(email=email).first()
+            user_session.know_peppa_pig = know_peppa_pig
             db.session.commit()
         except IntegrityError:
             db.session.rollback()

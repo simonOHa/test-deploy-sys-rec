@@ -31,12 +31,13 @@ class RecommendationsGenerator:
         for choice in self._cold_start_choices:
             probability = 0.0
 
-            if choice == cold_start_position:
+            if choice['topic'] == cold_start_position:
                 probability = 1.0
 
             res['cold_start'].append({
-                choice: probability
+                choice['topic']: probability
             })
+
         return res
 
     def calculate_center_of_interest(self, videos_rating, current_user_area_interest, option=CALCULATE_CI_OPTION):
@@ -123,6 +124,7 @@ class RecommendationsGenerator:
                     _user_area_of_interest = liked_videos_plus_diff.to_frame().transpose()
 
         print(_user_area_of_interest.sum(1))
+
         return _user_area_of_interest
 
     def _evenly_distribute_negative_value(self, liked_videos_plus_diff):
@@ -139,18 +141,29 @@ class RecommendationsGenerator:
         while _user_area_of_interest.min() < 0:
 
             negative_value = _user_area_of_interest[_user_area_of_interest < 0]
-            negative_value_topic_id.append(negative_value.keys().to_list())
+            _list = negative_value.keys().to_list()
+            for key in _list:
+                negative_value_topic_id.append(key)
+
             value_to_distribute = (negative_value.sum()) / (total_topic - len(negative_value_topic_id))
 
             _user_area_of_interest = liked_videos_plus_diff + value_to_distribute
             for topic_id in negative_value_topic_id:
                 _user_area_of_interest[topic_id] = 0
 
+            # Check if sum equal to 1
+            if _user_area_of_interest.sum() > 1.0:
+                value_to_distribute = (_user_area_of_interest.sum() - 1) / (total_topic - len(negative_value_topic_id))
+                _user_area_of_interest = _user_area_of_interest - value_to_distribute
+                for topic_id in negative_value_topic_id:
+                    _user_area_of_interest[topic_id] = 0
+
             loop_counter += 1
             print('loop_counter : ' + str(loop_counter))
 
         # Reshape result
         return _user_area_of_interest.to_frame().transpose()
+
 
     def get_new_recommendations(self, user_area_of_interest, option=NEW_REC_OPTION,
                                 top=TOP_N_VIDEOS, history_videos_rating=None, do_normalization=True):
@@ -265,8 +278,12 @@ class RecommendationsGenerator:
 
     # Simply return list of topics id
     def _build_cold_start_choices(self):
-        columns = self._doc_topics_distribution.columns
-        choices = columns[1:].to_numpy()
+        #columns = self._doc_topics_distribution.columns
+        #choices = columns[1:].to_numpy()
+        x = self._lda_reader.get_topic_terms_distribution()
+        choices = []
+        for col in x.columns:
+            choices.append({'topic': col, 'topic_id': col.strip('t_'), 'terms': x[col].to_list()})
         return choices
 
     def get_cold_start_choices(self):
@@ -274,7 +291,6 @@ class RecommendationsGenerator:
 
     def get_cold_start_videos(self, user_cold_start_position, top=TOP_N_VIDEOS_COLD_START):
         top_n = self._doc_topics_distribution.sort_values(by=[user_cold_start_position], ascending=False)[0:top]
-        # res = self._videos_infos[self._videos_infos['doc_id'].isin(top_n['doc_id'].to_numpy())]
         return self._format_recommendations(doc_ids=top_n['doc_id'].to_numpy())
 
     def get_doc_topic_distribution(self):

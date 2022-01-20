@@ -21,7 +21,7 @@ class SysRecSemanticMapQuestionsModel(db.Model):
     def __init__(self):
         topic_terms = self._lda_reader.get_topic_terms_distribution()
         n_words, n_topics = topic_terms.shape
-        n_topics = n_topics - 1
+        n_topics = n_topics
 
         # Build question 1
         total_choices = TOTAL_RANDOM_CHOICES

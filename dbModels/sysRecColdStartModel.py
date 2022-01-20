@@ -1,6 +1,7 @@
 from dbModels import db
 from utils.recommendations_generator import RecommendationsGenerator
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy_json import NestedMutableJson
 
 
 class SysRecColdStartModel(db.Model):
@@ -8,8 +9,8 @@ class SysRecColdStartModel(db.Model):
     __tablename__ = 'coldStart'
 
     email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
-    cold_start_position = db.Column(db.String())
-    cold_start_choices = db.Column(db.ARRAY(db.String))
+    cold_start_position = db.Column(NestedMutableJson)
+    cold_start_choices = db.Column(db.ARRAY(NestedMutableJson))
 
     _recommenderGenerator = RecommendationsGenerator()
 
@@ -21,7 +22,7 @@ class SysRecColdStartModel(db.Model):
         self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
 
         if len(self.cold_start_choices) > 0:
-            return self.cold_start_choices.tolist()
+            return self.cold_start_choices
         else:
             return None
 
