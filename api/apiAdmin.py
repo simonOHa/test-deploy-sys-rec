@@ -4,8 +4,11 @@ from flask import request
 from api.token import check_token
 from api.http_header import build_response_header
 import pandas as pd
+
+from dbModels.globalCommentModel import GlobalCommentModel
 from dbModels.intrusionTestModels import IntrusionTestTIModel, IntrusionTestWIModel, IntrusionTestWSIModel
 from dbModels.sysRecAndMapQuestions import SysRecAndMapQuestionsModel
+from dbModels.sysRecPredilectionTermModel import SysRecPredilectionTermModel
 from dbModels.sysRecSemanticMapQuestionsModel import SysRecSemanticMapQuestionsModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
@@ -135,12 +138,27 @@ class AdminConsentAPI(Resource):
                 sys_rec_test3_map_questions_res = []
                 for user in sys_rec_test3_map_questions_all:
                     sys_rec_test3_map_questions_res.append({'email': user.email,
-                                                            'question_1': user.question_1,
+                                                            #'question_1': user.question_1,
                                                             'question_2': user.question_2,
                                                             'question_3': user.question_3,
                                                             'question_4': user.question_4,
-                                                            'question_5': user.question_5,
+                                                            #'question_5': user.question_5,
                                                             })
+
+
+                sys_rec_test3_predilecion_term_all = SysRecPredilectionTermModel.query.all()
+                sys_rec_test3_predilecion_term_res = []
+                for user in sys_rec_test3_predilecion_term_all:
+                    sys_rec_test3_predilecion_term_res.append({'email': user.email,
+                                                                'predilection_term': user.predilection_term
+                                                                })
+
+                global_comment_all = GlobalCommentModel.query.all()
+                global_comment_all_res = []
+                for user in global_comment_all:
+                    global_comment_all_res.append({'email': user.email,
+                                                    'comment': user.comment
+                                                    })
 
                 grouped = {
                     'consent_form': consent_form_all_res,
@@ -152,7 +170,9 @@ class AdminConsentAPI(Resource):
                     'sys_rec_test3_videos': sys_rec_test3_videos_res,
                     'sys_rec_test3_area_interest': sys_rec_test3_area_interest_res,
                     'sys_rec_test3_map_questions': sys_rec_test3_map_questions_res,
-                    'sys_rec_test3_distances': sys_rec_test3_distances
+                    'sys_rec_test3_distances': sys_rec_test3_distances,
+                    'sys_rec_test3_predilection_term': sys_rec_test3_predilecion_term_res,
+                    'global_comment': global_comment_all_res
                 }
                 response = build_response_header(access_token=_access_token, status_code=200, data=grouped, error_message=None)
             else:

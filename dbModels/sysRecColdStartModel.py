@@ -16,16 +16,13 @@ class SysRecColdStartModel(db.Model):
 
     def __init__(self):
         pass
-        # self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
 
     def get_cold_start_choices(self):
         self.cold_start_choices = self._recommenderGenerator.get_cold_start_choices()
-
         if len(self.cold_start_choices) > 0:
             return self.cold_start_choices
         else:
             return None
-
 
     def save_cold_start_choice(self, cold_start_choice, email):
         user_session = SysRecColdStartModel.query.filter_by(email=email).first()
@@ -49,3 +46,4 @@ class SysRecColdStartModel(db.Model):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
+

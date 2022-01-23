@@ -119,7 +119,7 @@ class RecommendationsGenerator:
                 # autres composantes du vecteur.
                 if liked_videos_plus_diff.min() < 0:
                     _user_area_of_interest = self._evenly_distribute_negative_value(liked_videos_plus_diff=liked_videos_plus_diff)
-                    _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
+                    # _user_area_of_interest = _user_area_of_interest.to_frame().transpose()
                 else:
                     _user_area_of_interest = liked_videos_plus_diff.to_frame().transpose()
 

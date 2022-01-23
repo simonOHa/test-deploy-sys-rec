@@ -15,11 +15,11 @@ class SysRecAndMapQuestionsModel(db.Model):
     __tablename__ = 'SysRecAndMapQuestions'
 
     email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
-    question_1 = db.Column(NestedMutableJson)
+    #question_1 = db.Column(NestedMutableJson)
     question_2 = db.Column(NestedMutableJson)
     question_3 = db.Column(NestedMutableJson)
     question_4 = db.Column(NestedMutableJson)
-    question_5 = db.Column(NestedMutableJson)
+    #question_5 = db.Column(NestedMutableJson)
 
     _lda_reader = LDAReader()
     _questions = None
@@ -32,11 +32,11 @@ class SysRecAndMapQuestionsModel(db.Model):
         _user = SysRecAndMapQuestionsModel.query.filter_by(email=email).first()
         if _user is not None:
             self._questions = {
-                'question_1': _user.question_1,
+                #'question_1': _user.question_1,
                 'question_2': _user.question_2,
                 'question_3': _user.question_3,
                 'question_4': _user.question_4,
-                'question_5': _user.question_5
+                #'question_5': _user.question_5
             }
         else:
             self._build_questions(email=email)
@@ -54,7 +54,7 @@ class SysRecAndMapQuestionsModel(db.Model):
         user_cold_start = SysRecColdStartModel.query.filter_by(email=email).first()
         cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position['topic'])
 
-        question_1 = {'question': "Parmis les termes représentant votre centre d'intérêt, cochez le terme de prédilection. \n",
+        question_1 = {'question': "Parmis la liste des termes si-dessous, cochez votre terme de prédilection s'il est présent \n",
                       'cold_start_top_words': cold_start_top_n_words,
                       'final_top_words': final_top_words,
                       'word_not_found': [],
@@ -69,13 +69,13 @@ class SysRecAndMapQuestionsModel(db.Model):
                       }
 
         # Question 3
-        question_3 = {'question': "J'ai trouvé utile l'évolution des CI ?",
+        question_3 = {'question': "J'ai trouvé utile l'évolution des centres d'intérêts (boules jaunes) ?",
                       'comments': "",
                       'slider': ""
                       }
 
         # Question 4
-        question_4 = {'question': "Dans l'ensemble, les recommandations étaient précises ?",
+        question_4 = {'question': "En général, les recommandations correspondaient bien à ma thématique de départ ?",
                       'comments': "",
                       'slider': ""
                       }
@@ -87,11 +87,11 @@ class SysRecAndMapQuestionsModel(db.Model):
                       }
 
         self._questions = {
-            'question_1': question_1,
+            # 'question_1': question_1,
             'question_2': question_2,
             'question_3': question_3,
             'question_4': question_4,
-            'question_5': question_5
+            #'question_5': question_5
         }
 
     def _extract_top_words_from_user_area_interest(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
@@ -211,20 +211,20 @@ class SysRecAndMapQuestionsModel(db.Model):
             self._update(user_session, results)
         else:
             self.email = email
-            self.question_1 = results['question_1']
+            # self.question_1 = results['question_1']
             self.question_2 = results['question_2']
             self.question_3 = results['question_3']
             self.question_4 = results['question_4']
-            self.question_5 = results['question_5']
+            # self.question_5 = results['question_5']
             self._save_to_db()
 
     def _update(self, session, results):
         try:
-            session.question_1 = results['question_1']
+            # session.question_1 = results['question_1']
             session.question_2 = results['question_2']
             session.question_3 = results['question_3']
             session.question_4 = results['question_4']
-            session.question_5 = results['question_5']
+            # session.question_5 = results['question_5']
             db.session.commit()
         except IntegrityError:
             db.session.rollback()

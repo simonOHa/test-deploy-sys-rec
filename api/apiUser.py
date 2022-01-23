@@ -25,13 +25,16 @@ class UserLoginAPI(Resource):
             user = self._model.query.filter_by(email=credentials.id_token['email']).first()
 
             if user is None:
-                is_admin, fic_acceptance, know_peppa_pig = self._model.create_user(email=credentials.id_token['email'],
+                is_admin, fic_acceptance, know_peppa_pig, is_test_1_completed,is_test_2_completed,is_test_3_completed = self._model.create_user(email=credentials.id_token['email'],
                                                                                    access_token=credentials.access_token,
                                                                                    refresh_token=credentials.refresh_token)
                 access_token = credentials.access_token
                 email = credentials.id_token['email']
                 fic_acceptance = fic_acceptance
                 know_peppa_pig = know_peppa_pig
+                is_test_1_completed = is_test_1_completed
+                is_test_2_completed = is_test_2_completed
+                is_test_3_completed = is_test_3_completed
 
             else:
                 access_token = user.access_token
@@ -39,13 +42,20 @@ class UserLoginAPI(Resource):
                 is_admin = user.is_admin
                 fic_acceptance = user.fic_acceptance
                 know_peppa_pig = user.know_peppa_pig
+                is_test_1_completed = user.is_test_1_completed
+                is_test_2_completed = user.is_test_2_completed
+                is_test_3_completed = user.is_test_3_completed
 
             response = make_response({
                 'access_token': 'Bearer ' + access_token,
                 'email': email,
                 'is_admin': is_admin,
                 'fic_acceptance': fic_acceptance,
-                'know_peppa_pig': know_peppa_pig
+                'know_peppa_pig': know_peppa_pig,
+                'is_test_1_completed': is_test_1_completed,
+                'is_test_2_completed': is_test_2_completed,
+                'is_test_3_completed': is_test_3_completed,
+
             }, 200)
 
             response.headers["Content-Type"] = "application/json"

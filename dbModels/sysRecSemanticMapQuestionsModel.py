@@ -29,7 +29,7 @@ class SysRecSemanticMapQuestionsModel(db.Model):
         if n_topics not in random_choices:
             random_choices[total_choices - 1] = n_topics
 
-        question_1 = {'question': "Cette carte contient combien d’ensembles de termes distincts (boules rouges) ?",
+        question_1 = {'question': "Cette carte contient combien de thématique (boules rouges) ?",
                       'choices': random_choices,
                       'answer': n_topics
                       }
@@ -41,14 +41,14 @@ class SysRecSemanticMapQuestionsModel(db.Model):
         if n_words not in random_choices:
             random_choices[total_choices - 1] = n_words
 
-        question_2 = {'question': "Combien de termes constituent un ensemble de termes distincts ?",
+        question_2 = {'question': "Combien de termes sont associés à chaque thématique?",
                       'choices': random_choices,
                       'answer': n_words
                       }
 
         # Build question 3
         topic_id = QUESTION_3_TOPIC_ID
-        question_3 = {'question': "Lister les termes constituant l'ensemble " + topic_id,
+        question_3 = {'question': "Lister les termes associés à la thématique " + topic_id,
                       'answer': topic_terms['t_'+topic_id].to_list()
                       }
 

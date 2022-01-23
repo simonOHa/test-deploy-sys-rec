@@ -84,7 +84,7 @@ class RecommendationModel(db.Model):
             else:
                 user_recommendation_model.is_end_of_recommendations = True
                 db.session.commit()
-                rec = {'message': 'End of Recommendation'}
+                rec = {'message': 'Fin des recommandations ! '}
 
         return rec
 
