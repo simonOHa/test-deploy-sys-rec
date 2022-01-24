@@ -13,7 +13,7 @@ class DevConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     FLASK_ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://euupwctnkrfhjo:f002afeb5b737f82a21f4ebf10a17a8789d77c3094a907622bc05d25216d476b@ec2-18-209-169-66.compute-1.amazonaws.com:5432/d213rdfr3trsj7'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://u26k1vttdac8u6:p8f22671c7768f96d4598ff0a9c06c79e56f11e1587771599d1b4a543fb8cd6b2@ec2-3-221-238-67.compute-1.amazonaws.com:5432/dpsat6j7m5b9b'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
