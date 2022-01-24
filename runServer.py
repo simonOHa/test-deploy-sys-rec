@@ -20,8 +20,7 @@ def create_app():
     app = Flask(__name__)
 
     # Setup the Flask-JWT-Extended extension
-    app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
-    #jwt = JWTManager(app)
+    #app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 
     app.config.from_object('config')
     build_api(app)

@@ -9,10 +9,8 @@ from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from sqlalchemy.exc import IntegrityError
-#from flask_login import UserMixin
 
 
-#class UserModel(UserMixin, db.Model):
 class UserModel(db.Model):
 
     __tablename__ = 'users'
@@ -88,7 +86,7 @@ class UserModel(db.Model):
 
             if test_id == 1:
                 user_session.is_test_1_completed = response
-            elif test_id == 1:
+            elif test_id == 2:
                 user_session.is_test_2_completed = response
             else:
                 user_session.is_test_3_completed = response

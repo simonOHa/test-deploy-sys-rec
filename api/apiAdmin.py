@@ -30,7 +30,13 @@ class AdminConsentAPI(Resource):
                 consent_form_all = UserModel.query.all()
                 consent_form_all_res = []
                 for user in consent_form_all:
-                    consent_form_all_res.append({'email': user.email, 'acceptance': user.fic_acceptance})
+                    consent_form_all_res.append({'email': user.email,
+                                                 'acceptance': user.fic_acceptance,
+                                                 'kow_peppa_pig': user.know_peppa_pig,
+                                                 'is_test_1_completed': user.is_test_1_completed,
+                                                 'is_test_2_completed': user.is_test_2_completed,
+                                                 'is_test_3_completed': user.is_test_3_completed
+                                                 })
 
                 intrusion_TI_test_all = IntrusionTestTIModel.query.all()
                 intrusion_TI_test_all_res = []
@@ -161,7 +167,7 @@ class AdminConsentAPI(Resource):
                                                     })
 
                 grouped = {
-                    'consent_form': consent_form_all_res,
+                    'user_info': consent_form_all_res,
                     'intrusion_TI_test': intrusion_TI_test_all_res,
                     'intrusion_WI_test': intrusion_WI_test_all_res,
                     'intrusion_WSI_test': intrusion_WSI_test_all_res,
