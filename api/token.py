@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, jsonify, make_response
+from flask import request, make_response
 from werkzeug.http import HTTP_STATUS_CODES
 import json
 from dbModels.userModel import UserModel

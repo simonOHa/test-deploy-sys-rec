@@ -2,7 +2,6 @@ from dbModels import db
 from sqlalchemy.exc import IntegrityError
 import pandas as pd
 from collections import Counter
-
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest

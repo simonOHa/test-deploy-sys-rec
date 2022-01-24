@@ -4,7 +4,7 @@ from api import build_api
 from flask import Flask
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
-from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import JWTManager
 
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s]: {} %(levelname)s %(message)s'.format(os.getpid()),
@@ -21,7 +21,7 @@ def create_app():
 
     # Setup the Flask-JWT-Extended extension
     app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
-    jwt = JWTManager(app)
+    #jwt = JWTManager(app)
 
     app.config.from_object('config')
     build_api(app)

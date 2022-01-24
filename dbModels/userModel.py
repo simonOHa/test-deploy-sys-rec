@@ -9,10 +9,11 @@ from dbModels.sysRecRecommendationModel import RecommendationModel
 from dbModels.sysRecColdStartModel import SysRecColdStartModel
 from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from sqlalchemy.exc import IntegrityError
-from flask_login import UserMixin
+#from flask_login import UserMixin
 
 
-class UserModel(UserMixin, db.Model):
+#class UserModel(UserMixin, db.Model):
+class UserModel(db.Model):
 
     __tablename__ = 'users'
 
