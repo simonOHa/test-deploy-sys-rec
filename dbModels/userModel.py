@@ -55,7 +55,7 @@ class UserModel(UserMixin, db.Model):
         self.is_admin = False
         self.fic_acceptance = False
         self.know_peppa_pig = False
-        self.is_test_1_completed = True
+        self.is_test_1_completed = False
         self.is_test_2_completed = False
         self.is_test_3_completed = False
 
