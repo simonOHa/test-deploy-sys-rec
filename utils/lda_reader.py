@@ -18,7 +18,6 @@ class LDAReader:
 
     def __init__(self):
         self._doc_topics_distribution = pd.read_csv(self._doc_topics_distribution_path)
-        self._doc_topics_distribution = self._doc_topics_distribution.rename(columns={'Unnamed: 0': "doc_id"})
         self._videos_infos = pd.read_csv(self._videos_infos_path)
         self._top10_topic_terms = pd.read_csv(self._top10_topic_terms_path)
 
@@ -39,3 +38,6 @@ class LDAReader:
 
     def get_topic_terms_distribution(self):
         return self._top10_topic_terms
+
+    def get_all_topic_ids(self):
+        return self._top10_topic_terms.columns.to_list()
