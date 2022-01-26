@@ -62,18 +62,21 @@ class SysRecAndMapQuestionsModel(db.Model):
                       }
 
         # Question 2
-        question_2 = {'question': "L'interface m'a aidé à comprendre comment les recommandations étaient générées ?",
+        # 'question': "La carte sémantique m'a aidé à comprendre comment les recommandations étaient générées ?",
+        question_2 = {'question': "En vous attardant sur la section de la carte que vous venez de mettre en évidence, est-ce que cette visualisation vous aide à comprendre comment les recommandations ont été générées ?",
                       'comments': "",
                       'slider': ""
                       }
 
         # Question 3
-        question_3 = {'question': "J'ai trouvé utile l'évolution des centres d'intérêts (boules jaunes) ?",
+        # 'question': "J'ai trouvé utile l'évolution des centres d'intérêts (boules jaunes) ?"
+        question_3 = {'question': ": Est-ce que l’évolution des centres d’intérêt vous parait logique ?",
                       'comments': "",
                       'slider': ""
                       }
 
         # Question 4
+        # 'question': "En général, les recommandations correspondaient bien à ma thématique de départ ?",
         question_4 = {'question': "En général, les recommandations correspondaient bien à ma thématique de départ ?",
                       'comments': "",
                       'slider': ""
