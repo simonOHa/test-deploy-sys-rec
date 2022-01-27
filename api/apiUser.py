@@ -35,7 +35,6 @@ class UserLoginAPI(Resource):
                 is_test_1_completed = is_test_1_completed
                 is_test_2_completed = is_test_2_completed
                 is_test_3_completed = is_test_3_completed
-
             else:
                 access_token = user.access_token
                 email = user.email
