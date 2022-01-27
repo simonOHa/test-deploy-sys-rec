@@ -7,7 +7,6 @@ from api.apiPredilectionTerm import PredilectionTermAPI
 from api.apiSemanticMapQuestions import SemanticMapQuestionsAPI, SemanticMapQuestionsResultsAPI
 from api.apiSemanticMap import SemanticMapAPI
 from flask_restful import Api
-
 from api.apiSysRecAndMapQuestions import SysRecAndMapQuestionsAPI
 from api.apiUser import UserLoginAPI
 from api.apiIntrusionTests import IntrusionTestWSIAPI, IntrusionTestWIAPI, IntrusionTestTIAPI, \

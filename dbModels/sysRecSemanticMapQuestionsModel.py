@@ -16,16 +16,19 @@ class SysRecSemanticMapQuestionsModel(db.Model):
     question_4 = db.Column(db.ARRAY(db.String()))
 
     _lda_reader = LDAReader()
-    _questions = None
 
     def __init__(self):
+        pass
+
+    def get_questions(self):
         topic_terms = self._lda_reader.get_topic_terms_distribution()
         n_words, n_topics = topic_terms.shape
         n_topics = n_topics
 
         # Build question 1
         total_choices = TOTAL_RANDOM_CHOICES
-        random_choices = random.sample(range(int(n_topics/2), n_topics+TOTAL_RANDOM_CHOICES_N_TOPIC_MAX), total_choices)
+        random_choices = random.sample(range(int(n_topics / 2), n_topics + TOTAL_RANDOM_CHOICES_N_TOPIC_MAX),
+                                       total_choices)
         if n_topics not in random_choices:
             random_choices[total_choices - 1] = n_topics
 
@@ -49,33 +52,36 @@ class SysRecSemanticMapQuestionsModel(db.Model):
         # Build question 3
         topic_id = QUESTION_3_TOPIC_ID
         question_3 = {'question': "Lister les termes associés à la thématique " + topic_id,
-                      'answer': topic_terms['t_'+topic_id].to_list()
+                      'answer': topic_terms['t_' + topic_id].to_list()
                       }
 
         # Build question 4
         topic_id_1 = QUESTION_4_TOPIC_1
         topic_id_2 = QUESTION_4_TOPIC_2
-        terms_intersection = set(topic_terms['t_'+topic_id_1].to_list()).intersection(topic_terms['t_'+topic_id_2].to_list())
+        terms_intersection = set(topic_terms['t_' + topic_id_1].to_list()).intersection(
+            topic_terms['t_' + topic_id_2].to_list())
 
-        question_4 = {'question': "Quel(s) est/sont le(s) terme(s) commun(s) aux ensembles " + topic_id_1 + " et " + topic_id_2,
-                      'answer': list(terms_intersection)
-                      }
+        question_4 = {
+            'question': "Quel(s) est/sont le(s) terme(s) commun(s) aux ensembles " + topic_id_1 + " et " + topic_id_2,
+            'answer': list(terms_intersection)
+            }
 
-        self._questions = {
-                            'question_1': question_1,
-                            'question_2': question_2,
-                            'question_3': question_3,
-                            'question_4': question_4,
-                            }
-
-    def get_questions(self):
-        return self._questions
+        _questions = {
+            'question_1': question_1,
+            'question_2': question_2,
+            'question_3': question_3,
+            'question_4': question_4,
+        }
+        return _questions
 
     def save_to_db(self, results, email):
         user_session = SysRecSemanticMapQuestionsModel.query.filter_by(email=email).first()
         if user_session:
             self._update(user_session, results)
         else:
+            print('SemanticMapQuestions')
+            print(self.email)
+            
             self.email = email
             self.question_1 = results['question_1']
             self.question_2 = results['question_2']
