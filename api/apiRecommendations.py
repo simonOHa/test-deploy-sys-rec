@@ -61,15 +61,15 @@ class ResultsRecommendationAPI(Resource):
                     for vv in v:
                         result['form'].append(vv)
                         video_id = vv['doc_id']
-                        video_info = self._videos_infos.iloc[video_id]
+                        video_info = self._videos_infos[self._videos_infos['doc_id'] == video_id]
                         result['videos'].append({
-                            "doc_id": int(video_info['doc_id']),
-                            "transcription": video_info['transcription'],
-                            "title": video_info['title'],
-                            "start_time_sec": video_info['start_time_sec'],
-                            "end_time_sec": video_info['end_time_sec'],
-                            "url": video_info['url'],
-                            "youtube_video_id": video_info['youtube_video_id']
+                            "doc_id": video_info['doc_id'].item(),
+                            "transcription": video_info['transcription'].item(),
+                            "title": video_info['title'].item(),
+                            "start_time_sec": video_info['start_time_sec'].item(),
+                            "end_time_sec": video_info['end_time_sec'].item(),
+                            "url": video_info['url'].item(),
+                            "youtube_video_id": video_info['youtube_video_id'].item()
                             })
 
                 response = build_response_header(access_token=_access_token, status_code=200, data=result, error_message=None)
