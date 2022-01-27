@@ -32,6 +32,8 @@ def check_token():
                     revoke_uri=GOOGLE_REVOKE_URI)
 
                 if credentials.access_token_expired:
+                    print('Refresh Token')
+                    print(user.email)
                     credentials = client.OAuth2Credentials(
                         access_token=None,  # set access_token to None since we use a refresh token
                         client_id=CLIENT_ID,
