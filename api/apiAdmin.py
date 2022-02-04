@@ -44,21 +44,24 @@ class AdminConsentAPI(Resource):
                     intrusion_TI_test_all_res.append({'email': user.email,
                                                        'question': user.question,
                                                        'result_candidate_id': user.result_candidate_id,
-                                                       'result_candidate_value': user.result_candidate_value})
+                                                       'result_candidate_value': user.result_candidate_value,
+                                                       'score': user.score})
 
                 intrusion_WI_test_all = IntrusionTestWIModel.query.all()
                 intrusion_WI_test_all_res = []
                 for user in intrusion_WI_test_all:
                     intrusion_WI_test_all_res.append({'email': user.email,
-                                                   'question': user.question,
-                                                   'result': user.result})
+                                                      'question': user.question,
+                                                      'result': user.result,
+                                                      'score': user.score})
 
                 intrusion_WSI_test_all = IntrusionTestWSIModel.query.all()
                 intrusion_WSI_test_all_res = []
                 for user in intrusion_WSI_test_all:
                     intrusion_WSI_test_all_res.append({'email': user.email,
                                                        'question': user.question,
-                                                       'result': user.result})
+                                                       'result': user.result,
+                                                       'score': user.score})
 
                 sys_rec_test1_all = VideoListeningTestModel.query.all()
                 sys_rec_test1_all_res = []

@@ -49,7 +49,7 @@ class VideoListeningTestModel(db.Model):
 			intruder_list = random.choices(_topic_ids, k=VIDEO_LISTENING_N_INTRUDER)
 			for intruder in intruder_list:
 				_obj["choices"].append({
-						"terms":self._lda_reader.get_top10_topic_terms(topic_id=intruder),
+						"terms": self._lda_reader.get_top10_topic_terms(topic_id=intruder),
 						#"checked": False,
 						#"is_expected": False,
 						#"topic_id": intruder

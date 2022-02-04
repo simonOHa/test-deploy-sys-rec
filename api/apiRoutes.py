@@ -10,7 +10,7 @@ from flask_restful import Api
 from api.apiSysRecAndMapQuestions import SysRecAndMapQuestionsAPI
 from api.apiUser import UserLoginAPI
 from api.apiIntrusionTests import IntrusionTestWSIAPI, IntrusionTestWIAPI, IntrusionTestTIAPI, \
-    ResultsIntrusionTestWIAPI, ResultsIntrusionTestWSIAPI, ResultsIntrusionTestTIAPI
+    ResultsIntrusionTestWIAPI, ResultsIntrusionTestWSIAPI, ResultsIntrusionTestTIAPI, IntrusionTestScore
 from api.apiVideoListeningTest import VideoListeningTestAPI, ResultsVideoListeningTestAPI
 from api.apiRecommendations import RecommendationAPI, ResultsRecommendationAPI
 from api.apiColdStart import ColdStartAPI, ResultColdStartAPI
@@ -36,7 +36,7 @@ api.add_resource(IntrusionTestWIAPI, '/wi-intrusion-test')
 api.add_resource(ResultsIntrusionTestWIAPI, '/wi-intrusion-test-results')
 api.add_resource(IntrusionTestWSIAPI, '/wsi-intrusion-test')
 api.add_resource(ResultsIntrusionTestWSIAPI, '/wsi-intrusion-test-results')
-
+api.add_resource(IntrusionTestScore, '/intrusion-final-scores')
 
 
 # Sys-Rec

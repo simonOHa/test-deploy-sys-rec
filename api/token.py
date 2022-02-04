@@ -47,7 +47,7 @@ def check_token():
                     credentials.refresh(httplib2.Http())  # refresh the access token (optional)
                     http = credentials.authorize(httplib2.Http())  # apply the credentials
                     user.update_access_token(credentials.access_token)
-                    access_token = credentials.access_token
+                    # access_token = credentials.access_token
 
                 return fn(*args, **kwargs)
             else:

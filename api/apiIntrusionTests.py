@@ -7,6 +7,36 @@ from dbModels.userModel import UserModel
 from api.errors import InternalServerError
 
 
+class IntrusionTestScore(Resource):
+    _ti_model = IntrusionTestTIModel()
+    _wi_model = IntrusionTestWIModel()
+    _wsi_model = IntrusionTestWSIModel()
+
+    @check_token()
+    def get(self):
+        try:
+            _access_token = request.headers['Authorization'].replace('Bearer ', '')
+            _user = UserModel.query.filter_by(access_token=_access_token).first()
+            _data = {}
+
+            _user_ti = self._ti_model.query.filter_by(email=_user.email).first()
+            if _user_ti is not None:
+                _data['ti_score'] = _user_ti.score
+
+            _user_wi = self._wi_model.query.filter_by(email=_user.email).first()
+            if _user_wi is not None:
+                _data['wi_score'] = _user_wi.score
+
+            _user_wsi = self._wsi_model.query.filter_by(email=_user.email).first()
+            if _user_wsi is not None:
+                _data['wsi_score'] = _user_wsi.score
+
+            response = build_response_header(access_token=_access_token, status_code=200, data=_data, error_message=None)
+            return response
+        except Exception as e:
+            raise InternalServerError
+
+
 class IntrusionTestTIAPI(Resource):
 
     _model = IntrusionTestTIModel()
