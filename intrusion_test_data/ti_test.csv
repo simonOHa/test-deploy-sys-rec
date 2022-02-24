@@ -1,561 +1,81 @@
-"","question","candidate_id","candidate_value","text","intruder_id"
-"1","1",21,"castle, pig, map, windy, daddy","{ ""start_time_sec"": ""212.599"", 
-                                  ""end_time_sec"": ""253.209"", 
-                                  ""doc_id"": ""232"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""make goodness clean mummy come tree daddy pig quickly wash tether lack cloth danny pink nikes tool mummy mummy pig home mummy quick pretend happen hello hello yes think"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",21
-"2","1",8,"car, bye, ready, wash, dog","{ ""start_time_sec"": ""212.599"", 
-                                  ""end_time_sec"": ""253.209"", 
-                                  ""doc_id"": ""232"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""make goodness clean mummy come tree daddy pig quickly wash tether lack cloth danny pink nikes tool mummy mummy pig home mummy quick pretend happen hello hello yes think"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",21
-"3","1",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""212.599"", 
-                                  ""end_time_sec"": ""253.209"", 
-                                  ""doc_id"": ""232"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""make goodness clean mummy come tree daddy pig quickly wash tether lack cloth danny pink nikes tool mummy mummy pig home mummy quick pretend happen hello hello yes think"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",21
-"4","1",25,"tree, grow, house, seed, strawberry","{ ""start_time_sec"": ""212.599"", 
-                                  ""end_time_sec"": ""253.209"", 
-                                  ""doc_id"": ""232"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""make goodness clean mummy come tree daddy pig quickly wash tether lack cloth danny pink nikes tool mummy mummy pig home mummy quick pretend happen hello hello yes think"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",21
-"5","2",31,"george, dinosaur, mister, doe, lettuce","{ ""start_time_sec"": ""114.31"", 
-                                  ""end_time_sec"": ""161.29"", 
-                                  ""doc_id"": ""274"",
-                                  ""title"": ""the playgroup"",
-                                  ""youtube_video_id"": ""4cKnoK2KYPc"",
-                                  ""transcription"": ""hello danny dog dinosaur toy dinosaur girl brilliant dinosaur girl dye soul girl really scary brilliant george brother brilliant peppa proud little brother shall george paint picture george good paint good maybe help"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4cKnoK2KYPc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",29
-"6","2",1,"queen, peppa, child, king, tidy","{ ""start_time_sec"": ""114.31"", 
-                                  ""end_time_sec"": ""161.29"", 
-                                  ""doc_id"": ""274"",
-                                  ""title"": ""the playgroup"",
-                                  ""youtube_video_id"": ""4cKnoK2KYPc"",
-                                  ""transcription"": ""hello danny dog dinosaur toy dinosaur girl brilliant dinosaur girl dye soul girl really scary brilliant george brother brilliant peppa proud little brother shall george paint picture george good paint good maybe help"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4cKnoK2KYPc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",29
-"7","2",26,"dinosaur, tiger, balloon, paint, picture","{ ""start_time_sec"": ""114.31"", 
-                                  ""end_time_sec"": ""161.29"", 
-                                  ""doc_id"": ""274"",
-                                  ""title"": ""the playgroup"",
-                                  ""youtube_video_id"": ""4cKnoK2KYPc"",
-                                  ""transcription"": ""hello danny dog dinosaur toy dinosaur girl brilliant dinosaur girl dye soul girl really scary brilliant george brother brilliant peppa proud little brother shall george paint picture george good paint good maybe help"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4cKnoK2KYPc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",29
-"8","2",29,"love, butterfly, flower, worm, easy","{ ""start_time_sec"": ""114.31"", 
-                                  ""end_time_sec"": ""161.29"", 
-                                  ""doc_id"": ""274"",
-                                  ""title"": ""the playgroup"",
-                                  ""youtube_video_id"": ""4cKnoK2KYPc"",
-                                  ""transcription"": ""hello danny dog dinosaur toy dinosaur girl brilliant dinosaur girl dye soul girl really scary brilliant george brother brilliant peppa proud little brother shall george paint picture george good paint good maybe help"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4cKnoK2KYPc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",29
-"9","3",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""179.51"", 
-                                  ""end_time_sec"": ""215.3"", 
-                                  ""doc_id"": ""67"",
-                                  ""title"": ""the school fete"",
-                                  ""youtube_video_id"": ""IoKPhv_x00A"",
-                                  ""transcription"": ""goodness tigers teach proper tigers little tigers want right george dinosaur balloon let balloon hello madame gazelle like balloon certainly lot different gravan elephant balloon come kangaroo allow"",
-                                        ""url"": ""https://www.youtube.com/watch?v=IoKPhv_x00A&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",34
-"10","3",31,"george, dinosaur, mister, doe, lettuce","{ ""start_time_sec"": ""179.51"", 
-                                  ""end_time_sec"": ""215.3"", 
-                                  ""doc_id"": ""67"",
-                                  ""title"": ""the school fete"",
-                                  ""youtube_video_id"": ""IoKPhv_x00A"",
-                                  ""transcription"": ""goodness tigers teach proper tigers little tigers want right george dinosaur balloon let balloon hello madame gazelle like balloon certainly lot different gravan elephant balloon come kangaroo allow"",
-                                        ""url"": ""https://www.youtube.com/watch?v=IoKPhv_x00A&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",34
-"11","3",26,"dinosaur, tiger, balloon, paint, picture","{ ""start_time_sec"": ""179.51"", 
-                                  ""end_time_sec"": ""215.3"", 
-                                  ""doc_id"": ""67"",
-                                  ""title"": ""the school fete"",
-                                  ""youtube_video_id"": ""IoKPhv_x00A"",
-                                  ""transcription"": ""goodness tigers teach proper tigers little tigers want right george dinosaur balloon let balloon hello madame gazelle like balloon certainly lot different gravan elephant balloon come kangaroo allow"",
-                                        ""url"": ""https://www.youtube.com/watch?v=IoKPhv_x00A&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",34
-"12","3",29,"love, butterfly, flower, worm, easy","{ ""start_time_sec"": ""179.51"", 
-                                  ""end_time_sec"": ""215.3"", 
-                                  ""doc_id"": ""67"",
-                                  ""title"": ""the school fete"",
-                                  ""youtube_video_id"": ""IoKPhv_x00A"",
-                                  ""transcription"": ""goodness tigers teach proper tigers little tigers want right george dinosaur balloon let balloon hello madame gazelle like balloon certainly lot different gravan elephant balloon come kangaroo allow"",
-                                        ""url"": ""https://www.youtube.com/watch?v=IoKPhv_x00A&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",34
-"13","4",15,"tooth, fairy, night, stay, peppa","{ ""start_time_sec"": ""238.56"", 
-                                  ""end_time_sec"": ""261.299"", 
-                                  ""doc_id"": ""38"",
-                                  ""title"": ""musical instruments"",
-                                  ""youtube_video_id"": ""r1-3Cv2h23s"",
-                                  ""transcription"": ""instrument george play george blow horn mummy play horn daddy play play george play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=r1-3Cv2h23s&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"14","4",27,"george, peppa, mister, night, daddy","{ ""start_time_sec"": ""238.56"", 
-                                  ""end_time_sec"": ""261.299"", 
-                                  ""doc_id"": ""38"",
-                                  ""title"": ""musical instruments"",
-                                  ""youtube_video_id"": ""r1-3Cv2h23s"",
-                                  ""transcription"": ""instrument george play george blow horn mummy play horn daddy play play george play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=r1-3Cv2h23s&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"15","4",16,"pancake, parrot, polly, flip, pick","{ ""start_time_sec"": ""238.56"", 
-                                  ""end_time_sec"": ""261.299"", 
-                                  ""doc_id"": ""38"",
-                                  ""title"": ""musical instruments"",
-                                  ""youtube_video_id"": ""r1-3Cv2h23s"",
-                                  ""transcription"": ""instrument george play george blow horn mummy play horn daddy play play george play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=r1-3Cv2h23s&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"16","4",9,"play, george, sound, doe, slide","{ ""start_time_sec"": ""238.56"", 
-                                  ""end_time_sec"": ""261.299"", 
-                                  ""doc_id"": ""38"",
-                                  ""title"": ""musical instruments"",
-                                  ""youtube_video_id"": ""r1-3Cv2h23s"",
-                                  ""transcription"": ""instrument george play george blow horn mummy play horn daddy play play george play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=r1-3Cv2h23s&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"17","5",18,"muddy, jump, love, puddle, boot","{ ""start_time_sec"": ""231.01"", 
-                                  ""end_time_sec"": ""280.05"", 
-                                  ""doc_id"": ""193"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""george imago big dinosaur dinosaur room george favorite room favorite room king queen room look daddy pig favorite room room mummy room cake daddy pig favorite room museum cafe come tuck yes nice room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",18
-"18","5",3,"princess, sleepy, story, time, daddy","{ ""start_time_sec"": ""231.01"", 
-                                  ""end_time_sec"": ""280.05"", 
-                                  ""doc_id"": ""193"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""george imago big dinosaur dinosaur room george favorite room favorite room king queen room look daddy pig favorite room room mummy room cake daddy pig favorite room museum cafe come tuck yes nice room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",18
-"19","5",28,"daddy, snowman, hat, glove, scarf","{ ""start_time_sec"": ""231.01"", 
-                                  ""end_time_sec"": ""280.05"", 
-                                  ""doc_id"": ""193"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""george imago big dinosaur dinosaur room george favorite room favorite room king queen room look daddy pig favorite room room mummy room cake daddy pig favorite room museum cafe come tuck yes nice room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",18
-"20","5",1,"queen, peppa, child, king, tidy","{ ""start_time_sec"": ""231.01"", 
-                                  ""end_time_sec"": ""280.05"", 
-                                  ""doc_id"": ""193"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""george imago big dinosaur dinosaur room george favorite room favorite room king queen room look daddy pig favorite room room mummy room cake daddy pig favorite room museum cafe come tuck yes nice room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",18
-"21","6",16,"pancake, parrot, polly, flip, pick","{ ""start_time_sec"": ""2.73"", 
-                                  ""end_time_sec"": ""42.059"", 
-                                  ""doc_id"": ""265"",
-                                  ""title"": ""school play"",
-                                  ""youtube_video_id"": ""XD3N9CNDma4"",
-                                  ""transcription"": ""peppa pig little brother mummy pig school play peppa playgroup play little red riding hood child play practice home peppa little red riding hood mummy pig make costume daddy pig help peppa practice okay peppa say little"",
-                                        ""url"": ""https://www.youtube.com/watch?v=XD3N9CNDma4&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",16
-"22","6",9,"play, george, sound, doe, slide","{ ""start_time_sec"": ""2.73"", 
-                                  ""end_time_sec"": ""42.059"", 
-                                  ""doc_id"": ""265"",
-                                  ""title"": ""school play"",
-                                  ""youtube_video_id"": ""XD3N9CNDma4"",
-                                  ""transcription"": ""peppa pig little brother mummy pig school play peppa playgroup play little red riding hood child play practice home peppa little red riding hood mummy pig make costume daddy pig help peppa practice okay peppa say little"",
-                                        ""url"": ""https://www.youtube.com/watch?v=XD3N9CNDma4&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",16
-"23","6",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""2.73"", 
-                                  ""end_time_sec"": ""42.059"", 
-                                  ""doc_id"": ""265"",
-                                  ""title"": ""school play"",
-                                  ""youtube_video_id"": ""XD3N9CNDma4"",
-                                  ""transcription"": ""peppa pig little brother mummy pig school play peppa playgroup play little red riding hood child play practice home peppa little red riding hood mummy pig make costume daddy pig help peppa practice okay peppa say little"",
-                                        ""url"": ""https://www.youtube.com/watch?v=XD3N9CNDma4&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",16
-"24","6",19,"pumpkin, ride, stabilizer, bicycle, bike","{ ""start_time_sec"": ""2.73"", 
-                                  ""end_time_sec"": ""42.059"", 
-                                  ""doc_id"": ""265"",
-                                  ""title"": ""school play"",
-                                  ""youtube_video_id"": ""XD3N9CNDma4"",
-                                  ""transcription"": ""peppa pig little brother mummy pig school play peppa playgroup play little red riding hood child play practice home peppa little red riding hood mummy pig make costume daddy pig help peppa practice okay peppa say little"",
-                                        ""url"": ""https://www.youtube.com/watch?v=XD3N9CNDma4&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",16
-"25","7",1,"queen, peppa, child, king, tidy","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""45.21"", 
-                                  ""doc_id"": ""228"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""big little brother mummy pig daddy picture mummy pig daddy pig new picture peppa george lovely new picture wall leave diy expert house sure course nail wall hang picture good visit granny"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",1
-"26","7",26,"dinosaur, tiger, balloon, paint, picture","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""45.21"", 
-                                  ""doc_id"": ""228"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""big little brother mummy pig daddy picture mummy pig daddy pig new picture peppa george lovely new picture wall leave diy expert house sure course nail wall hang picture good visit granny"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",1
-"27","7",24,"pig, daddy, mummy, wall, fit","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""45.21"", 
-                                  ""doc_id"": ""228"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""big little brother mummy pig daddy picture mummy pig daddy pig new picture peppa george lovely new picture wall leave diy expert house sure course nail wall hang picture good visit granny"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",1
-"28","7",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""45.21"", 
-                                  ""doc_id"": ""228"",
-                                  ""title"": ""daddy puts up a picture"",
-                                  ""youtube_video_id"": ""xX-iVi0nQ4g"",
-                                  ""transcription"": ""big little brother mummy pig daddy picture mummy pig daddy pig new picture peppa george lovely new picture wall leave diy expert house sure course nail wall hang picture good visit granny"",
-                                        ""url"": ""https://www.youtube.com/watch?v=xX-iVi0nQ4g&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",1
-"29","8",22,"secret, daddy, peppa, box, george","{ ""start_time_sec"": ""241.549"", 
-                                  ""end_time_sec"": ""278.15"", 
-                                  ""doc_id"": ""26"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""peppa box luckily come tuck george peppa mummy pig daddy pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",25
-"30","8",28,"daddy, snowman, hat, glove, scarf","{ ""start_time_sec"": ""241.549"", 
-                                  ""end_time_sec"": ""278.15"", 
-                                  ""doc_id"": ""26"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""peppa box luckily come tuck george peppa mummy pig daddy pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",25
-"31","8",25,"tree, grow, house, seed, strawberry","{ ""start_time_sec"": ""241.549"", 
-                                  ""end_time_sec"": ""278.15"", 
-                                  ""doc_id"": ""26"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""peppa box luckily come tuck george peppa mummy pig daddy pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",25
-"32","8",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""241.549"", 
-                                  ""end_time_sec"": ""278.15"", 
-                                  ""doc_id"": ""26"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""peppa box luckily come tuck george peppa mummy pig daddy pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",25
-"33","9",26,"dinosaur, tiger, balloon, paint, picture","{ ""start_time_sec"": ""133.25"", 
-                                  ""end_time_sec"": ""185.93"", 
-                                  ""doc_id"": ""131"",
-                                  ""title"": ""best friend"",
-                                  ""youtube_video_id"": ""-qjzaeBNNOs"",
-                                  ""transcription"": ""feel bite lonely george need help make chocolate chip cooky need lick bowl george like help mummy make cooky like play peppa want doctor person peppa suzy love play doctor nurse doe george peppa listen george chest george big breath"",
-                                        ""url"": ""https://www.youtube.com/watch?v=-qjzaeBNNOs&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"34","9",11,"mummy, peppa, love, madame, eye","{ ""start_time_sec"": ""133.25"", 
-                                  ""end_time_sec"": ""185.93"", 
-                                  ""doc_id"": ""131"",
-                                  ""title"": ""best friend"",
-                                  ""youtube_video_id"": ""-qjzaeBNNOs"",
-                                  ""transcription"": ""feel bite lonely george need help make chocolate chip cooky need lick bowl george like help mummy make cooky like play peppa want doctor person peppa suzy love play doctor nurse doe george peppa listen george chest george big breath"",
-                                        ""url"": ""https://www.youtube.com/watch?v=-qjzaeBNNOs&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"35","9",9,"play, george, sound, doe, slide","{ ""start_time_sec"": ""133.25"", 
-                                  ""end_time_sec"": ""185.93"", 
-                                  ""doc_id"": ""131"",
-                                  ""title"": ""best friend"",
-                                  ""youtube_video_id"": ""-qjzaeBNNOs"",
-                                  ""transcription"": ""feel bite lonely george need help make chocolate chip cooky need lick bowl george like help mummy make cooky like play peppa want doctor person peppa suzy love play doctor nurse doe george peppa listen george chest george big breath"",
-                                        ""url"": ""https://www.youtube.com/watch?v=-qjzaeBNNOs&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"36","9",4,"peppa, doctor, bear, brown, goodbye","{ ""start_time_sec"": ""133.25"", 
-                                  ""end_time_sec"": ""185.93"", 
-                                  ""doc_id"": ""131"",
-                                  ""title"": ""best friend"",
-                                  ""youtube_video_id"": ""-qjzaeBNNOs"",
-                                  ""transcription"": ""feel bite lonely george need help make chocolate chip cooky need lick bowl george like help mummy make cooky like play peppa want doctor person peppa suzy love play doctor nurse doe george peppa listen george chest george big breath"",
-                                        ""url"": ""https://www.youtube.com/watch?v=-qjzaeBNNOs&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"37","10",27,"george, peppa, mister, night, daddy","{ ""start_time_sec"": ""145.34"", 
-                                  ""end_time_sec"": ""193.8"", 
-                                  ""doc_id"": ""86"",
-                                  ""title"": ""the new car"",
-                                  ""youtube_video_id"": ""mIsBlZoWhWY"",
-                                  ""transcription"": ""button new car doe green button daddy let magic window daddy make magic window doe blue button know let love new car peppa borrow today think rain yes roof"",
-                                        ""url"": ""https://www.youtube.com/watch?v=mIsBlZoWhWY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"38","10",20,"peppa, fox, sly, worry, time","{ ""start_time_sec"": ""145.34"", 
-                                  ""end_time_sec"": ""193.8"", 
-                                  ""doc_id"": ""86"",
-                                  ""title"": ""the new car"",
-                                  ""youtube_video_id"": ""mIsBlZoWhWY"",
-                                  ""transcription"": ""button new car doe green button daddy let magic window daddy make magic window doe blue button know let love new car peppa borrow today think rain yes roof"",
-                                        ""url"": ""https://www.youtube.com/watch?v=mIsBlZoWhWY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"39","10",8,"car, bye, ready, wash, dog","{ ""start_time_sec"": ""145.34"", 
-                                  ""end_time_sec"": ""193.8"", 
-                                  ""doc_id"": ""86"",
-                                  ""title"": ""the new car"",
-                                  ""youtube_video_id"": ""mIsBlZoWhWY"",
-                                  ""transcription"": ""button new car doe green button daddy let magic window daddy make magic window doe blue button know let love new car peppa borrow today think rain yes roof"",
-                                        ""url"": ""https://www.youtube.com/watch?v=mIsBlZoWhWY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"40","10",29,"love, butterfly, flower, worm, easy","{ ""start_time_sec"": ""145.34"", 
-                                  ""end_time_sec"": ""193.8"", 
-                                  ""doc_id"": ""86"",
-                                  ""title"": ""the new car"",
-                                  ""youtube_video_id"": ""mIsBlZoWhWY"",
-                                  ""transcription"": ""button new car doe green button daddy let magic window daddy make magic window doe blue button know let love new car peppa borrow today think rain yes roof"",
-                                        ""url"": ""https://www.youtube.com/watch?v=mIsBlZoWhWY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"41","11",9,"play, george, sound, doe, slide","{ ""start_time_sec"": ""217.72"", 
-                                  ""end_time_sec"": ""263.23"", 
-                                  ""doc_id"": ""43"",
-                                  ""title"": ""frogs and worms and butterflies"",
-                                  ""youtube_video_id"": ""4yPLpM1TWE0"",
-                                  ""transcription"": ""play frog frandsen britches butterfly wiggly worm look frog play game like difference play doll silly peppa favorite game jump muddy puddle yes frog love jump muddy puddle let play frog froggy buggy nice big muddy puddle play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4yPLpM1TWE0&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",2
-"42","11",2,"grandma, wolf, bad, danny, red","{ ""start_time_sec"": ""217.72"", 
-                                  ""end_time_sec"": ""263.23"", 
-                                  ""doc_id"": ""43"",
-                                  ""title"": ""frogs and worms and butterflies"",
-                                  ""youtube_video_id"": ""4yPLpM1TWE0"",
-                                  ""transcription"": ""play frog frandsen britches butterfly wiggly worm look frog play game like difference play doll silly peppa favorite game jump muddy puddle yes frog love jump muddy puddle let play frog froggy buggy nice big muddy puddle play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4yPLpM1TWE0&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",2
-"43","11",18,"muddy, jump, love, puddle, boot","{ ""start_time_sec"": ""217.72"", 
-                                  ""end_time_sec"": ""263.23"", 
-                                  ""doc_id"": ""43"",
-                                  ""title"": ""frogs and worms and butterflies"",
-                                  ""youtube_video_id"": ""4yPLpM1TWE0"",
-                                  ""transcription"": ""play frog frandsen britches butterfly wiggly worm look frog play game like difference play doll silly peppa favorite game jump muddy puddle yes frog love jump muddy puddle let play frog froggy buggy nice big muddy puddle play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4yPLpM1TWE0&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",2
-"44","11",29,"love, butterfly, flower, worm, easy","{ ""start_time_sec"": ""217.72"", 
-                                  ""end_time_sec"": ""263.23"", 
-                                  ""doc_id"": ""43"",
-                                  ""title"": ""frogs and worms and butterflies"",
-                                  ""youtube_video_id"": ""4yPLpM1TWE0"",
-                                  ""transcription"": ""play frog frandsen britches butterfly wiggly worm look frog play game like difference play doll silly peppa favorite game jump muddy puddle yes frog love jump muddy puddle let play frog froggy buggy nice big muddy puddle play"",
-                                        ""url"": ""https://www.youtube.com/watch?v=4yPLpM1TWE0&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",2
-"45","12",30,"daddy, ice, uncle, pig, cream","{ ""start_time_sec"": ""226.25"", 
-                                  ""end_time_sec"": ""257.93"", 
-                                  ""doc_id"": ""203"",
-                                  ""title"": ""very hot day"",
-                                  ""youtube_video_id"": ""A4cEE4N5Xyc"",
-                                  ""transcription"": ""dear george dinosaur ice lolly melt fall grind mind george share daddy ice cream sure mind warm daddy pig fall asleep daddy pig doe look hot let dip water cool good idea peppa happen red hop daddy pig sorry water"",
-                                        ""url"": ""https://www.youtube.com/watch?v=A4cEE4N5Xyc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"46","12",26,"dinosaur, tiger, balloon, paint, picture","{ ""start_time_sec"": ""226.25"", 
-                                  ""end_time_sec"": ""257.93"", 
-                                  ""doc_id"": ""203"",
-                                  ""title"": ""very hot day"",
-                                  ""youtube_video_id"": ""A4cEE4N5Xyc"",
-                                  ""transcription"": ""dear george dinosaur ice lolly melt fall grind mind george share daddy ice cream sure mind warm daddy pig fall asleep daddy pig doe look hot let dip water cool good idea peppa happen red hop daddy pig sorry water"",
-                                        ""url"": ""https://www.youtube.com/watch?v=A4cEE4N5Xyc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"47","12",24,"pig, daddy, mummy, wall, fit","{ ""start_time_sec"": ""226.25"", 
-                                  ""end_time_sec"": ""257.93"", 
-                                  ""doc_id"": ""203"",
-                                  ""title"": ""very hot day"",
-                                  ""youtube_video_id"": ""A4cEE4N5Xyc"",
-                                  ""transcription"": ""dear george dinosaur ice lolly melt fall grind mind george share daddy ice cream sure mind warm daddy pig fall asleep daddy pig doe look hot let dip water cool good idea peppa happen red hop daddy pig sorry water"",
-                                        ""url"": ""https://www.youtube.com/watch?v=A4cEE4N5Xyc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"48","12",8,"car, bye, ready, wash, dog","{ ""start_time_sec"": ""226.25"", 
-                                  ""end_time_sec"": ""257.93"", 
-                                  ""doc_id"": ""203"",
-                                  ""title"": ""very hot day"",
-                                  ""youtube_video_id"": ""A4cEE4N5Xyc"",
-                                  ""transcription"": ""dear george dinosaur ice lolly melt fall grind mind george share daddy ice cream sure mind warm daddy pig fall asleep daddy pig doe look hot let dip water cool good idea peppa happen red hop daddy pig sorry water"",
-                                        ""url"": ""https://www.youtube.com/watch?v=A4cEE4N5Xyc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",26
-"49","13",11,"mummy, peppa, love, madame, eye","{ ""start_time_sec"": ""203.88"", 
-                                  ""end_time_sec"": ""239.85"", 
-                                  ""doc_id"": ""25"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""george thing box thing okay time good idea count box ready yes george drum peppa trumpet nice secret thing george custard doughnut"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"50","13",22,"secret, daddy, peppa, box, george","{ ""start_time_sec"": ""203.88"", 
-                                  ""end_time_sec"": ""239.85"", 
-                                  ""doc_id"": ""25"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""george thing box thing okay time good idea count box ready yes george drum peppa trumpet nice secret thing george custard doughnut"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"51","13",31,"george, dinosaur, mister, doe, lettuce","{ ""start_time_sec"": ""203.88"", 
-                                  ""end_time_sec"": ""239.85"", 
-                                  ""doc_id"": ""25"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""george thing box thing okay time good idea count box ready yes george drum peppa trumpet nice secret thing george custard doughnut"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"52","13",15,"tooth, fairy, night, stay, peppa","{ ""start_time_sec"": ""203.88"", 
-                                  ""end_time_sec"": ""239.85"", 
-                                  ""doc_id"": ""25"",
-                                  ""title"": ""secrets"",
-                                  ""youtube_video_id"": ""6MPWnMpLMcg"",
-                                  ""transcription"": ""george thing box thing okay time good idea count box ready yes george drum peppa trumpet nice secret thing george custard doughnut"",
-                                        ""url"": ""https://www.youtube.com/watch?v=6MPWnMpLMcg&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",15
-"53","14",2,"grandma, wolf, bad, danny, red","{ ""start_time_sec"": ""138.83"", 
-                                  ""end_time_sec"": ""189.13"", 
-                                  ""doc_id"": ""256"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""sheep danny dog rebecca rabbit pedro come child party start daddy pig magic peppa remember say lady gentleman introduce amaze mysterio okay daddy lady gentleman magic daddy trick abracadabra steady trick need"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"54","14",27,"george, peppa, mister, night, daddy","{ ""start_time_sec"": ""138.83"", 
-                                  ""end_time_sec"": ""189.13"", 
-                                  ""doc_id"": ""256"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""sheep danny dog rebecca rabbit pedro come child party start daddy pig magic peppa remember say lady gentleman introduce amaze mysterio okay daddy lady gentleman magic daddy trick abracadabra steady trick need"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"55","14",24,"pig, daddy, mummy, wall, fit","{ ""start_time_sec"": ""138.83"", 
-                                  ""end_time_sec"": ""189.13"", 
-                                  ""doc_id"": ""256"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""sheep danny dog rebecca rabbit pedro come child party start daddy pig magic peppa remember say lady gentleman introduce amaze mysterio okay daddy lady gentleman magic daddy trick abracadabra steady trick need"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"56","14",14,"peppa, suzy, friend, rebecca, sheep","{ ""start_time_sec"": ""138.83"", 
-                                  ""end_time_sec"": ""189.13"", 
-                                  ""doc_id"": ""256"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""sheep danny dog rebecca rabbit pedro come child party start daddy pig magic peppa remember say lady gentleman introduce amaze mysterio okay daddy lady gentleman magic daddy trick abracadabra steady trick need"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",27
-"57","15",1,"queen, peppa, child, king, tidy","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""50.34"", 
-                                  ""doc_id"": ""188"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""peppa pig little brother mummy pig museum peppa family museum patty museum place thing old old yes old really old room thing belong king queen long ago king queen room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",13
-"58","15",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""50.34"", 
-                                  ""doc_id"": ""188"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""peppa pig little brother mummy pig museum peppa family museum patty museum place thing old old yes old really old room thing belong king queen long ago king queen room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",13
-"59","15",13,"bite, movie, tummy, ready, real","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""50.34"", 
-                                  ""doc_id"": ""188"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""peppa pig little brother mummy pig museum peppa family museum patty museum place thing old old yes old really old room thing belong king queen long ago king queen room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",13
-"60","15",6,"cake, mummy, duck, chocolate, eat","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""50.34"", 
-                                  ""doc_id"": ""188"",
-                                  ""title"": ""the museum"",
-                                  ""youtube_video_id"": ""PpdIewQhnTo"",
-                                  ""transcription"": ""peppa pig little brother mummy pig museum peppa family museum patty museum place thing old old yes old really old room thing belong king queen long ago king queen room"",
-                                        ""url"": ""https://www.youtube.com/watch?v=PpdIewQhnTo&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",13
-"61","16",14,"peppa, suzy, friend, rebecca, sheep","{ ""start_time_sec"": ""245.33"", 
-                                  ""end_time_sec"": ""275.81"", 
-                                  ""doc_id"": ""56"",
-                                  ""title"": ""new shoes"",
-                                  ""youtube_video_id"": ""90xXHuliEEk"",
-                                  ""transcription"": ""muddy puddle like jump muddy puddle peppa peppa putt boot jump muddy puddle wear boot"",
-                                        ""url"": ""https://www.youtube.com/watch?v=90xXHuliEEk&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",7
-"62","16",33,"george, hiccup, stick, brother, drink","{ ""start_time_sec"": ""245.33"", 
-                                  ""end_time_sec"": ""275.81"", 
-                                  ""doc_id"": ""56"",
-                                  ""title"": ""new shoes"",
-                                  ""youtube_video_id"": ""90xXHuliEEk"",
-                                  ""transcription"": ""muddy puddle like jump muddy puddle peppa peppa putt boot jump muddy puddle wear boot"",
-                                        ""url"": ""https://www.youtube.com/watch?v=90xXHuliEEk&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",7
-"63","16",7,"peppa, spaghetti, george, list, puppet","{ ""start_time_sec"": ""245.33"", 
-                                  ""end_time_sec"": ""275.81"", 
-                                  ""doc_id"": ""56"",
-                                  ""title"": ""new shoes"",
-                                  ""youtube_video_id"": ""90xXHuliEEk"",
-                                  ""transcription"": ""muddy puddle like jump muddy puddle peppa peppa putt boot jump muddy puddle wear boot"",
-                                        ""url"": ""https://www.youtube.com/watch?v=90xXHuliEEk&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",7
-"64","16",18,"muddy, jump, love, puddle, boot","{ ""start_time_sec"": ""245.33"", 
-                                  ""end_time_sec"": ""275.81"", 
-                                  ""doc_id"": ""56"",
-                                  ""title"": ""new shoes"",
-                                  ""youtube_video_id"": ""90xXHuliEEk"",
-                                  ""transcription"": ""muddy puddle like jump muddy puddle peppa peppa putt boot jump muddy puddle wear boot"",
-                                        ""url"": ""https://www.youtube.com/watch?v=90xXHuliEEk&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",7
-"65","17",32,"peppa, shoe, garden, red, george","{ ""start_time_sec"": ""51.629"", 
-                                  ""end_time_sec"": ""91.32"", 
-                                  ""doc_id"": ""14"",
-                                  ""title"": ""bicycles"",
-                                  ""youtube_video_id"": ""HqYNifbUzzY"",
-                                  ""transcription"": ""rabbit ride bicycle george ride tricycle gain slowly let race daddy pig pumpkin race pumpkin careful bump daddy sad pup break worry peppa ratio friend race daddy pig pumpkin watch pumpkin look daddy pumpkin"",
-                                        ""url"": ""https://www.youtube.com/watch?v=HqYNifbUzzY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",32
-"66","17",24,"pig, daddy, mummy, wall, fit","{ ""start_time_sec"": ""51.629"", 
-                                  ""end_time_sec"": ""91.32"", 
-                                  ""doc_id"": ""14"",
-                                  ""title"": ""bicycles"",
-                                  ""youtube_video_id"": ""HqYNifbUzzY"",
-                                  ""transcription"": ""rabbit ride bicycle george ride tricycle gain slowly let race daddy pig pumpkin race pumpkin careful bump daddy sad pup break worry peppa ratio friend race daddy pig pumpkin watch pumpkin look daddy pumpkin"",
-                                        ""url"": ""https://www.youtube.com/watch?v=HqYNifbUzzY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",32
-"67","17",21,"castle, pig, map, windy, daddy","{ ""start_time_sec"": ""51.629"", 
-                                  ""end_time_sec"": ""91.32"", 
-                                  ""doc_id"": ""14"",
-                                  ""title"": ""bicycles"",
-                                  ""youtube_video_id"": ""HqYNifbUzzY"",
-                                  ""transcription"": ""rabbit ride bicycle george ride tricycle gain slowly let race daddy pig pumpkin race pumpkin careful bump daddy sad pup break worry peppa ratio friend race daddy pig pumpkin watch pumpkin look daddy pumpkin"",
-                                        ""url"": ""https://www.youtube.com/watch?v=HqYNifbUzzY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",32
-"68","17",19,"pumpkin, ride, stabilizer, bicycle, bike","{ ""start_time_sec"": ""51.629"", 
-                                  ""end_time_sec"": ""91.32"", 
-                                  ""doc_id"": ""14"",
-                                  ""title"": ""bicycles"",
-                                  ""youtube_video_id"": ""HqYNifbUzzY"",
-                                  ""transcription"": ""rabbit ride bicycle george ride tricycle gain slowly let race daddy pig pumpkin race pumpkin careful bump daddy sad pup break worry peppa ratio friend race daddy pig pumpkin watch pumpkin look daddy pumpkin"",
-                                        ""url"": ""https://www.youtube.com/watch?v=HqYNifbUzzY&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",32
-"69","18",13,"bite, movie, tummy, ready, real","{ ""start_time_sec"": ""245.82"", 
-                                  ""end_time_sec"": ""278.73"", 
-                                  ""doc_id"": ""264"",
-                                  ""title"": ""daddy's movie camera"",
-                                  ""youtube_video_id"": ""huwngEWJ_Wc"",
-                                  ""transcription"": ""tummy big eat lot cooky tummy big true like cooky eat big tummy okay sweet little brother george mummy pig real daddy pig"",
-                                        ""url"": ""https://www.youtube.com/watch?v=huwngEWJ_Wc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"70","18",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""245.82"", 
-                                  ""end_time_sec"": ""278.73"", 
-                                  ""doc_id"": ""264"",
-                                  ""title"": ""daddy's movie camera"",
-                                  ""youtube_video_id"": ""huwngEWJ_Wc"",
-                                  ""transcription"": ""tummy big eat lot cooky tummy big true like cooky eat big tummy okay sweet little brother george mummy pig real daddy pig"",
-                                        ""url"": ""https://www.youtube.com/watch?v=huwngEWJ_Wc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"71","18",28,"daddy, snowman, hat, glove, scarf","{ ""start_time_sec"": ""245.82"", 
-                                  ""end_time_sec"": ""278.73"", 
-                                  ""doc_id"": ""264"",
-                                  ""title"": ""daddy's movie camera"",
-                                  ""youtube_video_id"": ""huwngEWJ_Wc"",
-                                  ""transcription"": ""tummy big eat lot cooky tummy big true like cooky eat big tummy okay sweet little brother george mummy pig real daddy pig"",
-                                        ""url"": ""https://www.youtube.com/watch?v=huwngEWJ_Wc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"72","18",10,"daddy, peppa, wet, funny, teddy","{ ""start_time_sec"": ""245.82"", 
-                                  ""end_time_sec"": ""278.73"", 
-                                  ""doc_id"": ""264"",
-                                  ""title"": ""daddy's movie camera"",
-                                  ""youtube_video_id"": ""huwngEWJ_Wc"",
-                                  ""transcription"": ""tummy big eat lot cooky tummy big true like cooky eat big tummy okay sweet little brother george mummy pig real daddy pig"",
-                                        ""url"": ""https://www.youtube.com/watch?v=huwngEWJ_Wc&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"73","19",15,"tooth, fairy, night, stay, peppa","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""57.329"", 
-                                  ""doc_id"": ""253"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""peppa pig little brother birthday party peppa birthday early morning birthday george wake birthday party daddys magic great george let wait mummy daddy mummy pig daddy pig fast asleep time late oclock"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"74","19",28,"daddy, snowman, hat, glove, scarf","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""57.329"", 
-                                  ""doc_id"": ""253"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""peppa pig little brother birthday party peppa birthday early morning birthday george wake birthday party daddys magic great george let wait mummy daddy mummy pig daddy pig fast asleep time late oclock"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"75","19",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""57.329"", 
-                                  ""doc_id"": ""253"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""peppa pig little brother birthday party peppa birthday early morning birthday george wake birthday party daddys magic great george let wait mummy daddy mummy pig daddy pig fast asleep time late oclock"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"76","19",27,"george, peppa, mister, night, daddy","{ ""start_time_sec"": ""2.7"", 
-                                  ""end_time_sec"": ""57.329"", 
-                                  ""doc_id"": ""253"",
-                                  ""title"": ""my birthday party"",
-                                  ""youtube_video_id"": ""SQktwj7D3Po"",
-                                  ""transcription"": ""peppa pig little brother birthday party peppa birthday early morning birthday george wake birthday party daddys magic great george let wait mummy daddy mummy pig daddy pig fast asleep time late oclock"",
-                                        ""url"": ""https://www.youtube.com/watch?v=SQktwj7D3Po&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",28
-"77","20",34,"pig, mummy, daddy, brother, peppa","{ ""start_time_sec"": ""159.44"", 
-                                  ""end_time_sec"": ""206.549"", 
-                                  ""doc_id"": ""141"",
-                                  ""title"": ""ballet lesson"",
-                                  ""youtube_video_id"": ""cCGJL4YCa9c"",
-                                  ""transcription"": ""love john love johnson real dance swan good dance beautifully lovely let home daddy pig george bye bye peppa mummy pig daddy george ballet difficult easy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=cCGJL4YCa9c&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",9
-"78","20",27,"george, peppa, mister, night, daddy","{ ""start_time_sec"": ""159.44"", 
-                                  ""end_time_sec"": ""206.549"", 
-                                  ""doc_id"": ""141"",
-                                  ""title"": ""ballet lesson"",
-                                  ""youtube_video_id"": ""cCGJL4YCa9c"",
-                                  ""transcription"": ""love john love johnson real dance swan good dance beautifully lovely let home daddy pig george bye bye peppa mummy pig daddy george ballet difficult easy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=cCGJL4YCa9c&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",9
-"79","20",9,"play, george, sound, doe, slide","{ ""start_time_sec"": ""159.44"", 
-                                  ""end_time_sec"": ""206.549"", 
-                                  ""doc_id"": ""141"",
-                                  ""title"": ""ballet lesson"",
-                                  ""youtube_video_id"": ""cCGJL4YCa9c"",
-                                  ""transcription"": ""love john love johnson real dance swan good dance beautifully lovely let home daddy pig george bye bye peppa mummy pig daddy george ballet difficult easy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=cCGJL4YCa9c&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",9
-"80","20",10,"daddy, peppa, wet, funny, teddy","{ ""start_time_sec"": ""159.44"", 
-                                  ""end_time_sec"": ""206.549"", 
-                                  ""doc_id"": ""141"",
-                                  ""title"": ""ballet lesson"",
-                                  ""youtube_video_id"": ""cCGJL4YCa9c"",
-                                  ""transcription"": ""love john love johnson real dance swan good dance beautifully lovely let home daddy pig george bye bye peppa mummy pig daddy george ballet difficult easy"",
-                                        ""url"": ""https://www.youtube.com/watch?v=cCGJL4YCa9c&feature=youtu.be&ab_channel=UCdRyB_BAJDfo0clpilGkFzQ""}",9
+question,level,doc_id,topic_id,top_terms,text,good_answer
+1,easy,349,t_19,"list, spaghetti, chocolate, cake, trolley, tomato, love","{'start_time_sec': 81.56, 'end_time_sec': 107.61, 'doc_id': 349, 'title': 'shopping', 'youtube_video_id': 'EL6rvG9qVAc', 'transcription': 'trolley bottle good  tomato thing list list pea right  cold spaghetti betty spaghetti'}",t_19
+1,easy,349,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 81.56, 'end_time_sec': 107.61, 'doc_id': 349, 'title': 'shopping', 'youtube_video_id': 'EL6rvG9qVAc', 'transcription': 'trolley bottle good  tomato thing list list pea right  cold spaghetti betty spaghetti'}",t_19
+1,easy,349,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 81.56, 'end_time_sec': 107.61, 'doc_id': 349, 'title': 'shopping', 'youtube_video_id': 'EL6rvG9qVAc', 'transcription': 'trolley bottle good  tomato thing list list pea right  cold spaghetti betty spaghetti'}",t_19
+1,easy,349,t_37,"tomato, lettuce, cucumber, eat, lunch, vegetable, wash","{'start_time_sec': 81.56, 'end_time_sec': 107.61, 'doc_id': 349, 'title': 'shopping', 'youtube_video_id': 'EL6rvG9qVAc', 'transcription': 'trolley bottle good  tomato thing list list pea right  cold spaghetti betty spaghetti'}",t_19
+2,easy,256,t_38,"costume, judge, dress, fancy, party, child, pick","{'start_time_sec': 39.149, 'end_time_sec': 66.45, 'doc_id': 256, 'title': 'fancy dress party', 'youtube_video_id': 'shkp42YvApE', 'transcription': 'friend  cat  sheep  dog  rabbit  pony  wear nurse costume hello  hello mister pig glad nurse arrive come hospital real nurse good'}",t_38
+2,easy,256,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 39.149, 'end_time_sec': 66.45, 'doc_id': 256, 'title': 'fancy dress party', 'youtube_video_id': 'shkp42YvApE', 'transcription': 'friend  cat  sheep  dog  rabbit  pony  wear nurse costume hello  hello mister pig glad nurse arrive come hospital real nurse good'}",t_38
+2,easy,256,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 39.149, 'end_time_sec': 66.45, 'doc_id': 256, 'title': 'fancy dress party', 'youtube_video_id': 'shkp42YvApE', 'transcription': 'friend  cat  sheep  dog  rabbit  pony  wear nurse costume hello  hello mister pig glad nurse arrive come hospital real nurse good'}",t_38
+2,easy,256,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 39.149, 'end_time_sec': 66.45, 'doc_id': 256, 'title': 'fancy dress party', 'youtube_video_id': 'shkp42YvApE', 'transcription': 'friend  cat  sheep  dog  rabbit  pony  wear nurse costume hello  hello mister pig glad nurse arrive come hospital real nurse good'}",t_38
+3,easy,391,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 46.559, 'end_time_sec': 73.56, 'doc_id': 391, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'disturb lot important work today thank daddy mummy pig lot important work mummy good job sit lap watch work yes sit quietly  love watch mummy work computer'}",t_27
+3,easy,391,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 46.559, 'end_time_sec': 73.56, 'doc_id': 391, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'disturb lot important work today thank daddy mummy pig lot important work mummy good job sit lap watch work yes sit quietly  love watch mummy work computer'}",t_27
+3,easy,391,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 46.559, 'end_time_sec': 73.56, 'doc_id': 391, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'disturb lot important work today thank daddy mummy pig lot important work mummy good job sit lap watch work yes sit quietly  love watch mummy work computer'}",t_27
+3,easy,391,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 46.559, 'end_time_sec': 73.56, 'doc_id': 391, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'disturb lot important work today thank daddy mummy pig lot important work mummy good job sit lap watch work yes sit quietly  love watch mummy work computer'}",t_27
+4,easy,75,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 130.71, 'end_time_sec': 154.65, 'doc_id': 75, 'title': 'new shoes', 'youtube_video_id': '90xXHuliEEk', 'transcription': 'daddy daddy look new shoe reds say red mummy like new shoe yes  make look smart  like new shoe like  new shoe like new shoe want'}",t_1
+4,easy,75,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 130.71, 'end_time_sec': 154.65, 'doc_id': 75, 'title': 'new shoes', 'youtube_video_id': '90xXHuliEEk', 'transcription': 'daddy daddy look new shoe reds say red mummy like new shoe yes  make look smart  like new shoe like  new shoe like new shoe want'}",t_1
+4,easy,75,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 130.71, 'end_time_sec': 154.65, 'doc_id': 75, 'title': 'new shoes', 'youtube_video_id': '90xXHuliEEk', 'transcription': 'daddy daddy look new shoe reds say red mummy like new shoe yes  make look smart  like new shoe like  new shoe like new shoe want'}",t_1
+4,easy,75,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 130.71, 'end_time_sec': 154.65, 'doc_id': 75, 'title': 'new shoes', 'youtube_video_id': '90xXHuliEEk', 'transcription': 'daddy daddy look new shoe reds say red mummy like new shoe yes  make look smart  like new shoe like  new shoe like new shoe want'}",t_1
+5,easy,301,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 61.26, 'end_time_sec': 84.15, 'doc_id': 301, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'touch toe pretend  daddy pig really touch toe dear daddy good maybe bite exercise yes daddy start tomorrow daddy pig start exercise worry daddy'}",t_18
+5,easy,301,t_18,"daddy, fit, exercise, bite, worry, tummy, touch","{'start_time_sec': 61.26, 'end_time_sec': 84.15, 'doc_id': 301, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'touch toe pretend  daddy pig really touch toe dear daddy good maybe bite exercise yes daddy start tomorrow daddy pig start exercise worry daddy'}",t_18
+5,easy,301,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 61.26, 'end_time_sec': 84.15, 'doc_id': 301, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'touch toe pretend  daddy pig really touch toe dear daddy good maybe bite exercise yes daddy start tomorrow daddy pig start exercise worry daddy'}",t_18
+5,easy,301,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 61.26, 'end_time_sec': 84.15, 'doc_id': 301, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'touch toe pretend  daddy pig really touch toe dear daddy good maybe bite exercise yes daddy start tomorrow daddy pig start exercise worry daddy'}",t_18
+6,moderate,37,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 251.91, 'end_time_sec': 278.15, 'doc_id': 37, 'title': 'secrets', 'youtube_video_id': '6MPWnMpLMcg', 'transcription': 'pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy'}",t_34
+6,moderate,37,t_34,"secret, box, tummy, word, daddy, guess, cookie","{'start_time_sec': 251.91, 'end_time_sec': 278.15, 'doc_id': 37, 'title': 'secrets', 'youtube_video_id': '6MPWnMpLMcg', 'transcription': 'pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy'}",t_34
+6,moderate,37,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 251.91, 'end_time_sec': 278.15, 'doc_id': 37, 'title': 'secrets', 'youtube_video_id': '6MPWnMpLMcg', 'transcription': 'pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy'}",t_34
+6,moderate,37,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 251.91, 'end_time_sec': 278.15, 'doc_id': 37, 'title': 'secrets', 'youtube_video_id': '6MPWnMpLMcg', 'transcription': 'pig like custard doughnut special box know good place hide custard doughnut guess like hide fridge special tummy hide tummy'}",t_34
+7,moderate,387,t_7,"butterfly, flower, worm, queen, beautiful, wriggly, fly","{'start_time_sec': 187.54, 'end_time_sec': 221.05, 'doc_id': 387, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'flower petal  rubbish pay school leave perfect  wrong flower good   paint dinosaur girl'}",t_31
+7,moderate,387,t_31,"dinosaur, tiger, balloon, paint, girl, brilliant, yes","{'start_time_sec': 187.54, 'end_time_sec': 221.05, 'doc_id': 387, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'flower petal  rubbish pay school leave perfect  wrong flower good   paint dinosaur girl'}",t_31
+7,moderate,387,t_25,"friend, sheep, rabbit, love, dog, fete, nurse","{'start_time_sec': 187.54, 'end_time_sec': 221.05, 'doc_id': 387, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'flower petal  rubbish pay school leave perfect  wrong flower good   paint dinosaur girl'}",t_31
+7,moderate,387,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 187.54, 'end_time_sec': 221.05, 'doc_id': 387, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'flower petal  rubbish pay school leave perfect  wrong flower good   paint dinosaur girl'}",t_31
+8,moderate,156,t_16,"play, bite, game, violin, mummy, accordion, love","{'start_time_sec': 84.18, 'end_time_sec': 116.49, 'doc_id': 156, 'title': 'windy castle', 'youtube_video_id': 'A5iZqRKyWNI', 'transcription': 'guess spy little eye color red red dress right red car spy little eye blue  blue shirt car yes'}",t_22
+8,moderate,156,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 84.18, 'end_time_sec': 116.49, 'doc_id': 156, 'title': 'windy castle', 'youtube_video_id': 'A5iZqRKyWNI', 'transcription': 'guess spy little eye color red red dress right red car spy little eye blue  blue shirt car yes'}",t_22
+8,moderate,156,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 84.18, 'end_time_sec': 116.49, 'doc_id': 156, 'title': 'windy castle', 'youtube_video_id': 'A5iZqRKyWNI', 'transcription': 'guess spy little eye color red red dress right red car spy little eye blue  blue shirt car yes'}",t_22
+8,moderate,156,t_22,"castle, windy, map, lose, bite, read, grumpy","{'start_time_sec': 84.18, 'end_time_sec': 116.49, 'doc_id': 156, 'title': 'windy castle', 'youtube_video_id': 'A5iZqRKyWNI', 'transcription': 'guess spy little eye color red red dress right red car spy little eye blue  blue shirt car yes'}",t_22
+9,moderate,112,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 106.689, 'end_time_sec': 132.92, 'doc_id': 112, 'title': 'the tooth fairy', 'youtube_video_id': 'LertHmE-LTA', 'transcription': 'like grow  green sure yes dinosaur quick  time super bed   brush tooth good brush buy nice like'}",t_23
+9,moderate,112,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 106.689, 'end_time_sec': 132.92, 'doc_id': 112, 'title': 'the tooth fairy', 'youtube_video_id': 'LertHmE-LTA', 'transcription': 'like grow  green sure yes dinosaur quick  time super bed   brush tooth good brush buy nice like'}",t_23
+9,moderate,112,t_23,"dinosaur, mister, detective, toy, bath, favorite, time","{'start_time_sec': 106.689, 'end_time_sec': 132.92, 'doc_id': 112, 'title': 'the tooth fairy', 'youtube_video_id': 'LertHmE-LTA', 'transcription': 'like grow  green sure yes dinosaur quick  time super bed   brush tooth good brush buy nice like'}",t_23
+9,moderate,112,t_28,"tooth, fairy, asleep, fall, noise, stay, uncle","{'start_time_sec': 106.689, 'end_time_sec': 132.92, 'doc_id': 112, 'title': 'the tooth fairy', 'youtube_video_id': 'LertHmE-LTA', 'transcription': 'like grow  green sure yes dinosaur quick  time super bed   brush tooth good brush buy nice like'}",t_23
+10,moderate,382,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 2.7, 'end_time_sec': 43.11, 'doc_id': 382, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': ' pig little brother mummy pig   playgroup  day  look forward playgroup daddy maybe  smooth playgroup fine '}",t_21
+10,moderate,382,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 2.7, 'end_time_sec': 43.11, 'doc_id': 382, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': ' pig little brother mummy pig   playgroup  day  look forward playgroup daddy maybe  smooth playgroup fine '}",t_21
+10,moderate,382,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 2.7, 'end_time_sec': 43.11, 'doc_id': 382, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': ' pig little brother mummy pig   playgroup  day  look forward playgroup daddy maybe  smooth playgroup fine '}",t_21
+10,moderate,382,t_21,"grandma, wolf, bad, red, ride, hood, hunter","{'start_time_sec': 2.7, 'end_time_sec': 43.11, 'doc_id': 382, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': ' pig little brother mummy pig   playgroup  day  look forward playgroup daddy maybe  smooth playgroup fine '}",t_21
+11,moderate,286,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 198.51, 'end_time_sec': 221.91, 'doc_id': 286, 'title': 'very hot day', 'youtube_video_id': 'A4cEE4N5Xyc', 'transcription': 'dinosaur shape ice lolly dine  eat ice lolly melt uncle  love dinosaur ice lolly want eat thank miss rabbit enjoy weather  really think eat ice lolly'}",t_15
+11,moderate,286,t_15,"ice, cream, hot, day, sun, lolly, daddy","{'start_time_sec': 198.51, 'end_time_sec': 221.91, 'doc_id': 286, 'title': 'very hot day', 'youtube_video_id': 'A4cEE4N5Xyc', 'transcription': 'dinosaur shape ice lolly dine  eat ice lolly melt uncle  love dinosaur ice lolly want eat thank miss rabbit enjoy weather  really think eat ice lolly'}",t_15
+11,moderate,286,t_23,"dinosaur, mister, detective, toy, bath, favorite, time","{'start_time_sec': 198.51, 'end_time_sec': 221.91, 'doc_id': 286, 'title': 'very hot day', 'youtube_video_id': 'A4cEE4N5Xyc', 'transcription': 'dinosaur shape ice lolly dine  eat ice lolly melt uncle  love dinosaur ice lolly want eat thank miss rabbit enjoy weather  really think eat ice lolly'}",t_15
+11,moderate,286,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 198.51, 'end_time_sec': 221.91, 'doc_id': 286, 'title': 'very hot day', 'youtube_video_id': 'A4cEE4N5Xyc', 'transcription': 'dinosaur shape ice lolly dine  eat ice lolly melt uncle  love dinosaur ice lolly want eat thank miss rabbit enjoy weather  really think eat ice lolly'}",t_15
+12,moderate,389,t_31,"dinosaur, tiger, balloon, paint, girl, brilliant, yes","{'start_time_sec': 256.12, 'end_time_sec': 277.2, 'doc_id': 389, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'paint lovely picture paint time  sure girl dinosaur picture wait maybe paint dinosaur brilliant yes brilliant brilliant'}",t_33
+12,moderate,389,t_38,"costume, judge, dress, fancy, party, child, pick","{'start_time_sec': 256.12, 'end_time_sec': 277.2, 'doc_id': 389, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'paint lovely picture paint time  sure girl dinosaur picture wait maybe paint dinosaur brilliant yes brilliant brilliant'}",t_33
+12,moderate,389,t_33,"daddy, wall, picture, nail, watch, break, crack","{'start_time_sec': 256.12, 'end_time_sec': 277.2, 'doc_id': 389, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'paint lovely picture paint time  sure girl dinosaur picture wait maybe paint dinosaur brilliant yes brilliant brilliant'}",t_33
+12,moderate,389,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 256.12, 'end_time_sec': 277.2, 'doc_id': 389, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'paint lovely picture paint time  sure girl dinosaur picture wait maybe paint dinosaur brilliant yes brilliant brilliant'}",t_33
+13,moderate,38,t_11,"queen, cake, mummy, duck, wasp, bread, king","{'start_time_sec': 2.669, 'end_time_sec': 35.74, 'doc_id': 38, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': ' pig little brother mummy pig daddy dick lick lovely bright sunny day  family picnic daddy pig bring picnic basket picnic blanket bread cheese tomato'}",t_27
+13,moderate,38,t_17,"love, beach, pig, water, day, ballet, lovely","{'start_time_sec': 2.669, 'end_time_sec': 35.74, 'doc_id': 38, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': ' pig little brother mummy pig daddy dick lick lovely bright sunny day  family picnic daddy pig bring picnic basket picnic blanket bread cheese tomato'}",t_27
+13,moderate,38,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 2.669, 'end_time_sec': 35.74, 'doc_id': 38, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': ' pig little brother mummy pig daddy dick lick lovely bright sunny day  family picnic daddy pig bring picnic basket picnic blanket bread cheese tomato'}",t_27
+13,moderate,38,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 2.669, 'end_time_sec': 35.74, 'doc_id': 38, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': ' pig little brother mummy pig daddy dick lick lovely bright sunny day  family picnic daddy pig bring picnic basket picnic blanket bread cheese tomato'}",t_27
+14,moderate,46,t_11,"queen, cake, mummy, duck, wasp, bread, king","{'start_time_sec': 256.16, 'end_time_sec': 275.97, 'doc_id': 46, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': 'lucky say thank daddy pig welcome time home say goodbye ducks bye bye duck time'}",t_2
+14,moderate,46,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 256.16, 'end_time_sec': 275.97, 'doc_id': 46, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': 'lucky say thank daddy pig welcome time home say goodbye ducks bye bye duck time'}",t_2
+14,moderate,46,t_8,"car, bye, button, ready, dog, roof, clean","{'start_time_sec': 256.16, 'end_time_sec': 275.97, 'doc_id': 46, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': 'lucky say thank daddy pig welcome time home say goodbye ducks bye bye duck time'}",t_2
+14,moderate,46,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 256.16, 'end_time_sec': 275.97, 'doc_id': 46, 'title': 'picnic', 'youtube_video_id': '7GCOGUeWaFA', 'transcription': 'lucky say thank daddy pig welcome time home say goodbye ducks bye bye duck time'}",t_2
+15,moderate,386,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 156.579, 'end_time_sec': 187.06, 'doc_id': 386, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'picture  good paint good maybe help yes good paint flower  today teach paint flower buzz pay big circlin  wrong color pay'}",t_31
+15,moderate,386,t_31,"dinosaur, tiger, balloon, paint, girl, brilliant, yes","{'start_time_sec': 156.579, 'end_time_sec': 187.06, 'doc_id': 386, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'picture  good paint good maybe help yes good paint flower  today teach paint flower buzz pay big circlin  wrong color pay'}",t_31
+15,moderate,386,t_38,"costume, judge, dress, fancy, party, child, pick","{'start_time_sec': 156.579, 'end_time_sec': 187.06, 'doc_id': 386, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'picture  good paint good maybe help yes good paint flower  today teach paint flower buzz pay big circlin  wrong color pay'}",t_31
+15,moderate,386,t_23,"dinosaur, mister, detective, toy, bath, favorite, time","{'start_time_sec': 156.579, 'end_time_sec': 187.06, 'doc_id': 386, 'title': 'the playgroup', 'youtube_video_id': '4cKnoK2KYPc', 'transcription': 'picture  good paint good maybe help yes good paint flower  today teach paint flower buzz pay big circlin  wrong color pay'}",t_31
+16,hard,303,t_18,"daddy, fit, exercise, bite, worry, tummy, touch","{'start_time_sec': 114.0, 'end_time_sec': 146.54, 'doc_id': 303, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'press honey pig   kitchen make lunch daddy pig press daddy yes yes hope overdo pig chicken'}",t_18
+16,hard,303,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 114.0, 'end_time_sec': 146.54, 'doc_id': 303, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'press honey pig   kitchen make lunch daddy pig press daddy yes yes hope overdo pig chicken'}",t_18
+16,hard,303,t_3,"puppet, daddy, uncle, bite, pig, lunch, spaghetti","{'start_time_sec': 114.0, 'end_time_sec': 146.54, 'doc_id': 303, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'press honey pig   kitchen make lunch daddy pig press daddy yes yes hope overdo pig chicken'}",t_18
+16,hard,303,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 114.0, 'end_time_sec': 146.54, 'doc_id': 303, 'title': 'daddy gets fit', 'youtube_video_id': 'aO-bFf2xfYQ', 'transcription': 'press honey pig   kitchen make lunch daddy pig press daddy yes yes hope overdo pig chicken'}",t_18
+17,hard,192,t_28,"tooth, fairy, asleep, fall, noise, stay, uncle","{'start_time_sec': 138.55, 'end_time_sec': 171.12, 'doc_id': 192, 'title': 'babysitting', 'youtube_video_id': 'Med50YqgV_M', 'transcription': '  make noise hear think really fall asleep let watch television guard today talk rose love garden program kev gate particularly thorny rise'}",t_28
+17,hard,192,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 138.55, 'end_time_sec': 171.12, 'doc_id': 192, 'title': 'babysitting', 'youtube_video_id': 'Med50YqgV_M', 'transcription': '  make noise hear think really fall asleep let watch television guard today talk rose love garden program kev gate particularly thorny rise'}",t_28
+17,hard,192,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 138.55, 'end_time_sec': 171.12, 'doc_id': 192, 'title': 'babysitting', 'youtube_video_id': 'Med50YqgV_M', 'transcription': '  make noise hear think really fall asleep let watch television guard today talk rose love garden program kev gate particularly thorny rise'}",t_28
+17,hard,192,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 138.55, 'end_time_sec': 171.12, 'doc_id': 192, 'title': 'babysitting', 'youtube_video_id': 'Med50YqgV_M', 'transcription': '  make noise hear think really fall asleep let watch television guard today talk rose love garden program kev gate particularly thorny rise'}",t_28
+18,hard,165,t_20,"house, tree, pig, granny, visit, boot, garden","{'start_time_sec': 63.75, 'end_time_sec': 82.08, 'doc_id': 165, 'title': 'my cousin chloe', 'youtube_video_id': 'GNFG2hFKakA', 'transcription': ' cousin  bite old   hello  hello  hello  late want play game yes let play catch  love play catch play catch game little'}",t_16
+18,hard,165,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 63.75, 'end_time_sec': 82.08, 'doc_id': 165, 'title': 'my cousin chloe', 'youtube_video_id': 'GNFG2hFKakA', 'transcription': ' cousin  bite old   hello  hello  hello  late want play game yes let play catch  love play catch play catch game little'}",t_16
+18,hard,165,t_16,"play, bite, game, violin, mummy, accordion, love","{'start_time_sec': 63.75, 'end_time_sec': 82.08, 'doc_id': 165, 'title': 'my cousin chloe', 'youtube_video_id': 'GNFG2hFKakA', 'transcription': ' cousin  bite old   hello  hello  hello  late want play game yes let play catch  love play catch play catch game little'}",t_16
+18,hard,165,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 63.75, 'end_time_sec': 82.08, 'doc_id': 165, 'title': 'my cousin chloe', 'youtube_video_id': 'GNFG2hFKakA', 'transcription': ' cousin  bite old   hello  hello  hello  late want play game yes let play catch  love play catch play catch game little'}",t_16
+19,hard,395,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 165.4, 'end_time_sec': 186.94, 'doc_id': 395, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'hooray daddy yes bite expert thing daddy shall play computer game happy madame chicken maybe ask mummy pig mummy say play late good okay know disc turn good computer work'}",t_27
+19,hard,395,t_27,"pig, daddy, mummy, brother, lovely, day, watch","{'start_time_sec': 165.4, 'end_time_sec': 186.94, 'doc_id': 395, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'hooray daddy yes bite expert thing daddy shall play computer game happy madame chicken maybe ask mummy pig mummy say play late good okay know disc turn good computer work'}",t_27
+19,hard,395,t_33,"daddy, wall, picture, nail, watch, break, crack","{'start_time_sec': 165.4, 'end_time_sec': 186.94, 'doc_id': 395, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'hooray daddy yes bite expert thing daddy shall play computer game happy madame chicken maybe ask mummy pig mummy say play late good okay know disc turn good computer work'}",t_27
+19,hard,395,t_2,"pancake, pig, daddy, mummy, flip, time, cake","{'start_time_sec': 165.4, 'end_time_sec': 186.94, 'doc_id': 395, 'title': 'mummy pig at work', 'youtube_video_id': '2sv4-_tKHhY', 'transcription': 'hooray daddy yes bite expert thing daddy shall play computer game happy madame chicken maybe ask mummy pig mummy say play late good okay know disc turn good computer work'}",t_27
+20,hard,346,t_23,"dinosaur, mister, detective, toy, bath, favorite, time","{'start_time_sec': 256.639, 'end_time_sec': 282.56, 'doc_id': 346, 'title': 'mister skinnylegs', 'youtube_video_id': 'I41VjHkQKs4', 'transcription': 'fat want say hello daddy hello mister daddy pig right let mister skinnylegs drink tea look scare daddy course good yes close epiphyte mister scale egg like mister skinnylegs'}",t_32
+20,hard,346,t_32,"night, bed, mummy, tea, sleep, spider, doll","{'start_time_sec': 256.639, 'end_time_sec': 282.56, 'doc_id': 346, 'title': 'mister skinnylegs', 'youtube_video_id': 'I41VjHkQKs4', 'transcription': 'fat want say hello daddy hello mister daddy pig right let mister skinnylegs drink tea look scare daddy course good yes close epiphyte mister scale egg like mister skinnylegs'}",t_32
+20,hard,346,t_19,"list, spaghetti, chocolate, cake, trolley, tomato, love","{'start_time_sec': 256.639, 'end_time_sec': 282.56, 'doc_id': 346, 'title': 'mister skinnylegs', 'youtube_video_id': 'I41VjHkQKs4', 'transcription': 'fat want say hello daddy hello mister daddy pig right let mister skinnylegs drink tea look scare daddy course good yes close epiphyte mister scale egg like mister skinnylegs'}",t_32
+20,hard,346,t_1,"shoe, red, wet, wear, garden, grass, rabbit","{'start_time_sec': 256.639, 'end_time_sec': 282.56, 'doc_id': 346, 'title': 'mister skinnylegs', 'youtube_video_id': 'I41VjHkQKs4', 'transcription': 'fat want say hello daddy hello mister daddy pig right let mister skinnylegs drink tea look scare daddy course good yes close epiphyte mister scale egg like mister skinnylegs'}",t_32

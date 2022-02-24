@@ -18,8 +18,10 @@ class LDAReader:
 
     def __init__(self):
         self._doc_topics_distribution = pd.read_csv(self._doc_topics_distribution_path)
+        self._doc_topics_distribution.rename(columns={"Unnamed: 0": "doc_id"}, inplace=True)
         self._videos_infos = pd.read_csv(self._videos_infos_path)
         self._top10_topic_terms = pd.read_csv(self._top10_topic_terms_path)
+        self._top10_topic_terms = self._top10_topic_terms.drop("Unnamed: 0",  axis=1)
 
     def __new__(cls, *args, **kwargs):
         if not isinstance(cls._instance, cls):
