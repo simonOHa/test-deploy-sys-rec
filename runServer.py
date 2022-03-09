@@ -2,6 +2,7 @@ import logging
 from config import *
 from api import build_api
 from flask import Flask
+from flask_login import LoginManager
 from dbModels import init_db
 from utils.recommendations_generator import RecommendationsGenerator
 # from flask_jwt_extended import JWTManager
@@ -12,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
                     handlers=[logging.StreamHandler()])
 
 logger = logging.getLogger()
-
+login_manager = LoginManager()
 
 def create_app():
     RecommendationsGenerator()
@@ -25,6 +26,7 @@ def create_app():
     app.config.from_object('config')
     build_api(app)
     init_db(app)
+    login_manager.init_app(app)
 
     # define hello world page
     @app.route('/')
