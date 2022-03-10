@@ -33,7 +33,7 @@ class RecommendationAPI(Resource):
             _user = UserModel.query.filter_by(access_token=_access_token).first()
             _request = request.get_json()
 
-            self._model.save_watched_videos(email=_user.email, videos_rated=_request['videos'])
+            RecommendationModel().save_watched_videos(email=_user.email, videos_rated=_request['videos'])
             response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
 
             return response
