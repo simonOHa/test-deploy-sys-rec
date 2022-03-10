@@ -36,7 +36,7 @@ class GlobalCommentAPI(Resource):
             _access_token = request.headers['Authorization'].replace('Bearer ','')
             _user = UserModel.query.filter_by(access_token=_access_token).first()
             _request = request.get_json()
-            self._model.save_comment(comment=_request['result'], email=_user.email)
+            GlobalCommentModel().save_comment(comment=_request['result'], email=_user.email)
             response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
             return response
 
