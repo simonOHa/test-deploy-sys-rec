@@ -9,13 +9,13 @@ from api.errors import InternalServerError
 
 class SemanticMapQuestionsAPI(Resource):
 
-    _model = SysRecSemanticMapQuestionsModel()
+    #_model = SysRecSemanticMapQuestionsModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
-            response = build_response_header(access_token=_access_token, status_code=200, data=self._model.get_questions(), error_message=None)
+            response = build_response_header(access_token=_access_token, status_code=200, data=SysRecSemanticMapQuestionsModel().get_questions(), error_message=None)
             return response
 
         except Exception as e:

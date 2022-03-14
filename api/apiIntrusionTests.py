@@ -8,9 +8,9 @@ from api.errors import InternalServerError
 
 
 class IntrusionTestScore(Resource):
-    _ti_model = IntrusionTestTIModel()
-    _wi_model = IntrusionTestWIModel()
-    _wsi_model = IntrusionTestWSIModel()
+    #_ti_model = IntrusionTestTIModel()
+    #_wi_model = IntrusionTestWIModel()
+    #_wsi_model = IntrusionTestWSIModel()
 
     @check_token()
     def get(self):
@@ -19,15 +19,15 @@ class IntrusionTestScore(Resource):
             _user = UserModel.query.filter_by(access_token=_access_token).first()
             _data = {}
 
-            _user_ti = self._ti_model.query.filter_by(email=_user.email).first()
+            _user_ti = IntrusionTestTIModel.query.filter_by(email=_user.email).first()
             if _user_ti is not None:
                 _data['ti_score'] = _user_ti.score
 
-            _user_wi = self._wi_model.query.filter_by(email=_user.email).first()
+            _user_wi = IntrusionTestWIModel.query.filter_by(email=_user.email).first()
             if _user_wi is not None:
                 _data['wi_score'] = _user_wi.score
 
-            _user_wsi = self._wsi_model.query.filter_by(email=_user.email).first()
+            _user_wsi = IntrusionTestWSIModel.query.filter_by(email=_user.email).first()
             if _user_wsi is not None:
                 _data['wsi_score'] = _user_wsi.score
 
@@ -39,13 +39,13 @@ class IntrusionTestScore(Resource):
 
 class IntrusionTestTIAPI(Resource):
 
-    _model = IntrusionTestTIModel()
+    #_model = IntrusionTestTIModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
-            _results = self._model.read_ti_data()
+            _results = IntrusionTestTIModel().read_ti_data()
             response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
             return response
         except Exception as e:
@@ -66,7 +66,7 @@ class IntrusionTestTIAPI(Resource):
 
 class ResultsIntrusionTestTIAPI(Resource):
 
-    _model = IntrusionTestTIModel()
+    #_model = IntrusionTestTIModel()
 
     @check_token()
     def get(self):
@@ -94,7 +94,6 @@ class ResultsIntrusionTestTIAPI(Resource):
 
                 response = build_response_header(access_token=_access_token, status_code=200,data=answer, error_message=None)
 
-
             return response
         except Exception as e:
             raise InternalServerError
@@ -102,13 +101,13 @@ class ResultsIntrusionTestTIAPI(Resource):
 
 class IntrusionTestWIAPI(Resource):
 
-    _model = IntrusionTestWIModel()
+    #_model = IntrusionTestWIModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
-            _results = self._model.read_wi_data()
+            _results = IntrusionTestWIModel().read_wi_data()
             response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
             return response
 
@@ -131,7 +130,7 @@ class IntrusionTestWIAPI(Resource):
 
 class ResultsIntrusionTestWIAPI(Resource):
 
-    _model = IntrusionTestWIModel()
+    #_model = IntrusionTestWIModel()
 
     @check_token()
     def get(self):
@@ -152,13 +151,13 @@ class ResultsIntrusionTestWIAPI(Resource):
 
 class IntrusionTestWSIAPI(Resource):
 
-    _model = IntrusionTestWSIModel()
+    #_model = IntrusionTestWSIModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ','')
-            _results = self._model.read_wsi_data()
+            _results = IntrusionTestWSIModel().read_wsi_data()
             response = build_response_header(access_token=_access_token, status_code=200, data=_results, error_message=None)
             return response
 
@@ -180,7 +179,7 @@ class IntrusionTestWSIAPI(Resource):
 
 class ResultsIntrusionTestWSIAPI(Resource):
 
-    _model = IntrusionTestWSIModel()
+    #_model = IntrusionTestWSIModel()
 
     @check_token()
     def get(self):

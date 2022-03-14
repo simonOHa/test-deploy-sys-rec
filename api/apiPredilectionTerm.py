@@ -9,7 +9,7 @@ from api.errors import InternalServerError
 
 class PredilectionTermAPI(Resource):
 
-    _model = SysRecPredilectionTermModel()
+    #_model = SysRecPredilectionTermModel()
 
     @check_token()
     def get(self):

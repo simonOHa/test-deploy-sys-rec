@@ -13,7 +13,7 @@ from flask import send_file
 
 class ConsentFormAPI(Resource):
 
-    _model = UserModel()
+    #_model = UserModel()
 
     @check_token()
     def post(self):

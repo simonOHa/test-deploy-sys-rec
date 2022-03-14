@@ -79,9 +79,6 @@ class SysRecSemanticMapQuestionsModel(db.Model):
         if user_session:
             self._update(user_session, results)
         else:
-            print('SemanticMapQuestions')
-            print(self.email)
-            
             self.email = email
             self.question_1 = results['question_1']
             self.question_2 = results['question_2']

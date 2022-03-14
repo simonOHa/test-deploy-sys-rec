@@ -9,13 +9,13 @@ from api.errors import InternalServerError
 
 class VideoListeningTestAPI(Resource):
 
-    _model = VideoListeningTestModel()
+    #_model = VideoListeningTestModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
-            _data = self._model.get_videos_test1()
+            _data = VideoListeningTestModel().get_videos_test1()
             response = build_response_header(access_token=_access_token, status_code=200, data=_data, error_message=None)
             return response
         except Exception as e:
@@ -36,7 +36,7 @@ class VideoListeningTestAPI(Resource):
 
 class ResultsVideoListeningTestAPI(Resource):
 
-    _model = VideoListeningTestModel()
+    #_model = VideoListeningTestModel()
 
     @check_token()
     def get(self):

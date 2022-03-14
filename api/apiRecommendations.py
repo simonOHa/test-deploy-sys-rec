@@ -12,14 +12,14 @@ from api.errors import InternalServerError
 
 class RecommendationAPI(Resource):
 
-    _model = RecommendationModel()
+    #_model = RecommendationModel()
 
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
             _user = UserModel.query.filter_by(access_token=_access_token).first()
-            _new_recommendations = self._model.get_new_recommendations(email=_user.email)
+            _new_recommendations = RecommendationModel().get_new_recommendations(email=_user.email)
             response = build_response_header(access_token=_access_token, status_code=200, data=_new_recommendations, error_message=None)
             return response
 
@@ -44,7 +44,7 @@ class RecommendationAPI(Resource):
 
 class ResultsRecommendationAPI(Resource):
 
-    _model = RecommendationModel()
+    #_model = RecommendationModel()
     _lda_reader = LDAReader()
     _videos_infos = _lda_reader.get_video_infos()
 
