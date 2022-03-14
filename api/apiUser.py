@@ -10,8 +10,6 @@ CLIENT_SECRETS_FILE = "client_secret.json"
 
 class UserLoginAPI(Resource):
 
-    #_model = UserModel()
-
     def __init__(self):
         pass
 
@@ -21,7 +19,6 @@ class UserLoginAPI(Resource):
             auth_code = res['code']
             credentials = client.credentials_from_clientsecrets_and_code(CLIENT_SECRETS_FILE, ['email'], auth_code)
             http_auth = credentials.authorize(httplib2.Http()) # adds in the appropriate headers and then delegates to the original
-
             user = UserModel.query.filter_by(email=credentials.id_token['email']).first()
 
             if user is None:

@@ -9,7 +9,7 @@ from dbModels.userModel import UserModel
 
 class GlobalCommentAPI(Resource):
 
-    _model = GlobalCommentModel()
+    #_model = GlobalCommentModel()
 
     @check_token()
     def get(self):
@@ -24,8 +24,6 @@ class GlobalCommentAPI(Resource):
             else:
                 response = build_response_header(access_token=_access_token, status_code=200, data=None, error_message=None)
             return response
-
-
 
         except Exception as e:
             raise InternalServerError

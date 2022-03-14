@@ -9,7 +9,7 @@ from api.errors import InternalServerError
 
 class SysRecAndMapQuestionsAPI(Resource):
 
-    _model = SysRecAndMapQuestionsModel()
+    #_model = SysRecAndMapQuestionsModel()
 
     @check_token()
     def get(self):
@@ -17,7 +17,7 @@ class SysRecAndMapQuestionsAPI(Resource):
             _access_token = request.headers['Authorization'].replace('Bearer ', '')
             _user = UserModel.query.filter_by(access_token=_access_token).first()
 
-            _data = self._model.get_questions(email=_user.email)
+            _data = SysRecAndMapQuestionsModel().get_questions(email=_user.email)
             response = build_response_header(access_token=_access_token,
                                              status_code=200,
                                              data=_data,
