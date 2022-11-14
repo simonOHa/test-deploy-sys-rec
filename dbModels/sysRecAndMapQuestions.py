@@ -14,11 +14,12 @@ class SysRecAndMapQuestionsModel(db.Model):
     __tablename__ = 'SysRecAndMapQuestions'
 
     email = db.Column(db.String(), db.ForeignKey('users.email'), primary_key=True)
-    #question_1 = db.Column(NestedMutableJson)
+    question_1 = db.Column(NestedMutableJson)
     question_2 = db.Column(NestedMutableJson)
     question_3 = db.Column(NestedMutableJson)
     question_4 = db.Column(NestedMutableJson)
-    #question_5 = db.Column(NestedMutableJson)
+    question_5 = db.Column(NestedMutableJson)
+    question_6 = db.Column(NestedMutableJson)
 
     _lda_reader = LDAReader()
     _questions = None
@@ -31,11 +32,12 @@ class SysRecAndMapQuestionsModel(db.Model):
         _user = SysRecAndMapQuestionsModel.query.filter_by(email=email).first()
         if _user is not None:
             self._questions = {
-                #'question_1': _user.question_1,
+                'question_1': _user.question_1,
                 'question_2': _user.question_2,
                 'question_3': _user.question_3,
                 'question_4': _user.question_4,
-                #'question_5': _user.question_5
+                'question_5': _user.question_5,
+                'question_6': _user.question_6
             }
         else:
             self._build_questions(email=email)
@@ -43,8 +45,10 @@ class SysRecAndMapQuestionsModel(db.Model):
         return self._questions
 
     def _build_questions(self, email):
-        # Question 1
 
+
+        """
+        # Cette question a ete ecartee
         # Extraire les top words de chaque video, like et dislike de toutes les recommandations
         topic_ids = self._extract_topic_ids_from_user_area_interest_v2(email=email)
         final_top_words = self._calculate_words_intersection_from_user_area_interest_v2(all_top_words=topic_ids)
@@ -52,50 +56,48 @@ class SysRecAndMapQuestionsModel(db.Model):
 
         user_cold_start = SysRecColdStartModel.query.filter_by(email=email).first()
         cold_start_top_n_words = self._lda_reader.get_top10_topic_terms(topic_id=user_cold_start.cold_start_position['topic'])
+        """
 
-        question_1 = {'question': "Parmis la liste des termes si-dessous, cochez votre terme de prédilection s'il est présent \n",
-                      'cold_start_top_words': cold_start_top_n_words,
-                      'final_top_words': final_top_words,
-                      'word_not_found': [],
-                      'topic_ids': topic_ids,
-                      'comments': ''
-                      }
-
-        # Question 2
-        # 'question': "La carte sémantique m'a aidé à comprendre comment les recommandations étaient générées ?",
-        question_2 = {'question': "En vous attardant sur la section de la carte que vous venez de mettre en évidence, est-ce que cette visualisation vous aide à comprendre comment les recommandations ont été générées ?",
+        question_1 = {'question': "Est-ce que les recommandations concordent avec votre thématique de départ ? ",
                       'comments': "",
                       'slider': ""
                       }
 
-        # Question 3
-        # 'question': "J'ai trouvé utile l'évolution des centres d'intérêts (boules jaunes) ?"
-        question_3 = {'question': ": Est-ce que l’évolution des centres d’intérêt vous parait logique ?",
+        question_2 = {'question': "Parmi les ensembles de mots que vous venez de mettre en évidence (boules vertes), est-ce que ces mots, sans nécessairement tous les sélectionner, vous permettraient de décrire le contenu des vidéos que vous venez de regarder ?",
                       'comments': "",
                       'slider': ""
                       }
 
-        # Question 4
-        # 'question': "En général, les recommandations correspondaient bien à ma thématique de départ ?",
-        question_4 = {'question': "En général, les recommandations correspondaient bien à ma thématique de départ ?",
+        question_3 = {'question': "Au-delàs des choix de recommandation faits par l’algorithme, trouvez-vous pertinent de voir l’estimation de votre centre d’intérêt fait par le système de recommandations au travers cette carte ?",
                       'comments': "",
                       'slider': ""
                       }
 
-        # Question 5
-        question_5 = {'question': "À la fin de la session, j'étais satisfait des recommandations ?",
+        question_4 = {'question': "Si cette interface était intégrée sur Netflix, est-ce que l’utiliseriez ?",
                       'comments': "",
                       'slider': ""
+                      }
+
+        question_5 = {'question': "Selon vous, serait-il pertinent de visualiser les vidéos en les sélectionnant à partir de la carte ?",
+                      'comments': "",
+                      'slider': ""
+                      }
+
+        question_6 = {'question': "Qu’est-ce que vous amélioriez sur cette carte ?",
+                      'comments': "",
                       }
 
         self._questions = {
-            # 'question_1': question_1,
+            'question_1': question_1,
             'question_2': question_2,
             'question_3': question_3,
             'question_4': question_4,
-            #'question_5': question_5
+            'question_5': question_5,
+            'question_6': question_6,
         }
 
+    """
+    # Non utilisee
     def _extract_top_words_from_user_area_interest(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
         user = SysRecUserAreaInterest.query.filter_by(email=email).first()
         response = None
@@ -120,6 +122,7 @@ class SysRecAndMapQuestionsModel(db.Model):
 
         return response
 
+    # Non utilisee
     def _extract_topic_ids_from_user_area_interest_v2(self, email, top_n=N_TOPIC_BUILDING_USER_INTEREST_AREA):
         user = RecommendationModel.query.filter_by(email=email).first()
         doc_topic_distribution = self._lda_reader.get_doc_topic_distribution()
@@ -155,11 +158,13 @@ class SysRecAndMapQuestionsModel(db.Model):
 
         return results
 
+    # Non utilisee
     def _convert_to_front_end_object(self, datas):
         final_obj = []
         for data in datas:
             final_obj.append({'term': data, 'checked': False})
 
+    # Non utilisee
     def _calculate_words_intersection_from_user_area_interest_v2(self, all_top_words, n_most_commun = 10):
         # Cas a regarder :
         #   Si les topic_ids de like = dislike => On garde les mots de like
@@ -194,6 +199,7 @@ class SysRecAndMapQuestionsModel(db.Model):
 
         return final_terms
 
+    # Non utilisee
     def _calculate_words_intersection_from_user_area_interest(self, runs_topic_ids):
         list_terms = []
         for k, v in runs_topic_ids.items():
@@ -206,6 +212,7 @@ class SysRecAndMapQuestionsModel(db.Model):
         flat_list = [item for sublist in list_terms for item in sublist]
         final_terms = [val[0] for val in Counter(flat_list).most_common(10)]
         return final_terms
+    """
 
     def save_to_db(self, results, email):
         user_session = SysRecAndMapQuestionsModel.query.filter_by(email=email).first()
@@ -213,20 +220,22 @@ class SysRecAndMapQuestionsModel(db.Model):
             self._update(user_session, results)
         else:
             self.email = email
-            # self.question_1 = results['question_1']
+            self.question_1 = results['question_1']
             self.question_2 = results['question_2']
             self.question_3 = results['question_3']
             self.question_4 = results['question_4']
-            # self.question_5 = results['question_5']
+            self.question_5 = results['question_5']
+            self.question_6 = results['question_6']
             self._save_to_db()
 
     def _update(self, session, results):
         try:
-            # session.question_1 = results['question_1']
+            session.question_1 = results['question_1']
             session.question_2 = results['question_2']
             session.question_3 = results['question_3']
             session.question_4 = results['question_4']
-            # session.question_5 = results['question_5']
+            session.question_5 = results['question_5']
+            session.question_6 = results['question_6']
             db.session.commit()
         except IntegrityError:
             db.session.rollback()

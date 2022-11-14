@@ -5,6 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from config.CONSTANTS import *
 import random
 
+
 class VideoListeningTestModel(db.Model):
 
 	__tablename__ = 'videoListeningTestModel'

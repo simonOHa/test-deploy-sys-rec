@@ -8,10 +8,6 @@ from api.errors import InternalServerError
 
 
 class IntrusionTestScore(Resource):
-    #_ti_model = IntrusionTestTIModel()
-    #_wi_model = IntrusionTestWIModel()
-    #_wsi_model = IntrusionTestWSIModel()
-
     @check_token()
     def get(self):
         try:
@@ -38,9 +34,6 @@ class IntrusionTestScore(Resource):
 
 
 class IntrusionTestTIAPI(Resource):
-
-    #_model = IntrusionTestTIModel()
-
     @check_token()
     def get(self):
         try:
@@ -65,9 +58,6 @@ class IntrusionTestTIAPI(Resource):
 
 
 class ResultsIntrusionTestTIAPI(Resource):
-
-    #_model = IntrusionTestTIModel()
-
     @check_token()
     def get(self):
         try:
@@ -101,9 +91,6 @@ class ResultsIntrusionTestTIAPI(Resource):
 
 
 class IntrusionTestWIAPI(Resource):
-
-    #_model = IntrusionTestWIModel()
-
     @check_token()
     def get(self):
         try:
@@ -130,9 +117,6 @@ class IntrusionTestWIAPI(Resource):
 
 
 class ResultsIntrusionTestWIAPI(Resource):
-
-    #_model = IntrusionTestWIModel()
-
     @check_token()
     def get(self):
         try:
@@ -148,6 +132,7 @@ class ResultsIntrusionTestWIAPI(Resource):
             return response
         except Exception as e:
             raise InternalServerError
+
 
 
 class IntrusionTestWSIAPI(Resource):

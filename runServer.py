@@ -16,7 +16,7 @@ logger = logging.getLogger()
 login_manager = LoginManager()
 
 def create_app():
-    RecommendationsGenerator()
+    RecommendationsGenerator() # ??? Pk ici ??
     logger.info(f'Starting app in {config.APP_ENV} environment')
     app = Flask(__name__)
 

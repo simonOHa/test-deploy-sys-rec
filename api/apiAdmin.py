@@ -147,13 +147,13 @@ class AdminConsentAPI(Resource):
                 sys_rec_test3_map_questions_res = []
                 for user in sys_rec_test3_map_questions_all:
                     sys_rec_test3_map_questions_res.append({'email': user.email,
-                                                            #'question_1': user.question_1,
+                                                            'question_1': user.question_1,
                                                             'question_2': user.question_2,
                                                             'question_3': user.question_3,
                                                             'question_4': user.question_4,
-                                                            #'question_5': user.question_5,
+                                                            'question_5': user.question_5,
+                                                            'question_6': user.question_6,
                                                             })
-
 
                 sys_rec_test3_predilecion_term_all = SysRecPredilectionTermModel.query.all()
                 sys_rec_test3_predilecion_term_res = []
