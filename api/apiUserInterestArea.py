@@ -8,9 +8,6 @@ from api.errors import InternalServerError
 
 
 class UserInterestAreaAPI(Resource):
-
-    #_model = SysRecUserAreaInterest()
-
     @check_token()
     def get(self):
         try:

@@ -134,11 +134,7 @@ class ResultsIntrusionTestWIAPI(Resource):
             raise InternalServerError
 
 
-
 class IntrusionTestWSIAPI(Resource):
-
-    #_model = IntrusionTestWSIModel()
-
     @check_token()
     def get(self):
         try:
@@ -164,9 +160,6 @@ class IntrusionTestWSIAPI(Resource):
 
 
 class ResultsIntrusionTestWSIAPI(Resource):
-
-    # _model = IntrusionTestWSIModel()
-
     @check_token()
     def get(self):
         try:

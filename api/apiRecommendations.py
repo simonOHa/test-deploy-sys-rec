@@ -11,9 +11,6 @@ from api.errors import InternalServerError
 
 
 class RecommendationAPI(Resource):
-
-    #_model = RecommendationModel()
-
     @check_token()
     def get(self):
         try:
@@ -44,7 +41,6 @@ class RecommendationAPI(Resource):
 
 class ResultsRecommendationAPI(Resource):
 
-    #_model = RecommendationModel()
     _lda_reader = LDAReader()
     _videos_infos = _lda_reader.get_video_infos()
 

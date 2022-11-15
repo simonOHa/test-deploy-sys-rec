@@ -13,14 +13,10 @@ from api.errors import InternalServerError
 
 class ColdStartAPI(Resource):
 
-    #_model = SysRecColdStartModel()
-
     @check_token()
     def get(self):
         try:
             _access_token = request.headers['Authorization'].replace('Bearer ','')
-            #_user = UserModel.query.filter_by(access_token=_access_token).first()
-
             _data = SysRecColdStartModel().get_cold_start_choices()
             response = build_response_header(access_token=_access_token, status_code=200, data=_data, error_message=None)
             return response
@@ -43,9 +39,6 @@ class ColdStartAPI(Resource):
 
 
 class ResultColdStartAPI(Resource):
-
-    #_model = SysRecColdStartModel()
-
     @check_token()
     def get(self):
         try:

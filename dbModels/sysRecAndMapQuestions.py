@@ -1,12 +1,6 @@
 from dbModels import db
 from sqlalchemy.exc import IntegrityError
-import pandas as pd
-from collections import Counter
-from dbModels.sysRecColdStartModel import SysRecColdStartModel
-from dbModels.sysRecRecommendationModel import RecommendationModel
-from dbModels.sysRecUserAreaInterest import SysRecUserAreaInterest
 from utils.lda_reader import LDAReader
-from config.CONSTANTS import *
 from sqlalchemy_json import NestedMutableJson
 
 
@@ -20,6 +14,7 @@ class SysRecAndMapQuestionsModel(db.Model):
     question_4 = db.Column(NestedMutableJson)
     question_5 = db.Column(NestedMutableJson)
     question_6 = db.Column(NestedMutableJson)
+    question_7 = db.Column(NestedMutableJson)
 
     _lda_reader = LDAReader()
     _questions = None
@@ -37,7 +32,8 @@ class SysRecAndMapQuestionsModel(db.Model):
                 'question_3': _user.question_3,
                 'question_4': _user.question_4,
                 'question_5': _user.question_5,
-                'question_6': _user.question_6
+                'question_6': _user.question_6,
+                'question_7': _user.question_7
             }
         else:
             self._build_questions(email=email)
@@ -68,22 +64,27 @@ class SysRecAndMapQuestionsModel(db.Model):
                       'slider': ""
                       }
 
-        question_3 = {'question': "Au-delàs des choix de recommandation faits par l’algorithme, trouvez-vous pertinent de voir l’estimation de votre centre d’intérêt fait par le système de recommandations au travers cette carte ?",
+        question_3 = {'question': "3.	Est-ce que les ensembles de mots (boules vertes) liés à votre dernier centre d’intérêt (boule jaune ayant l’indice numérique le plus élevé) vous permettraient de décrire le contenu des vidéos que vous avez qualifié de pertinent ?",
                       'comments': "",
                       'slider': ""
                       }
 
-        question_4 = {'question': "Si cette interface était intégrée sur Netflix, est-ce que l’utiliseriez ?",
+        question_4 = {'question': "Au-delàs des choix de recommandation faits par l’algorithme, trouvez-vous pertinent de voir l’estimation de votre centre d’intérêt fait par le système de recommandations au travers cette carte ?",
                       'comments': "",
                       'slider': ""
                       }
 
-        question_5 = {'question': "Selon vous, serait-il pertinent de visualiser les vidéos en les sélectionnant à partir de la carte ?",
+        question_5 = {'question': "Si cette interface était intégrée sur Netflix, est-ce que l’utiliseriez ?",
                       'comments': "",
                       'slider': ""
                       }
 
-        question_6 = {'question': "Qu’est-ce que vous amélioriez sur cette carte ?",
+        question_6 = {'question': "Selon vous, serait-il pertinent de visualiser les vidéos en les sélectionnant à partir de la carte ?",
+                      'comments': "",
+                      'slider': ""
+                      }
+
+        question_7 = {'question': "Qu’est-ce que vous amélioriez sur cette carte ?",
                       'comments': "",
                       }
 
@@ -94,6 +95,7 @@ class SysRecAndMapQuestionsModel(db.Model):
             'question_4': question_4,
             'question_5': question_5,
             'question_6': question_6,
+            'question_7': question_7,
         }
 
     """
@@ -226,6 +228,7 @@ class SysRecAndMapQuestionsModel(db.Model):
             self.question_4 = results['question_4']
             self.question_5 = results['question_5']
             self.question_6 = results['question_6']
+            self.question_7 = results['question_7']
             self._save_to_db()
 
     def _update(self, session, results):
@@ -236,6 +239,7 @@ class SysRecAndMapQuestionsModel(db.Model):
             session.question_4 = results['question_4']
             session.question_5 = results['question_5']
             session.question_6 = results['question_6']
+            session.question_7 = results['question_7']
             db.session.commit()
         except IntegrityError:
             db.session.rollback()

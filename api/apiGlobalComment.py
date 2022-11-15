@@ -8,9 +8,6 @@ from dbModels.userModel import UserModel
 
 
 class GlobalCommentAPI(Resource):
-
-    #_model = GlobalCommentModel()
-
     @check_token()
     def get(self):
         try:

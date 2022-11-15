@@ -276,8 +276,6 @@ class RecommendationsGenerator:
 
     # Simply return list of topics id
     def _build_cold_start_choices(self):
-        #columns = self._doc_topics_distribution.columns
-        #choices = columns[1:].to_numpy()
         x = self._lda_reader.get_topic_terms_distribution()
         choices = []
         for col in x.columns:

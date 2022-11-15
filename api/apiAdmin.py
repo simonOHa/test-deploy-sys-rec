@@ -153,6 +153,7 @@ class AdminConsentAPI(Resource):
                                                             'question_4': user.question_4,
                                                             'question_5': user.question_5,
                                                             'question_6': user.question_6,
+                                                            'question_7': user.question_7,
                                                             })
 
                 sys_rec_test3_predilecion_term_all = SysRecPredilectionTermModel.query.all()

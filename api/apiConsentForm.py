@@ -8,8 +8,6 @@ from api.errors import InternalServerError
 # Routes permettant d'obtenir les choix pour le cold start (liste des topics id)
 # et de sauvegarder le choix de l'utilisateur.
 # Ne retourne aucune recommandations !!!
-from flask import send_file
-
 
 class ConsentFormAPI(Resource):
 

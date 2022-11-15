@@ -9,8 +9,6 @@ from api.errors import InternalServerError
 # et de sauvegarder le choix de l'utilisateur.
 # Ne retourne aucune recommandations !!!
 from flask import send_file
-
-
 class isTestCompletedAPI(Resource):
 
     @check_token()

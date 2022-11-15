@@ -9,8 +9,6 @@ from api.errors import InternalServerError
 
 class VideoListeningTestAPI(Resource):
 
-    #_model = VideoListeningTestModel()
-
     @check_token()
     def get(self):
         try:
@@ -35,9 +33,6 @@ class VideoListeningTestAPI(Resource):
 
 
 class ResultsVideoListeningTestAPI(Resource):
-
-    #_model = VideoListeningTestModel()
-
     @check_token()
     def get(self):
         try:

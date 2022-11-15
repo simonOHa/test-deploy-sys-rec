@@ -8,9 +8,6 @@ from api.errors import InternalServerError
 
 
 class SysRecAndMapQuestionsAPI(Resource):
-
-    #_model = SysRecAndMapQuestionsModel()
-
     @check_token()
     def get(self):
         try:
